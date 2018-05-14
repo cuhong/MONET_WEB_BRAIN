@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>link</title>
+    <style>
+    .link{
+      text-align: center;
+      margin: auto;
+      margin-top: 100px;
+      width: 800px;
+    }
+    .button:hover{
+
+      opacity: 1;
+
+    }
+    .button{
+
+      width: 250px;
+      height: 250px;
+      border: 0;
+      opacity: 0.5;
+    }
+    body {
+      background-image: url("{% static 'game/images/backgroundimg.png' %}"); /* fallback for old browsers */
+      font-family: "Roboto", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .webrain{
+      text-align: center;
+      width: 800px;
+      height: auto;
+      opacity: 1;
+      margin-top: 100px;
+      margin-bottom: 100px;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="link">
+      <img class="webrain" src="{% static 'game/images/webrain.png' %}"><br><br><br>
+      <a href="{% url 'game:game' 'gonogo' %}"><img class="button" src="{% static 'game/images/brainmap/gonogo.png' %}"></a>
+      <a href="{% url 'game:game' 'cardsort' %}"><img class="button" src="{% static 'game/images/brainmap/cardsorting.png' %}"></a>
+      <a href="{% url 'game:game' 'digitnback' %}"><img class="button" src="{% static 'game/images/brainmap/o13.png' %}"></a><br>
+      <a href="{% url 'game:game' 'imagenback' %}"><img class="button" src="{% static 'game/images/brainmap/o21.png' %}"></a>
+      <a href="{% url 'game:game' 'balloon' %}"><img class="button" src="{% static 'game/images/brainmap/stroop.png' %}"></a>
+      <a href="{% url 'game:game' 'tetris' %}"><img class="button" src="{% static 'game/images/brainmap/o23.png' %}"></a><br>
+      <a href="{% url 'game:game' 'tetris' %}"><img class="button" src="{% static 'game/images/brainmap/o31.png' %}"></a>
+      <a href="{% url 'game:game' 'tetris' %}"><img class="button" src="{% static 'game/images/brainmap/o32.png' %}"></a>
+      <a href="{% url 'game:game' 'tetris' %}"><img class="button" src="{% static 'game/images/brainmap/o33.png' %}"></a>
+    </div>
+    <!--<a href="{% url 'game:logout' %}">I want to log-out!</a>-->
+    <input type="button" value="I want to log-out" onclick="window.location.href='/logout/'" />
+  </body>
+</html>

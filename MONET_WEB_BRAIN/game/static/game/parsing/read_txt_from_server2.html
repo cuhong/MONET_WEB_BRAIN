@@ -1,0 +1,34 @@
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="/Users/hyunseokbahng/Desktop/Hyunseok/monet/web/jspsych/parsing/jquery.csv.js"></script>
+
+	<script>
+
+
+		function read_with_ajax(url,fun,holder){//url,function,just a placeholder
+		holder=new XMLHttpRequest;
+		holder.open('GET',url);
+		holder.onload=fun;
+		holder.send()
+		}
+
+		function alertTxt(){
+			//alert(this.response)
+			data = $.csv.toArrays(this.response) //global value : data
+			//console.log(data)
+			alert(data)
+		}
+
+		window.onload=function(){
+			read_with_ajax('data.csv',alertTxt)
+		}
+
+
+
+	</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

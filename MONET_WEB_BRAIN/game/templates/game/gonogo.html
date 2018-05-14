@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>gonogo</title>
+    <meta charset="utf-8">
+    <script src="{% static 'game/scripts/jspsych.js' %}"></script>
+    <script src="{% static 'game/jspsych-6/plugins/jspsych-html-keyboard-response.js' %}"></script>
+    <script src="{% static 'game/jspsych-6/plugins/jspsych-html-button-response.js' %}"></script>
+    <script src="{% static 'game/jspsych-6/plugins/jspsych-fullscreen.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'game/styles/jspsych.css' %}"></link>
+
+    <style>
+  	.dd{
+  		text-align: center;
+  	}
+  	.back{
+  		text-align: center;
+  		height: 200px;
+  		width: auto;
+  	}
+  	</style>
+
+
+  </head>
+
+  <body>
+  <script>
+//Soowon task!!
+    /* create timeline */
+    var timeline = [];
+
+    /* define welcome message trial */
+
+
+
+    /* define instructions trial */
+    var instructions = {
+      type: "html-button-response",
+      stimulus: "",
+      choices: ["<p>두가지 다른 색상의 동그라미가 나타납니다.</p>" +
+          "<p>초록색 동그라미가 나타나면 <br>GO 버튼을 최대한 빨리 터치하세요</p><br><br>" +
+          "<p>빨간색 동그라미가 나타나면 <br>버튼을 누르지말고 멈추세요</p>" +
+          "<p>Good luck! :)<br>시작할 준비가 되었으면<br>화면을 터치하세요</p>"]
+    };
+    timeline.push(instructions);
+
+
+    var pre_instructions = {
+      type: "html-button-response",
+      stimulus: "",
+      choices: ["<p>연습 한번 해볼까요?</p>"]
+    };
+    timeline.push(pre_instructions);
+
+    /* test trials */
+
+
+
+
+    var test_stimuli = [
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/blue.png' %}>", data: { test_part: 'test', correct_response: '0'} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/blue.png' %}>", data: { test_part: 'test', correct_response: '0'} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/blue.png' %}>", data: { test_part: 'test', correct_response: '0'} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/blue.png' %}>", data: { test_part: 'test', correct_response: '0'} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/blue.png' %}>", data: { test_part: 'test', correct_response: '0'} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/blue.png' %}>", data: { test_part: 'test', correct_response: '0'} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/blue.png' %}>", data: { test_part: 'test', correct_response: '0'} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/blue.png' %}>", data: { test_part: 'test', correct_response: '0'} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/orange.png' %}>", data: { test_part: 'test', correct_response: ""} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/orange.png' %}>", data: { test_part: 'test', correct_response: ""} }
+    ];
+
+
+    var pre_test_stimuli = [
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/blue.png' %}>", data: { test_part: 'pre', correct_response: '0'} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/blue.png' %}>", data: { test_part: 'pre', correct_response: '0'} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/blue.png' %}>", data: { test_part: 'pre', correct_response: '0'} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/blue.png' %}>", data: { test_part: 'pre', correct_response: '0'} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/blue.png' %}>", data: { test_part: 'pre', correct_response: '0'} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/blue.png' %}>", data: { test_part: 'pre', correct_response: '0'} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/blue.png' %}>", data: { test_part: 'pre', correct_response: '0'} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/blue.png' %}>", data: { test_part: 'pre', correct_response: '0'} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/orange.png' %}>", data: { test_part: 'pre', correct_response: ""} },
+      { stimulus: '<img src=' + "{% static 'game/images/gonogo/orange.png' %}>", data: { test_part: 'pre', correct_response: ""} }
+    ];
+
+
+
+
+    var fixation = {
+      type: 'html-keyboard-response',
+      stimulus: '<div style="font-size:60px;"><img src= ' + "{% static 'game/images/fix.png' %}" + '></div>',
+      choices: jsPsych.NO_KEYS,
+      trial_duration: function(){
+        return jsPsych.randomization.sampleWithoutReplacement([1500], 1)[0];
+      },
+      data: {test_part: 'fixation'}
+    }
+
+    var test = {
+      type: "html-button-response",
+      stimulus: jsPsych.timelineVariable('stimulus'),
+      choices: ['GO'],
+      data: jsPsych.timelineVariable('data'),
+      on_finish: function(data){
+        data.correct = data.button_pressed == data.correct_response;
+      },
+    }
+
+    var pre_test_procedure = {
+      timeline: [fixation, test],
+      timeline_variables: pre_test_stimuli,
+      repetitions: 1,
+      randomize_order: true,
+      trial_duration: 1000
+    }
+    timeline.push(pre_test_procedure);
+
+
+    var go = {
+      type: "html-button-response",
+      stimulus: "",
+      choices: ["<p>이제 진짜로 시작합니다!</p>"]
+    };
+    timeline.push(go);
+
+    var test_procedure = {
+      timeline: [fixation, test],
+      timeline_variables: test_stimuli,
+      repetitions: 4,
+      randomize_order: true,
+      trial_duration: 1000
+    }
+    timeline.push(test_procedure);
+
+    /* define debrief */
+
+    var debrief_block = {
+      type: "html-keyboard-response",
+      trial_duration: 5000,
+      stimulus: function() {
+
+        var trials = jsPsych.data.get().filter({test_part: 'test'});
+        var correct_trials = trials.filter({correct: true});
+        var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
+        var rt = trials.select('rt').mean();
+
+        //var all_data = jsPsych.data.get();
+        //console.log(jsPsych.data.get().csv());
+
+        // send the score using POST
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/game/gonogo/', true);
+
+        //Send the proper header information along with the request
+        xhr.setRequestHeader("Content-type", "application/json");
+
+        xhr.onreadystatechange = function () {//Call a function when the state changes.
+            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                // Request finished. Do processing here.
+            }
+        }
+
+        xhr.send(String(accuracy) + ' ' + String(rt));
+
+        setTimeout(function () { window.location.replace("/game/gonogo/game-result"); }, 1000);
+
+        /*
+        return "수고하셨습니다"+
+        "<p>당신의 점수는 "+accuracy+"점 입니다.</p>"+
+        "<p>당신의 Response Rate는 "+rt+"점 입니다.</p>";
+        */
+      }
+    };
+    timeline.push(debrief_block);
+
+
+
+    /* start the experiment */
+    jsPsych.init({
+      timeline: timeline,
+      show_preload_progress_bar: true,
+      on_finish: function() {
+        //jsPsych.data.get().localSave('csv','gonogodata.csv');
+        //jsPsych.data.displayData('csv');
+
+
+      }
+    });
+  </script>
+
+
+    </body>
+
+
+</html>
