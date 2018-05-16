@@ -15,7 +15,6 @@ def index(request):
     if 'name' not in request.session:
         # User need to sign up or sign in
         return redirect('/sign-up/')
-   
     else:
         # Redirect the user to game selection webpage.
         return redirect('/which-game/')
@@ -31,11 +30,9 @@ def sign_up(request):
         if 'name' in request.session:
             # User already logged-in
             return redirect('/which-game/')
-    
         else:
             # Show the user the sign-up webpage
             return render(request, 'game/sign-up.html')
-    
     elif request.method == 'POST':
         try:
             # Add new user to our database
@@ -44,15 +41,12 @@ def sign_up(request):
             new_user.email = request.POST['email']
             new_user.pw = request.POST['password']
             new_user.save()
-        
         except IntegrityError as e: 
             # If there's already same name or email, reject the request
             if 'unique constraint' in e.message:
                 raise Http404("You've already have an ID!")
-        
         # From now, the user logged in.
         request.session['name'] = request.POST['name']
-
         # Redirect the user to game-selection webpage
         return redirect('/which-game/')
 
@@ -74,7 +68,6 @@ def sign_in(request):
         if request.POST['password'] == this_user.pw:
             request.session['name'] = request.POST['name']
             return redirect('/which-game/')
-    
         # Else, then redirect the user to sign-in webpage
         else:
             return redirect('/sign-in')
@@ -110,32 +103,15 @@ def game(request, game_name):
                 balloon_score.user = this_user
                 balloon_score.save()
 
-                new_txt1 = BalloonText()
-                new_txt1.bs = balloon_score
-                new_txt1.txt = "MJPYEON is handsome."
+                questions = BalloonText.objects.all()
+                for question in questions:
+                    new_balloon = Balloon()
+                    new_balloon.bs = balloon_score
+                    new_balloon.txt = question.txt
+                    new_balloon.save()
+                balloon_txts = ','.join(questions)
 
-                new_txt2 = BalloonText()
-                new_txt2.bs = balloon_score
-                new_txt2.txt = "HCAN is handsome."
-
-                new_txt3 = BalloonText()
-                new_txt3.bs = balloon_score
-                new_txt3.txt = "HJCHA is handsome"
-
-                new_txt1.save()
-                new_txt2.save()
-                new_txt3.save()
-                balloon_txts = [new_txt1.txt, new_txt2.txt, new_txt3.txt]
                 return render(request, 'game/' + game_name + '.html', {'balloon_txts' : balloon_txts})
-            elif game_name == 'cardsort':
-                with open('cardsorting_cond.csv', 'r', encoding='utf-8') as csvfile:
-                    reader = csv.reader(csvfile)
-                    all_lines = []
-                    for row in reader:
-                        all_lines.append('|'.join(row))
-                    one_line = '@'.join(all_lines)
-                    print(one_line)
-                return render(request, 'game/' + game_name + '.html', {"csv_file": one_line})
             return render(request, 'game/' + game_name + '.html')
     elif request.method == 'POST':
         # Read the user's name from session and use it for querying
@@ -151,8 +127,14 @@ def game(request, game_name):
             new_score.rt = float(json.loads(data_list[1]))
             new_score.save()
         elif game_name == 'cardsort':
-            # HAHA
             this_game = 'card_sort'
+            new_score = CardsortScore()
+            new_score.user = this_user
+            data = request.body.decode('utf-8')
+            data_list = data.split(' ')
+            new_score.score = float(json.loads(data_list[0]))
+            new_score.rt = float(json.loads(data_list[1]))
+            new_score.save()
         elif game_name == 'digitnback':
              # Save the accuracy
             new_score = DigitNbackScore()
@@ -177,22 +159,47 @@ def game(request, game_name):
             data = request.body.decode('utf-8')  # JSON data is in the body of the request, and since it was string let's decode it into 'utf-8' format.
             new_score.score = int(json.loads(data))
             new_score.save()
+        elif game_name == 'stroop':
+            new_score = StroopScore()
+            new_score.user = this_user
+            data = request.body.decode('utf-8')
+            data_list = data.split(' ')
+            new_score.score = float(json.loads(data_list[0]))
+            new_score.rt = float(json.loads(data_list[1]))
+            new_score.save()
         elif game_name == 'balloon':
             this_bs = this_user.balloonscore_set.all().order_by('date').reverse()[0]
-            this_txts = this_bs.balloontext_set.all().order_by('date')
+            this_txts = this_bs.balloon_set.all().order_by('date')
             rt_array = request.body.decode('utf-8')
             rt_array_list = rt_array.split(',')
-            print()
-            print(rt_array_list)
-            print()
             rt_array_list_fl = [ float(json.loads(i)) for i  in rt_array_list]
-            for i, balloon_txt in enumerate(this_txts):
-                balloon_txt.rt = rt_array_list_fl[i]
-                balloon_txt.save()
+            for i, balloon in enumerate(this_txts):
+                balloon.rt = rt_array_list_fl[i]
+                balloon.save()
 
         # After saving the usre's score, redirect the user to game-result webpage
         return redirect('/game/' + game_name + '/game-result/')
-        
+
+
+def read_score(this_game_score, this_user):
+    user_scores = this_game_score.objects.filter(user=this_user).order_by('date').reverse()
+    this_turn_score = user_scores[0]
+    user_scores = user_scores[1:]
+
+    all_scores = this_game_score.objects.all().order_by('score').reverse()
+    user_rank = 0
+    for score in all_scores:
+        user_rank += 1
+        if score == this_turn_score:
+            break
+    
+    all_scores_list = [str(i.score) for i in all_scores]
+    all_scores_list_str = ','.join(all_scores_list)
+
+    user_per = user_rank / len(all_scores) * 100
+    user_per_str = str(user_per)[:4]
+    user_per = float(user_per_str)
+    return this_turn_score, user_scores, all_scores, user_rank, all_scores_list_str, user_per  
 
 def game_result(request, game_name):
     """
@@ -209,96 +216,33 @@ def game_result(request, game_name):
 
     # Save this game's score object as 'this_game'    
     if game_name == 'gonogo':
-        user_scores = GonogoScore.objects.filter(user=this_user).order_by('date').reverse()
-        this_turn_score = user_scores[0]
-        user_scores = user_scores[1:]
-
-        all_scores = GonogoScore.objects.all().order_by('score').reverse()
-        user_rank = 0
-        for score in all_scores:
-            user_rank += 1
-            if score == this_turn_score:
-                break
-        
-        all_scores_list = [str(i.score) for i in all_scores]
-        all_scores_list_str = ','.join(all_scores_list)
-
-        user_per = user_rank / len(all_scores) * 100
-        user_per_str = str(user_per)[:4]
-        user_per = float(user_per_str)
-
+        this_game_score = GonogoScore
+        this_turn_score, user_scores, all_scores, user_rank, all_scores_list_str, user_per = read_score(this_game_score, this_user)        
         context = {'user_scores' : user_scores, 'all_scores' : all_scores, 'this_turn_score' : this_turn_score, 'user_rank' : user_rank, 'user_per' : user_per, 'all_scores_list_str': all_scores_list_str}
         return render(request, 'game/game-result.html', context)
-
     elif game_name == 'cardsort':
-        this_game = CardsortScore
+        this_game_score = CardsortScore
+        this_turn_score, user_scores, all_scores, user_rank, all_scores_list_str, user_per = read_score(this_game_score, this_user)        
+        context = {'user_scores' : user_scores, 'all_scores' : all_scores, 'this_turn_score' : this_turn_score, 'user_rank' : user_rank, 'user_per' : user_per, 'all_scores_list_str': all_scores_list_str}
+        return render(request, 'game/game-result.html', context)
     elif game_name == 'digitnback':
-        user_scores = DigitNbackScore.objects.filter(user=this_user).order_by('date').reverse()
-        this_turn_score = user_scores[0]
-        user_scores = user_scores[1:]
-
-        all_scores = DigitNbackScore.objects.all().order_by('score').reverse()
-        user_rank = 0
-        for score in all_scores:
-            user_rank += 1
-            if score == this_turn_score:
-                break
-        
-        all_scores_list = [str(i.score) for i in all_scores]
-        all_scores_list_str = ','.join(all_scores_list)
-
-        user_per = user_rank / len(all_scores) * 100
-        user_per_str = str(user_per)[:4]
-        user_per = float(user_per_str)
-
+        this_game_score = DigitNbackScore
+        this_turn_score, user_scores, all_scores, user_rank, all_scores_list_str, user_per = read_score(this_game_score, this_user)        
         context = {'user_scores' : user_scores, 'all_scores' : all_scores, 'this_turn_score' : this_turn_score, 'user_rank' : user_rank, 'user_per' : user_per, 'all_scores_list_str': all_scores_list_str}
         return render(request, 'game/game-result.html', context)
     elif game_name == 'imagenback':
-        user_scores = ImageNbackScore.objects.filter(user=this_user).order_by('date').reverse()
-        this_turn_score = user_scores[0]
-        user_scores = user_scores[1:]
-
-        all_scores = ImageNbackScore.objects.all().order_by('score').reverse()
-        user_rank = 0
-        for score in all_scores:
-            user_rank += 1
-            if score == this_turn_score:
-                break
-        
-        all_scores_list = [str(i.score) for i in all_scores]
-        all_scores_list_str = ','.join(all_scores_list)
-
-        user_per = user_rank / len(all_scores) * 100
-
-        user_per_str = str(user_per)[:4]
-        user_per = float(user_per_str)
-
+        this_game_score = DigitNbackScore
+        this_turn_score, user_scores, all_scores, user_rank, all_scores_list_str, user_per = read_score(this_game_score, this_user)        
         context = {'user_scores' : user_scores, 'all_scores' : all_scores, 'this_turn_score' : this_turn_score, 'user_rank' : user_rank, 'user_per' : user_per, 'all_scores_list_str': all_scores_list_str}
         return render(request, 'game/game-result.html', context)
     elif game_name == 'tetris':
-        # Read the user's all the scores of this game.
-        user_scores = TetrisScore.objects.filter(user=this_user).order_by('date').reverse()
-        # This turn's score should be the first item of date-orderd list
-        this_turn_score = user_scores[0]
-        # Except this turn's score from the list
-        user_scores = user_scores[1:]
-        # Read all the usre's all the scores of this game
-        all_scores = TetrisScore.objects.all().order_by('score').reverse()
-        # Calculate the user's ranking from all the users
-        user_rank = 0
-        for score in all_scores:
-            user_rank += 1
-            if score == this_turn_score:
-                break
-
-        all_scores_list = [str(i.score) for i in all_scores]
-        all_scores_list_str = ','.join(all_scores_list)
-
-        # Calcualte the percentage of this user.
-        user_per = user_rank / len(all_scores) * 100
-
-        user_per_str = str(user_per)[:4]
-        user_per = float(user_per_str)
+        this_game_score = TetrisScore
+        this_turn_score, user_scores, all_scores, user_rank, all_scores_list_str, user_per = read_score(this_game_score, this_user)        
+        context = {'user_scores' : user_scores, 'all_scores' : all_scores, 'this_turn_score' : this_turn_score, 'user_rank' : user_rank, 'user_per' : user_per, 'user_num' : len(all_scores), 'all_scores_list_str': all_scores_list_str}
+        return render(request, 'game/game-result.html', context)
+    elif game_name == 'stroop':
+        this_game_score = StroopScore
+        this_turn_score, user_scores, all_scores, user_rank, all_scores_list_str, user_per = read_score(this_game_score, this_user)        
         context = {'user_scores' : user_scores, 'all_scores' : all_scores, 'this_turn_score' : this_turn_score, 'user_rank' : user_rank, 'user_per' : user_per, 'user_num' : len(all_scores), 'all_scores_list_str': all_scores_list_str}
         return render(request, 'game/game-result.html', context)
     elif game_name == 'balloon':
@@ -311,4 +255,8 @@ def logout(request):
         pass
     return redirect('/')
 
+def cardsorting(request):
+    return render(request, 'game/cardsorting.html')
+def stroop_game(request):
+    return render(request, 'game/stroop_game.html')
 # Create your views here.

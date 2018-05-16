@@ -162,7 +162,7 @@
         var trials = jsPsych.data.get().filter({test_part: 'test'});
         var correct_trials = trials.filter({correct: true});
         var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
-        var rt = trials.select('rt').values;
+        var rt = trials.select('rt').mean();
         
         var sum = 0;
         var num = 0;
@@ -194,7 +194,7 @@
         }
 
         //xhr.send(JSON.stringify(String(accuracy) + ' ' + String(avg_rt)));
-        xhr.send((String(accuracy) + ' ' + String(avg_rt)));
+        xhr.send((String(accuracy) + ' ' + String(rt)));
 
         setTimeout(function () { window.location.replace("/game/digitnback/game-result"); }, 1000);
 

@@ -9,10 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <script>
-        var text_array = [];
-        text_array.push("{{ balloon_txts.0 }}")
-        text_array.push("{{ balloon_txts.1 }}")
-        text_array.push("{{ balloon_txts.2 }}")
+        var text_array = "{{ balloon_txts }}".split(',');
     </script>
 </head>
 
