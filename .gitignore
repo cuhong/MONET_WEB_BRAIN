@@ -2,7 +2,7 @@
 *~
 __pycache__
 db.sqlite3
-/static
+/MONET_WEB_BRAIN/static
 .DS_Store
 settings.py
 .vscode

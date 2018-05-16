@@ -104,10 +104,11 @@ def game(request, game_name):
                 balloon_score.save()
 
                 questions = BalloonText.objects.all()
+                questions = [question.txt for question in questions]
                 for question in questions:
                     new_balloon = Balloon()
                     new_balloon.bs = balloon_score
-                    new_balloon.txt = question.txt
+                    new_balloon.txt = question
                     new_balloon.save()
                 balloon_txts = ','.join(questions)
 
