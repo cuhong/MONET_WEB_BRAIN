@@ -10,4 +10,6 @@ urlpatterns = [
     path('game/<slug:game_name>/', views.game, name='game'),
     path('game/<slug:game_name>/game-result/', views.game_result, name='game_result'),
     path('logout/', views.logout, name='logout'),
+    path('game/cardsort/cardsorting.html', views.cardsorting, name='cardsorting'),
+    path('game/stroop/stroop.html', views.stroop_game, name='stroop_game' ),
 ]
