@@ -29,6 +29,10 @@
 //Soowon task!!
     /* create timeline */
     var timeline = [];
+    var start_time_list = [];
+    var end_time_list = [];
+
+
 
     /* define welcome message trial */
 
@@ -103,7 +107,14 @@
       stimulus: jsPsych.timelineVariable('stimulus'),
       choices: ['GO'],
       data: jsPsych.timelineVariable('data'),
+      conditional_function: function(){
+        var curr_time = new Date();
+        start_time_list.push(curr_time);
+        return true;
+      },
       on_finish: function(data){
+        var curr_time = new Date();
+        end_time_list.push(curr_time);
         data.correct = data.button_pressed == data.correct_response;
       },
     }
@@ -130,7 +141,7 @@
       timeline_variables: test_stimuli,
       repetitions: 4,
       randomize_order: true,
-      trial_duration: 1000
+      trial_duration: 1000,
     }
     timeline.push(test_procedure);
 
@@ -144,7 +155,8 @@
         var trials = jsPsych.data.get().filter({test_part: 'test'});
         var correct_trials = trials.filter({correct: true});
         var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
-        var rt = trials.select('rt').mean();
+        var rt = trials.select('rt');
+        var avg_rt = rt.mean();
 
         //var all_data = jsPsych.data.get();
         //console.log(jsPsych.data.get().csv());
@@ -161,8 +173,12 @@
                 // Request finished. Do processing here.
             }
         }
-
-        xhr.send(String(accuracy) + ' ' + String(rt));
+        for(i=0;i<start_time_list.length;i++){
+          console.log(start_time_list[i]);
+          console.log(end_time_list[i]);
+          console.log(rt[i]);
+        }
+        xhr.send(String(accuracy) + ' ' + String(avg_rt));
 
         setTimeout(function () { window.location.replace("/game/gonogo/game-result"); }, 1000);
 
