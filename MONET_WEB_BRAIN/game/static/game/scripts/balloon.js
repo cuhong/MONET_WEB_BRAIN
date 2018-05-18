@@ -70,8 +70,24 @@ function falling_balloon(size, current_index, left, main_balloon=true){
                                 save response_time to DB
                                 link to the result page
                             */
-    
-                            console.log(response_time);
+                           ressponse_time.toString();
+                           // send the score using POST
+                           var xhr = new XMLHttpRequest();
+                           xhr.open("POST", '/game/balloon/', true);
+       
+                           //Send the proper header information along with the request
+                           xhr.setRequestHeader("Content-type", "application/json");
+       
+                           xhr.onreadystatechange = function () {//Call a function when the state changes.
+                               if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                                   // Request finished. Do processing here.
+                               }
+                           }
+       
+                           //xhr.send(JSON.stringify(String(accuracy) + ' ' + String(avg_rt)));
+                           xhr.send(response_time);
+       
+                           setTimeout(function () { window.location.replace("/game/balloon/game-result"); }, 1000);
                         }
     
                     }
