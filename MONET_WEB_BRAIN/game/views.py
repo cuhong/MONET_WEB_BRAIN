@@ -307,6 +307,11 @@ def game(request, game_name):
             for i, balloon in enumerate(this_txts):
                 balloon.rt = rt_array_list_fl[i]
                 balloon.save()
+            sum = 0.0
+            for i in rt_array_list_fl:
+                sum += i
+            this_bs.rt = sum / len(rt_array_list_fl)
+            this_bs.save()
 
         # After saving the usre's score, redirect the user to game-result webpage
         return redirect('/game/' + game_name + '/game-result/')

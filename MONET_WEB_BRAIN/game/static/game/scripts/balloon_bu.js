@@ -77,7 +77,7 @@ function falling_balloon(size, current_index){
 
                         setTimeout(function () { window.location.replace("/game/balloon/game-result"); }, 1000);
 
-                        console.log(response_time);
+                        //console.log(response_time);
                     }
 
                 });
