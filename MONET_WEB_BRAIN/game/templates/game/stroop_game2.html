@@ -3,7 +3,7 @@
 
 <head>
 
-        <title>stroop</title>
+        <title>cardsorting</title>
 
         <meta charset="utf-8">
 
@@ -41,8 +41,6 @@ type: 'html-keyboard-response',
 
 stimulus: "연습한번 해볼까요?",
 
-trial_duration: 2000,
-
 data: { test_part: "trial"},
 
 response_ends_trial: true,
@@ -59,83 +57,11 @@ timeline.push({
 
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/bb1.png' %}" + '><br><br>',
+stimulus: "파랑(파랑) 초록",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
-
-data: { test_part: "trial", correct_response: 3},
-
-response_ends_trial: true,
-
-on_finish: function (data) {
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/rr1.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "trial", correct_response: 3},
-
-response_ends_trial: true,
-
-on_finish: function (data) {
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/gg1.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
 data: { test_part: "trial", correct_response: 1},
 
@@ -151,15 +77,23 @@ on_finish: function (data) {
 
 timeline.push({
 
-type: 'html-keyboard-response',
+type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
+stimulus: "파랑(파랑) 빨강",
 
-trial_duration: 1500,
+trial_duration: 5000,
 
-choices: jsPsych.NO_KEYS,
+choices: ["<",">"],
 
-data: { test_part: "fix"},
+data: { test_part: "trial", correct_response: 1},
+
+response_ends_trial: true,
+
+on_finish: function (data) {
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
 
 });
 
@@ -167,11 +101,121 @@ timeline.push({
 
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/yy1.png' %}" + '><br><br>',
+stimulus: "파랑(파랑) 노랑",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
+
+data: { test_part: "trial", correct_response: 1},
+
+response_ends_trial: true,
+
+on_finish: function (data) {
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "초록(파랑) 빨랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "trial", correct_response: 1},
+
+response_ends_trial: true,
+
+on_finish: function (data) {
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "초록(빨강) 노랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "trial", correct_response: 1},
+
+response_ends_trial: true,
+
+on_finish: function (data) {
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "초록(노랑) 파랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "trial", correct_response: 1},
+
+response_ends_trial: true,
+
+on_finish: function (data) {
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "초록(초록) 빨강",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "trial", correct_response: 1},
+
+response_ends_trial: true,
+
+on_finish: function (data) {
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "파랑(노랑) 노랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
 
 data: { test_part: "trial", correct_response: 0},
 
@@ -187,15 +231,23 @@ on_finish: function (data) {
 
 timeline.push({
 
-type: 'html-keyboard-response',
+type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
+stimulus: "파랑(파랑) 파랑",
 
-trial_duration: 1500,
+trial_duration: 5000,
 
-choices: jsPsych.NO_KEYS,
+choices: ["<",">"],
 
-data: { test_part: "fix"},
+data: { test_part: "trial", correct_response: 0},
+
+response_ends_trial: true,
+
+on_finish: function (data) {
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
 
 });
 
@@ -203,13 +255,13 @@ timeline.push({
 
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/rr1.png' %}" + '><br><br>',
+stimulus: "파랑(파랑) 파랑",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
-data: { test_part: "trial", correct_response: 2},
+data: { test_part: "trial", correct_response: 0},
 
 response_ends_trial: true,
 
@@ -245,111 +297,11 @@ timeline.push({
 
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/stroop/green/anger1.png' %}" + '><br><br>',
+stimulus: "파랑(노랑) 노랑",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 1},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/blue/anger1.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 2},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/red/anger1.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
 data: { test_part: "test", correct_response: 0},
 
@@ -379,127 +331,13 @@ on_finish: function (data) {
 
 timeline.push({
 
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/stroop/yellow/anger1.png' %}" + '><br><br>',
+stimulus: "노랑(빨강) 노랑",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 3},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/yellow/anger2.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 3},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/green/anger2.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
 data: { test_part: "test", correct_response: 1},
 
@@ -529,227 +367,13 @@ on_finish: function (data) {
 
 timeline.push({
 
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/stroop/red/anger2.png' %}" + '><br><br>',
+stimulus: "파랑(파랑) 초록",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 0},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/blue/anger2.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 2},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/yellow/anger3.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 3},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/blue/anger3.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 2},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/green/anger3.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
 data: { test_part: "test", correct_response: 1},
 
@@ -779,77 +403,13 @@ on_finish: function (data) {
 
 timeline.push({
 
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/stroop/red/anger3.png' %}" + '><br><br>',
+stimulus: "파랑(파랑) 노랑",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 0},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/green/anger4.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
 data: { test_part: "test", correct_response: 1},
 
@@ -879,127 +439,13 @@ on_finish: function (data) {
 
 timeline.push({
 
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/stroop/blue/anger4.png' %}" + '><br><br>',
+stimulus: "초록(파랑) 파랑",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 2},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/yellow/anger4.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 3},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/red/anger4.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
 data: { test_part: "test", correct_response: 0},
 
@@ -1029,127 +475,13 @@ on_finish: function (data) {
 
 timeline.push({
 
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/stroop/blue/anger5.png' %}" + '><br><br>',
+stimulus: "빨강(빨강) 노랑",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 2},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/red/anger5.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 0},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/green/anger5.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
 data: { test_part: "test", correct_response: 1},
 
@@ -1179,227 +511,13 @@ on_finish: function (data) {
 
 timeline.push({
 
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/stroop/yellow/anger5.png' %}" + '><br><br>',
+stimulus: "파랑(초록) 초록",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 3},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/yellow/anger6.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 3},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/green/anger6.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 1},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/blue/anger6.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 2},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/red/anger6.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
 data: { test_part: "test", correct_response: 0},
 
@@ -1429,27 +547,13 @@ on_finish: function (data) {
 
 timeline.push({
 
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/stroop/red/neutral1.png' %}" + '><br><br>',
+stimulus: "파랑(파랑) 파랑",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
 data: { test_part: "test", correct_response: 0},
 
@@ -1479,227 +583,13 @@ on_finish: function (data) {
 
 timeline.push({
 
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/stroop/blue/neutral1.png' %}" + '><br><br>',
+stimulus: "파랑(빨강) 빨강",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 2},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/green/neutral1.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 1},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/yellow/neutral1.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 3},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/green/neutral2.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 1},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/red/neutral2.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
 data: { test_part: "test", correct_response: 0},
 
@@ -1729,277 +619,13 @@ on_finish: function (data) {
 
 timeline.push({
 
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/stroop/blue/neutral2.png' %}" + '><br><br>',
+stimulus: "초록(초록) 노랑",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 2},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/yellow/neutral2.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 3},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/yellow/neutral3.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 3},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/red/neutral3.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 0},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/blue/neutral3.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 2},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/green/neutral3.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
 data: { test_part: "test", correct_response: 1},
 
@@ -2029,77 +655,13 @@ on_finish: function (data) {
 
 timeline.push({
 
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/stroop/yellow/neutral4.png' %}" + '><br><br>',
+stimulus: "파랑(파랑) 빨강",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 3},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/green/neutral4.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
 data: { test_part: "test", correct_response: 1},
 
@@ -2129,127 +691,13 @@ on_finish: function (data) {
 
 timeline.push({
 
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/stroop/red/neutral4.png' %}" + '><br><br>',
+stimulus: "초록(파랑) 빨랑",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 0},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/blue/neutral4.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 2},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/green/neutral5.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
 data: { test_part: "test", correct_response: 1},
 
@@ -2279,77 +727,13 @@ on_finish: function (data) {
 
 timeline.push({
 
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/stroop/blue/neutral5.png' %}" + '><br><br>',
+stimulus: "노랑(초록) 초록",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 2},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/red/neutral5.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
 data: { test_part: "test", correct_response: 0},
 
@@ -2379,127 +763,13 @@ on_finish: function (data) {
 
 timeline.push({
 
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/stroop/yellow/neutral5.png' %}" + '><br><br>',
+stimulus: "노랑(노랑) 빨강",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 3},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/yellow/neutral6.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
-
-data: { test_part: "test", correct_response: 3},
-
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
-
-                    data.correct = data.button_pressed == data.correct_response;
-
-                    }
-
-});
-
-timeline.push({
-
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
-type: 'html-button-response',
-
-stimulus: '<img src=' + "{% static 'game/images/stroop/green/neutral6.png' %}" + '><br><br>',
-
-trial_duration: 5000,
-
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
 data: { test_part: "test", correct_response: 1},
 
@@ -2529,27 +799,13 @@ on_finish: function (data) {
 
 timeline.push({
 
-type: 'html-keyboard-response',
-
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
-
-trial_duration: 1500,
-
-choices: jsPsych.NO_KEYS,
-
-data: { test_part: "fix"},
-
-});
-
-timeline.push({
-
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/stroop/red/neutral6.png' %}" + '><br><br>',
+stimulus: "노랑(노랑) 노랑",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
 data: { test_part: "test", correct_response: 0},
 
@@ -2579,15 +835,37 @@ on_finish: function (data) {
 
 timeline.push({
 
-type: 'html-keyboard-response',
+type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/fix.png' %}" + '><br><br>',
+stimulus: "초록(빨강) 노랑",
 
-trial_duration: 1500,
+trial_duration: 5000,
 
-choices: jsPsych.NO_KEYS,
+choices: ["<",">"],
 
-data: { test_part: "fix"},
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
 
 });
 
@@ -2595,13 +873,1129 @@ timeline.push({
 
 type: 'html-button-response',
 
-stimulus: '<img src=' + "{% static 'game/images/stroop/blue/neutral6.png' %}" + '><br><br>',
+stimulus: "빨강(빨강) 초록",
 
 trial_duration: 5000,
 
-choices: ["R","G","B","Y"],
+choices: ["<",">"],
 
-data: { test_part: "test", correct_response: 2},
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "노랑(초록) 빨강",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "노랑(노랑) 파랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "빨강(초록) 노랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "빨강(빨강) 빨강",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "빨강(노랑) 노랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "노랑(빨강) 빨강",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "초록(빨강) 빨강",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "빨강(빨강) 파랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "빨강(파랑) 파랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "빨강(파랑) 빨강",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "빨강(빨강) 빨강",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "노랑(노랑) 노랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "빨강(노랑) 파랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "파랑(초록) 빨강",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "노랑(파랑) 파랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "초록(초록) 초록",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "초록(초록) 초록",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "노랑(파랑) 초록",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "파랑(빨강) 노랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "파랑(파랑) 파랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "초록(초록) 파랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "초록(노랑) 노랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "파랑(노랑) 초록",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "빨강(빨강) 빨강",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "초록(초록) 빨강",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "노랑(노랑) 노랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "초록(노랑) 파랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "노랑(노랑) 초록",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "초록(초록) 초록",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "파랑(파랑) 파랑",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+conditional_function: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: "빨강(초록) 초록",
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
 
 response_ends_trial: true,
 
@@ -2643,10 +2037,9 @@ stimulus: function () {
 
                 var avg_rt = trials.select('rt').mean();
 
+				// send the score using POST
 
-                // send the score using POST
-
-                var xhr = new XMLHttpRequest();
+				var xhr = new XMLHttpRequest();
 
                 xhr.open("POST", '/game/stroop/', true);
 
@@ -2664,16 +2057,15 @@ stimulus: function () {
 
                 }
 
-                st = start_time_list.toString();
-                et = end_time_list.toString();
-                rts= rt.toString();
+				st = start_time_list.toString();
+				et = end_time_list.toString();
+				rts= rt.toString();
 
-                xhr.send(String(accuracy) + '!' + String(avg_rt) + '!' + st + '!' + et + '!' + rts);
+        		xhr.send(String(accuracy) + '!' + String(avg_rt) + '!' + st + '!' + et + '!' + rts);
 
-                setTimeout(function () { window.location.replace("/game/stroop/game-result"); }, 1000);
-
-                return "<p>수고하셨습니다 잠시만 기다려 주십시오...</p>";
-
+				setTimeout(function () { window.location.replace("/game/stroop/game-result"); }, 1000);
+				
+        		return "<p>수고하셨습니다 잠시만 기다려 주십시오...</p>";
 			},
 
 trial_duration: 5000,
@@ -2696,6 +2088,4 @@ jsPsych.init({
 
 </script>
 
-</body>
-
-</html>
+</body></html>

@@ -24,15 +24,13 @@
         crossorigin="anonymous"></script>
 
         </head>
+
+
 <body>
 
 <script>
 
 var timeline = [];
-
-var start_time_list = [];
-
-var end_time_list = [];
 
 timeline.push({
 
@@ -42,11 +40,9 @@ stimulus: "연습 한번 해 볼까요?",
 
 trial_duration: 2000,
 
-data: { test_part: "trial"},
+data: { test_part: "test"},
 
-response_ends_trial: true,
-
-on_finish: function (data) {
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -62,11 +58,9 @@ stimulus: '<img src=' + "{% static 'game/images/cardsorting/cross1green.png' %}"
 
 choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/triangle2green.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/cross3blue.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/star4yellow.png' %}" + '>'],
 
-data: { test_part: "trial", correct_response: 2},
+data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-on_finish: function (data) {
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -142,11 +136,9 @@ stimulus: '<img src=' + "{% static 'game/images/cardsorting/star3red.png' %}" + 
 
 choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/triangle2green.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/cross3blue.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/star4yellow.png' %}" + '>'],
 
-data: { test_part: "trial", correct_response: 0},
+data: { test_part: "test", correct_response: 0},
 
-response_ends_trial: true,
-
-on_finish: function (data) {
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -222,11 +214,9 @@ stimulus: '<img src=' + "{% static 'game/images/cardsorting/cross2green.png' %}"
 
 choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/triangle2green.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/cross3blue.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/star4yellow.png' %}" + '>'],
 
-data: { test_part: "trial", correct_response: 1},
+data: { test_part: "test", correct_response: 1},
 
-response_ends_trial: true,
-
-on_finish: function (data) {
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -302,11 +292,9 @@ stimulus: '<img src=' + "{% static 'game/images/cardsorting/triangle4yellow.png'
 
 choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/triangle2green.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/cross3blue.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/star4yellow.png' %}" + '>'],
 
-data: { test_part: "trial", correct_response: 1},
+data: { test_part: "test", correct_response: 1},
 
-response_ends_trial: true,
-
-on_finish: function (data) {
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -382,11 +370,9 @@ stimulus: '<img src=' + "{% static 'game/images/cardsorting/circle1yellow.png' %
 
 choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/triangle2green.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/cross3blue.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/star4yellow.png' %}" + '>'],
 
-data: { test_part: "trial", correct_response: 3},
+data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-on_finish: function (data) {
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -462,11 +448,9 @@ stimulus: '<img src=' + "{% static 'game/images/cardsorting/star3blue.png' %}" +
 
 choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/triangle2green.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/cross3blue.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/star4yellow.png' %}" + '>'],
 
-data: { test_part: "trial", correct_response: 2},
+data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-on_finish: function (data) {
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -542,11 +526,9 @@ stimulus: '<img src=' + "{% static 'game/images/cardsorting/circle2yellow.png' %
 
 choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/triangle2green.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/cross3blue.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/star4yellow.png' %}" + '>'],
 
-data: { test_part: "trial", correct_response: 3},
+data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-on_finish: function (data) {
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -622,11 +604,9 @@ stimulus: '<img src=' + "{% static 'game/images/cardsorting/triangle3yellow.png'
 
 choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/triangle2green.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/cross3blue.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/star4yellow.png' %}" + '>'],
 
-data: { test_part: "trial", correct_response: 3},
+data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-on_finish: function (data) {
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -702,11 +682,9 @@ stimulus: '<img src=' + "{% static 'game/images/cardsorting/circle2green.png' %}
 
 choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/triangle2green.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/cross3blue.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/star4yellow.png' %}" + '>'],
 
-data: { test_part: "trial", correct_response: 1},
+data: { test_part: "test", correct_response: 1},
 
-response_ends_trial: true,
-
-on_finish: function (data) {
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -782,11 +760,9 @@ stimulus: '<img src=' + "{% static 'game/images/cardsorting/star4red.png' %}" + 
 
 choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/triangle2green.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/cross3blue.png' %}" + '>','<img src=' + "{% static 'game/images/cardsorting/star4yellow.png' %}" + '>'],
 
-data: { test_part: "trial", correct_response: 3},
+data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-on_finish: function (data) {
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -862,11 +838,9 @@ stimulus: "이제 시작합니다!",
 
 trial_duration: 2000,
 
-data: { test_part: "trial"},
+data: { test_part: "test"},
 
-response_ends_trial: true,
-
-on_finish: function (data) {
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -884,23 +858,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -978,23 +936,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -1072,23 +1014,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 1},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -1166,23 +1092,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -1260,23 +1170,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -1354,23 +1248,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 0},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -1448,23 +1326,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -1542,23 +1404,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 0},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -1636,23 +1482,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 1},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -1730,23 +1560,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 0},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -1824,23 +1638,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -1918,23 +1716,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -2012,23 +1794,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -2106,23 +1872,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -2200,23 +1950,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 0},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -2294,23 +2028,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 0},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -2388,23 +2106,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -2482,23 +2184,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 1},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -2576,23 +2262,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -2670,23 +2340,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 1},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -2764,23 +2418,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 1},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -2858,23 +2496,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -2952,23 +2574,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 0},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -3046,23 +2652,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 0},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -3140,23 +2730,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 0},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -3234,23 +2808,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -3328,23 +2886,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 1},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -3422,23 +2964,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -3516,23 +3042,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 0},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -3610,23 +3120,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -3704,23 +3198,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -3798,23 +3276,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -3892,23 +3354,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -3986,23 +3432,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 0},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -4080,23 +3510,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 1},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -4174,23 +3588,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -4268,23 +3666,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 1},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -4362,23 +3744,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 1},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -4456,23 +3822,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -4550,23 +3900,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 0},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -4644,23 +3978,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 1},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -4738,23 +4056,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 1},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -4832,23 +4134,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -4926,23 +4212,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -5020,23 +4290,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -5114,23 +4368,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -5208,23 +4446,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -5302,23 +4524,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 1},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -5396,23 +4602,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 1},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -5490,23 +4680,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 1},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -5584,23 +4758,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -5678,23 +4836,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -5772,23 +4914,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 0},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -5866,23 +4992,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -5960,23 +5070,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -6054,23 +5148,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -6148,23 +5226,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -6242,23 +5304,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 0},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -6336,23 +5382,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 3},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -6430,23 +5460,7 @@ choices: ['<img src=' + "{% static 'game/images/cardsorting/circle1red.png' %}" 
 
 data: { test_part: "test", correct_response: 2},
 
-response_ends_trial: true,
-
-conditional_function: function(){
-
-                    var curr_time = new Date();
-
-                    start_time_list.push(curr_time);
-
-                    return true;
-
-                    },
-
-on_finish: function (data) {
-
-                    var curr_time = new Date();
-
-                    end_time_list.push(curr_time);
+on_finish :function (data) {
 
                     data.correct = data.button_pressed == data.correct_response;
 
@@ -6526,9 +5540,8 @@ stimulus: function () {
 
 				var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
 
-				var rt = trials.select('rt').values;
+				var rt = trials.select('rt').mean();
 
-				var avg_rt = trials.select('rt').mean();
 
 
 				// send the score using POST
@@ -6551,15 +5564,17 @@ stimulus: function () {
 
 				}
 
-				st = start_time_list.toString();
-				et = end_time_list.toString();
-				rts= rt.toString();
-
-        		xhr.send(String(accuracy) + '!' + String(avg_rt) + '!' + st + '!' + et + '!' + rts);
+				xhr.send(String(accuracy) + ' ' + String(rt));
 
 				setTimeout(function () { window.location.replace("/game/cardsort/game-result"); }, 1000);
-				
-        		return "<p>수고하셨습니다 잠시만 기다려 주십시오...</p>";
+
+
+
+				return "<p>You responded correctly on " + accuracy + "% of the trials.</p>" +
+
+					"<p>Your average response time was " + rt + "ms.</p>" +
+
+					"<p>Press any key to complete the experiment. Thank you!</p>";
 
 			},
 
@@ -6571,13 +5586,7 @@ jsPsych.init({
 
 			timeline: timeline,
 
-			show_preload_progress_bar: true,
-
-            on_finish: function() {
-
-                jsPsych.data.get().localSave('csv','data.csv');
-
-            }
+			show_preload_progress_bar: true
 
 		});
 
