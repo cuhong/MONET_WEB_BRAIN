@@ -28,8 +28,6 @@
 //Hanseul task!!
     /* create timeline */
     var timeline = [];
-    var start_time_list = [];
-    var end_time_list = [];
 
     /* define welcome message trial */
 
@@ -101,14 +99,7 @@
       stimulus: jsPsych.timelineVariable('stimulus'),
       choices: ['GO'],
       data: jsPsych.timelineVariable('data'),
-      conditional_function: function(){
-        var curr_time = new Date();
-        start_time_list.push(curr_time);
-        return true;
-      },
       on_finish: function(data){
-        var curr_time = new Date();
-        end_time_list.push(curr_time);
         data.correct = data.button_pressed == data.correct_response;
       },
     }
@@ -168,8 +159,7 @@
         var trials = jsPsych.data.get().filter({test_part: 'test'});
         var correct_trials = trials.filter({correct: true});
         var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
-        var rt = trials.select('rt').values;
-        var avg_rt = trials.select('rt').mean();
+        var rt = trials.select('rt').mean();
 
         //var all_data = jsPsych.data.get();
         //console.log(jsPsych.data.get().csv());
@@ -186,17 +176,15 @@
                 // Request finished. Do processing here.
             }
         }
-        
-        st = start_time_list.toString();
-        et = end_time_list.toString();
-        rts= rt.toString();
 
-        xhr.send(String(accuracy) + '!' + String(avg_rt) + '!' + st + '!' + et + '!' + rts);
+        xhr.send(String(accuracy) + ' ' + String(rt));
 
         setTimeout(function () { window.location.replace("/game/imagenback/game-result"); }, 1000);
 
-        return "<p>수고하셨습니다 잠시만 기다려 주십시오...</p>";
-
+        /*
+        return "수고하셨습니다"+
+        "<p>당신의 점수는 "+accuracy+"점 입니다.</p>";
+        */
       }
     };
     timeline.push(debrief_block);

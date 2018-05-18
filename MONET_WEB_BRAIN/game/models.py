@@ -23,6 +23,8 @@ class GonogoStimulus(models.Model):
     rt = models.FloatField(default=-1.0)
     start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.gs.user.name + ' ' + str(self.rt) + ' ' + str(self.end_date)
 
 # CardsortScore Game
 class CardsortScore(models.Model):
@@ -38,6 +40,8 @@ class CardsortStimulus(models.Model):
     rt = models.FloatField(default=-1.0)
     start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.cs.user.name + ' ' + str(self.rt) + ' ' + str(self.end_date)
 
 # DigitNback Game
 class DigitNbackScore(models.Model):
@@ -52,7 +56,9 @@ class DigitNbackStimulus(models.Model):
     ds = models.ForeignKey(DigitNbackScore, on_delete=models.CASCADE)
     rt = models.FloatField(default=-1.0)
     start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField(auto_now_add=True)    
+    end_date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.ds.user.name + ' ' + str(self.rt) + ' ' + str(self.end_date)    
 
 # ImageNback Game
 class ImageNbackScore(models.Model):
@@ -64,10 +70,12 @@ class ImageNbackScore(models.Model):
         return self.user.name + ' ' + str(self.score) + ' ' + str(self.rt)
 
 class ImageNbackStimulus(models.Model):
-    ims = models.ForeignKey(DigitNbackScore, on_delete=models.CASCADE)
+    ims = models.ForeignKey(ImageNbackScore, on_delete=models.CASCADE)
     rt = models.FloatField(default=-1.0)
     start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField(auto_now_add=True)  
+    end_date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.ims.user.name + ' ' + str(self.rt) + ' ' + str(self.end_date)  
 
 # Tetris Game
 class TetrisScore(models.Model):
@@ -87,10 +95,12 @@ class StroopScore(models.Model):
         return self.user.name + ' ' + str(self.score) + ' ' + str(self.rt)
 
 class StroopStimulus(models.Model):
-    ss = models.ForeignKey(DigitNbackScore, on_delete=models.CASCADE)
+    ss = models.ForeignKey(StroopScore, on_delete=models.CASCADE)
     rt = models.FloatField(default=-1.0)
     start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.ss.user.name + ' ' + str(self.rt) + ' ' + str(self.end_date)
 
 # Balloon Game
 class BalloonScore(models.Model):
@@ -108,7 +118,7 @@ class Balloon(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.bs.user.name + ' ' + str(self.txt) + ' ' + str(self.rt)
+        return self.bs.user.name + ' ' + str(self.txt) + ' ' + str(self.rt) + ' ' + str(self.start_date)
 
 class BalloonText(models.Model):
     txt = models.CharField(max_length=50, null=False, blank=False)
