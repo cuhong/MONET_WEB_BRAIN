@@ -117,6 +117,7 @@ class Balloon(models.Model):
     rt = models.FloatField(default=-1.0)
     start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField(auto_now_add=True)
+    response = models.IntegerField(default=0)
     def __str__(self):
         return self.bs.user.name + ' ' + str(self.txt) + ' ' + str(self.rt) + ' ' + str(self.start_date)
 
@@ -124,3 +125,23 @@ class BalloonText(models.Model):
     txt = models.CharField(max_length=50, null=False, blank=False)
     def __str__(self):
         return self.txt
+
+# Stroop Game
+class Stroop2Score(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    score = models.FloatField(default=-1.0)
+    rt = models.FloatField(default=-1.0)
+    date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.user.name + ' ' + str(self.score) + ' ' + str(self.rt)
+
+class Stroop2Stimulus(models.Model):
+    s2s = models.ForeignKey(Stroop2Score, on_delete=models.CASCADE)
+    rt = models.FloatField(default=-1.0)
+    start_date = models.DateTimeField(auto_now_add=True)
+    end_date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.s2s.user.name + ' ' + str(self.rt) + ' ' + str(self.end_date)
+
+
+
