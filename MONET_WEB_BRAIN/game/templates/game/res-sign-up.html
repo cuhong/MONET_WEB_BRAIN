@@ -119,17 +119,15 @@
     <div class="login-page">
       <img class="webrain" src="{% static 'game/images/webrain.png' %}"><br><br><br>
       <div class="form">
-        <form class="login-form" action = "{% url 'game:sign_in' %}" method="post">
+        <form class="login-form" action = "{% url 'game:researcher_sign_up' %}" method="post">
           {% csrf_token %}
-          <!--
-          <input name = "name" type="text" placeholder="NAME"/>
-          <input name = "password" type="password" placeholder="password"/>
-          -->
           {{ form }}
           <button>start</button>
         </form>
-        <!--<a href="{% url 'game:sign_up' %}">I don't have an ID!</a>-->
-        <input type="button" value="I don't have an ID!" onclick="window.location.href='/sign-up/'" />
+        <form>
+          <!--<a href="{% url 'game:sign_in' %}">I already have an ID!</a>-->
+          <input type="button" value="I already have an ID!" onclick="window.location.href='/sign-in/'" />
+        </form>
       </div>
     </div>
   </body>

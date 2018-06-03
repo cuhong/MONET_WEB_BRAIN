@@ -10,7 +10,9 @@ urlpatterns = [
     path('game/<slug:game_name>/', views.game, name='game'),
     path('game/<slug:game_name>/game-result/', views.game_result, name='game_result'),
     path('logout/', views.logout, name='logout'),
-    path('game/cardsort/cardsorting.html', views.cardsorting, name='cardsorting'),
-    path('game/stroop/stroop.html', views.stroop_game, name='stroop_game' ),
-    path('game/stroop2/stroop2_processed.html', views.stroop2, name='stroop2' ),
+    path('game/cardsort/cardsort_game.html', views.cardsort_game, name='cardsort_game'),
+    path('game/stroop/stroop_game.html', views.stroop_game, name='stroop_game' ),
+    path('game/stroop2/stroop2_game.html', views.stroop2_game, name='stroop2_game' ),
+    path('researcher/sign-up/', views.researcher_sign_up, name='researcher_sign_up'),
+    #path('researcher/sign-in/', views.researcher_sign_in, name='researcher_sign_in'),
 ]

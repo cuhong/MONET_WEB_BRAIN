@@ -119,12 +119,8 @@
     <div class="login-page">
       <img class="webrain" src="{% static 'game/images/webrain.png' %}"><br><br><br>
       <div class="form">
-        <form class="login-form" action = "{% url 'game:sign_in' %}" method="post">
+        <form class="login-form" action = "{% url 'game:researcher_sign_in' %}" method="post">
           {% csrf_token %}
-          <!--
-          <input name = "name" type="text" placeholder="NAME"/>
-          <input name = "password" type="password" placeholder="password"/>
-          -->
           {{ form }}
           <button>start</button>
         </form>

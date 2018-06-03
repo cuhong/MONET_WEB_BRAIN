@@ -8,9 +8,13 @@ var start_time_list = [];
 var end_time_list = [];
 var response_time = [];
 var responses = [];
+var balloon_completed = false;
 var terminate = false;
-var on_press = false;
-var pressed = 0;
+const balloon_size = 100;
+const small_balloon_size = 100;
+var main_balloon_index = 0;
+const stop_displacement = (game_height -balloon_size) / 3;
+
 
 
 function falling_balloon(size, current_index, left, main_balloon = true) {
@@ -19,13 +23,22 @@ function falling_balloon(size, current_index, left, main_balloon = true) {
     }
 
     /* generate a balloon */
-    const margin = (size / 2) * (1 - 1.414 / 2);
-    var current_balloon = $("<div/>", {
-        class: "balloon",
-        //style:"position:absolute; width:"+size+"px; height:"+size+"px; left:50%; background-color: #ff9966; top:0px"
-        style: "position:absolute; width:" + size + "px; height:" + size + "px; left:" + left + "px; top:0px; padding:" + margin + "px"
-    });
-
+    const margin = (size) * (1 - 1.414 / 2);
+    if(main_balloon){
+        var current_balloon = $("<div/>", {
+            class: "balloon",
+            id: "balloon_main",
+            //style:"position:absolute; width:"+size+"px; height:"+size+"px; left:50%; background-color: #ff9966; top:0px"
+            style: "position:absolute; width:" + size + "px; height:" + size + "px; left:" + left + "px; top:0px; padding:" + margin + "px"
+        });    
+    }
+    else{
+        var current_balloon = $("<div/>", {
+            class: "balloon",
+            //style:"position:absolute; width:"+size+"px; height:"+size+"px; left:50%; background-color: #ff9966; top:0px"
+            style: "position:absolute; width:" + size + "px; height:" + size + "px; left:" + left + "px; top:0px; padding:" + margin + "px"
+        });    
+    }
     /* show the balloon on screen */
     current_balloon.css({ "background": "url('http://icons.iconarchive.com/icons/custom-icon-design/flatastic-6/128/Circle-icon.png')" });
     current_balloon.css("background-size", "cover");
@@ -50,121 +63,86 @@ function falling_balloon(size, current_index, left, main_balloon = true) {
         w = size;
         l = left
     }
-    current_balloon.animate({ top: total_distance + "px", height: h, width: w, left:l}, {
-        duration: total_duration,
-        easing: "linear",
-        step: function (now, fx) {
-            if ($(this).position().top > total_distance * 0.3 && !text_assigned) {
-                text_assigned = true;
-                start_time = new Date();
-                //console.log("start time" + start_time);
-                /* if arrived at half, add text */
-                if (main_balloon) {
-                    $(this).css('text-align', 'center');
-                    $(this).css('vertical-align', 'middle');
-                    $(this).css('line-height', size + 'px');
-                    $(this).css('color', 'white');
-                    $(this).text(text_array[current_index]);
-                    $(this).boxfit({ multiline: true });
-                    on_press = true;
-                }
-            }
-            /* ADD EVENT: if a button pressed, it must be removed */
-            //$(this).click(function(){
-            if (pressed != 0 && main_balloon && text_assigned && $(this).position().top > total_distance * 0.3) {
-                on_press = false;
-                responses.push(pressed);
-                pressed = 0;
-                //console.log(pressed);
-                clicked = true;
-                var end_time = new Date();
-                end_time_list.push(end_time);
+    current_balloon.animate({top:stop_displacement + "px"}, {
+        duration: total_duration  / 3,
+        easing: "linear"
+    });    
+    if(main_balloon){
+        total_distance = 2 * total_distance / 3;   
+    }
+    if(main_balloon){
+        current_balloon.animate({height: h, width: w, left:l}, {
+            duration: total_duration * 2 / 3,
+            easing: "linear",
+            complete: function () {
+                $(this).css('text-align', 'center');
+                $(this).css('vertical-align', 'middle');
+                $(this).css('line-height', size + 'px');
+                $(this).css('color', 'black');
+                $(this).text(text_array[current_index]);
+                $(this).boxfit({ multiline: true });
+                var start_time = new Date();
                 start_time_list.push(start_time);
-                var time_elapsed_ms = end_time - start_time;
-                console.log(time_elapsed_ms)
-                response_time.push(time_elapsed_ms);
-                $(this).remove();
-                if (main_balloon) {
-                    if (current_index + 1 < text_array.length) {
-                        falling_balloon(size, current_index + 1, left, main_balloon);
-                    }
-                    else if (current_index + 1 == text_array.length) {
-                        terminate = true;
-                        /* 
-                            Yumin's Task
-                            save response_time to DB
-                            link to the result page
-                        */
-
-                           start_time_list.toString();
-                           response_time.toString();
-                           end_time_list.toString();
-                           responses.toString();
-
-
-
-                           // send the score using POST
-                           var xhr = new XMLHttpRequest();
-                           xhr.open("POST", '/game/balloon/', true);
-       
-                           //Send the proper header information along with the request
-                           xhr.setRequestHeader("Content-type", "application/json");
-       
-                           xhr.onreadystatechange = function () {//Call a function when the state changes.
-                               if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-                                   // Request finished. Do processing here.
-                               }
-                           }
-       
-                           //xhr.send(JSON.stringify(String(accuracy) + ' ' + String(avg_rt)));
-                           xhr.send(response_time + '!' + start_time_list + '!' + end_time_list + '!' + responses);
-       
-                           setTimeout(function () { window.location.replace("/game/balloon/game-result"); }, 1000);
- 
-
-
-
-                        console.log("start" + start_time_list);
-                        console.log("end"+end_time_list);
-                        console.log("responses"+responses);
-                        console.log("rt" + response_time);
-                    }
-
-                }
-                else {
-                    falling_balloon(size, current_index, left, main_balloon);
-                }
-
+                main_balloon_index += 1;
+                balloon_completed = true;
             }
-        },
-        complete: function () {
-            if (!clicked) {
+            
+        });
+    }
+    else{
+        current_balloon.animate({ top: total_distance + "px", height: h, width: w, left:l}, {
+            duration: total_duration * 2 / 3,
+            easing: "linear",
+            complete: function () {
                 $(this).remove();
                 falling_balloon(size, current_index, left, main_balloon);
-                /* 
-                if (main_balloon) {
-                    //response_time.push(0.0);
-                    
-                    if (current_index + 1 < text_array.length) {
-                        falling_balloon(size, current_index + 1, left, main_balloon);
-                    }
-                    else if (current_index + 1 == text_array.length) {
-                        terminate = true;
-                        
-
-                        console.log(response_time);
-                    }
-                    
-
-                }
-                else {
-                    falling_balloon(size, current_index, left, main_balloon);
-                }
-                */
             }
-        }
-    });
+            
+        });
+    
+    }
     return;
+}
+function remove_main_balloon(pressed){
+    //console.log("start time" + start_time);
+    /* if arrived, add text */
+    balloon_completed = false;
+    var current_main_balloon = $('#balloon_main');
+    responses.push(pressed);
+    console.log(pressed);
+    var end_time = new Date();
+    end_time_list.push(end_time);
+    var time_elapsed_ms = end_time - start_time_list[start_time_list.length - 1];
+    console.log(time_elapsed_ms);
+    response_time.push(time_elapsed_ms);
+    current_main_balloon.remove();
+    if (main_balloon_index >= text_array.length) {
+        terminate = true;
+        /* 
+            Yumin's Task
+            save response_time to DB
+            link to the result page
+        */
+
+        start_time_list.toString();
+        end_time_list.toString();
+        response_time.toString();
+        responses.toString();
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/game/balloon/', true);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            }
+        };
+
+        xhr.send(response_time + '!' + start_time_list + '!' + end_time_list + '!' + responses);
+
+        setTimeout(function () { window.location.replace("/game/balloon/game-result"); }, 1000);
+    }
+
+
 }
 
 $(".start").click(function () {
@@ -173,7 +151,20 @@ $(".start").click(function () {
     /* add the layout for the game */
     $(".game").css({ "height": game_height, "background-color": "#ffffff" });
     /* start the game */
-    $(".bottom").css({ "height": game_height * 0.25, "background-color":"#dddddd", "padding":game_height * 0.25 * 0.3 + "px" });
+    $(".bottom").css({ "height": game_height * 0.25, "background-color":"#dddddd"});
+    var row0 = $("<div/>", { class: "row", style:"padding-bottom: 10px "});
+    var col01 = $("<col/>", {class:"col-4 d-flex justify-content-center"});
+    var col02 = $("<col/>", {class:"col-4 d-flex justify-content-center"});
+    var col03 = $("<col/>", {class:"col-4 d-flex justify-content-center"});
+    var text01 = $("<div/>", {text: "전혀 그렇지 않다"});
+    var text03 = $("<div/>", {text:"매우 그렇다"});
+    col01.append(text01);
+    col03.append(text03);
+    row0.append(col01);
+    row0.append(col02);
+    row0.append(col03);
+    $(".bottom").append(row0);
+
     var row = $("<div/>", { class: "row" });
     var col1 = $("<col/>", {class:"col-1 d-flex justify-content-center"});
     var col2 = $("<col/>", {class:"col-2 d-flex justify-content-center"});
@@ -186,11 +177,14 @@ $(".start").click(function () {
     var btn1 = $("<button/>", {
         type: "button",
         class: "btn btn-primary btn-lg start",
-        text: "1(매우 아니다)",
+        text: "1",
     });
     btn1.click(function () {
-        if(on_press){
-            pressed = 1;
+        if (balloon_completed){
+            next_idx = remove_main_balloon(1);    
+            if(!terminate){
+                falling_balloon(balloon_size, main_balloon_index, $(".game").width() / 2 - balloon_size / 2, true);
+            }    
         }
     });
     var btn2 = $("<button/>", {
@@ -199,8 +193,11 @@ $(".start").click(function () {
         text: "2",
     });
     btn2.click(function () {
-        if(on_press){
-            pressed = 2;
+        if (balloon_completed){
+            next_idx = remove_main_balloon(2);    
+            if(!terminate){
+                falling_balloon(balloon_size, main_balloon_index, $(".game").width() / 2 - balloon_size / 2, true);
+            }    
         }
     });
     var btn3 = $("<button/>", {
@@ -209,8 +206,11 @@ $(".start").click(function () {
         text: "3",
     });
     btn3.click(function () {
-        if(on_press){
-            pressed = 3;
+        if (balloon_completed){
+            next_idx = remove_main_balloon(3);    
+            if(!terminate){
+                falling_balloon(balloon_size, main_balloon_index, $(".game").width() / 2 - balloon_size / 2, true);
+            }    
         }
     });
     var btn4 = $("<button/>", {
@@ -219,19 +219,28 @@ $(".start").click(function () {
         text: "4",
     });
     btn4.click(function () {
-        if(on_press){
-            pressed = 4;
+        if (balloon_completed){
+            next_idx = remove_main_balloon(4);    
+            if(!terminate){
+                falling_balloon(balloon_size, main_balloon_index, $(".game").width() / 2 - balloon_size / 2, true);
+            }    
         }
+
+
     });
     var btn5 = $("<button/>", {
         type: "button",
         class: "btn btn-primary btn-lg start",
-        text: "5(매우 그렇다)",
+        text: "5",
     });
     btn5.click(function () {
-        if(on_press){
-            pressed = 5;
+        if (balloon_completed){
+            next_idx = remove_main_balloon(5);    
+            if(!terminate){
+                falling_balloon(balloon_size, main_balloon_index, $(".game").width() / 2 - balloon_size / 2, true);
+            }    
         }
+
     });
 
     col2.append(btn1);
@@ -251,14 +260,15 @@ $(".start").click(function () {
     $(".bottom").append(row);
 
 
-    balloon_size = 200;
-    small_balloon_size = 100;
     for (i = 0; small_balloon_size * (i + 1) < $(".game").width() / 2 - balloon_size / 2; i++) {
         falling_balloon(small_balloon_size * 0.8, 0, i * small_balloon_size + 0.1 * small_balloon_size, false);
     }
     for (i = Math.floor($(".game").width() / small_balloon_size) - 1; small_balloon_size * i > $(".game").width() / 2 + balloon_size / 2; i--) {
         falling_balloon(small_balloon_size * 0.8, 0, i * small_balloon_size + 0.1 * small_balloon_size, false);
     }
+    var target = $("<div/>",{style:"position:absolute; top:"+stop_displacement+"px; height:"+balloon_size+"px; width:"+balloon_size+"px; left:"+($(".game").width() / 2 - balloon_size / 2)+'px; padding:'+(balloon_size / 2) * (1 - 1.414 / 2) +'px; background:url("http://icons.iconarchive.com/icons/iconsmind/outline/128/Target-icon.png") 0% 0% / cover; overflow: hidden;'});
+    $(".game").append(target);    
+
     falling_balloon(balloon_size, 0, $(".game").width() / 2 - balloon_size / 2, true);
 
 });

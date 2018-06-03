@@ -7,7 +7,27 @@ class User(models.Model):
     pw = models.CharField(max_length=30, null=False, blank=False)
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.name
+        return self.name + ' / ' + str(self.date)
+
+# The researcher
+class Researcher(models.Model):
+    name = models.CharField(max_length=30, unique=True, null=False, blank=False)
+    email = models.CharField(max_length=100, unique=True, null=False, blank=False)
+    pw = models.CharField(max_length=30, null=False, blank=False)
+    date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.name + ' / ' + str(self.date)
+
+# Behavorial Experimental Game
+class BehavGameScore(models.Model):
+    researcher = models.ForeignKey(Researcher, on_delete=models.CASCADE)
+    game_name = models.CharField(max_length=20, null=False, blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    score = models.FloatField(default=-1.0)
+    rt = models.FloatField(default=-1.0)
+    date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.user.name + ' / accuracy:' + str(self.score) + ' / average_response_time:' + str(self.rt)
 
 # Gonogo Game
 class GonogoScore(models.Model):
@@ -16,7 +36,7 @@ class GonogoScore(models.Model):
     rt = models.FloatField(default=-1.0)
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.user.name + ' ' + str(self.score) + ' ' + str(self.rt)
+        return self.user.name + ' / accuracy:' + str(self.score) + ' / average_response_time:' + str(self.rt)
 
 class GonogoStimulus(models.Model):
     gs = models.ForeignKey(GonogoScore, on_delete=models.CASCADE)
@@ -24,7 +44,7 @@ class GonogoStimulus(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.gs.user.name + ' ' + str(self.rt) + ' ' + str(self.end_date)
+        return self.gs.user.name + ' / response_time:' + str(self.rt) + ' / ' + str(self.end_date)
 
 # CardsortScore Game
 class CardsortScore(models.Model):
@@ -33,7 +53,7 @@ class CardsortScore(models.Model):
     rt = models.FloatField(default=-1.0)
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.user.name + ' ' + str(self.score) + ' ' + str(self.rt)
+        return self.user.name + ' / accuracy:' + str(self.score) + ' / average_response_time:' + str(self.rt)
 
 class CardsortStimulus(models.Model):
     cs = models.ForeignKey(CardsortScore, on_delete=models.CASCADE)
@@ -41,7 +61,7 @@ class CardsortStimulus(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.cs.user.name + ' ' + str(self.rt) + ' ' + str(self.end_date)
+        return self.cs.user.name + ' / response_time:' + str(self.rt) + ' / ' + str(self.end_date)
 
 # DigitNback Game
 class DigitNbackScore(models.Model):
@@ -50,7 +70,7 @@ class DigitNbackScore(models.Model):
     rt = models.FloatField(default=-1.0)
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.user.name + ' ' + str(self.score) + ' ' + str(self.rt)
+        return self.user.name + ' / accuracy:' + str(self.score) + ' / average_response_time:' + str(self.rt)
 
 class DigitNbackStimulus(models.Model):
     ds = models.ForeignKey(DigitNbackScore, on_delete=models.CASCADE)
@@ -58,7 +78,7 @@ class DigitNbackStimulus(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.ds.user.name + ' ' + str(self.rt) + ' ' + str(self.end_date)    
+        return self.ds.user.name + ' / response_time:' + str(self.rt) + ' / ' + str(self.end_date)
 
 # ImageNback Game
 class ImageNbackScore(models.Model):
@@ -67,7 +87,7 @@ class ImageNbackScore(models.Model):
     rt = models.FloatField(default=-1.0)
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.user.name + ' ' + str(self.score) + ' ' + str(self.rt)
+        return self.user.name + ' / accuracy:' + str(self.score) + ' / average_response_time:' + str(self.rt)
 
 class ImageNbackStimulus(models.Model):
     ims = models.ForeignKey(ImageNbackScore, on_delete=models.CASCADE)
@@ -75,7 +95,7 @@ class ImageNbackStimulus(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.ims.user.name + ' ' + str(self.rt) + ' ' + str(self.end_date)  
+        return self.ims.user.name + ' / response_time:' + str(self.rt) + ' / ' + str(self.end_date)
 
 # Tetris Game
 class TetrisScore(models.Model):
@@ -83,7 +103,7 @@ class TetrisScore(models.Model):
     score = models.IntegerField(default=-1.0)
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.user.name + ' ' + str(self.score)
+        return self.user.name + ' / ' + str(self.score)
 
 # Stroop Game
 class StroopScore(models.Model):
@@ -92,7 +112,7 @@ class StroopScore(models.Model):
     rt = models.FloatField(default=-1.0)
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.user.name + ' ' + str(self.score) + ' ' + str(self.rt)
+        return self.user.name + ' / accuracy:' + str(self.score) + ' / average_response_time:' + str(self.rt)
 
 class StroopStimulus(models.Model):
     ss = models.ForeignKey(StroopScore, on_delete=models.CASCADE)
@@ -100,16 +120,15 @@ class StroopStimulus(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.ss.user.name + ' ' + str(self.rt) + ' ' + str(self.end_date)
+        return self.ss.user.name + ' / response_time:' + str(self.rt) + ' / ' + str(self.end_date)
 
 # Balloon Game
 class BalloonScore(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    score = models.FloatField(default=-1.0)
     rt = models.FloatField(default=-1.0)
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.user.name + ' ' + str(self.score) + ' ' + str(self.rt)
+        return self.user.name + ' / average_response_time:' + str(self.rt)
 
 class Balloon(models.Model):
     bs = models.ForeignKey(BalloonScore, on_delete=models.CASCADE)
@@ -119,7 +138,7 @@ class Balloon(models.Model):
     end_date = models.DateTimeField(auto_now_add=True)
     response = models.IntegerField(default=0)
     def __str__(self):
-        return self.bs.user.name + ' ' + str(self.txt) + ' ' + str(self.rt) + ' ' + str(self.start_date)
+        return self.bs.user.name + ' / response_time:' + str(self.rt) + ' / ' + str(self.txt)
 
 class BalloonText(models.Model):
     txt = models.CharField(max_length=50, null=False, blank=False)
@@ -133,7 +152,7 @@ class Stroop2Score(models.Model):
     rt = models.FloatField(default=-1.0)
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.user.name + ' ' + str(self.score) + ' ' + str(self.rt)
+        return self.user.name + ' / ' + str(self.score) + ' / ' + str(self.rt)
 
 class Stroop2Stimulus(models.Model):
     s2s = models.ForeignKey(Stroop2Score, on_delete=models.CASCADE)
@@ -141,7 +160,7 @@ class Stroop2Stimulus(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.s2s.user.name + ' ' + str(self.rt) + ' ' + str(self.end_date)
+        return self.s2s.user.name + ' / ' + str(self.rt) + ' / ' + str(self.end_date)
 
 
 
