@@ -315,7 +315,8 @@ def parse(fname):
             #rint(line)
             #if not line: break
             if "Task WM" in line:
-                exp_name = line.replace("Task WM ","")
+               # exp_name = line.replace("Task WM ","")
+                exp_name = 'Experiment'
                 continue
             elif "[Descriptions]" in line:
                 phase = 1

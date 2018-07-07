@@ -164,8 +164,8 @@ def game(request, game_name):
                     sum += 1000.0
             new_score.rt = sum/len(rt_list)
             new_score.save()
-            #start_date_list = data_list[2].split(',')
-            #start_date_list = start_date_list[10:]
+            start_date_list = data_list[2].split(',')
+            start_date_list = start_date_list[10:]
             #print('start_date_list', start_date_list)
             end_date_list = data_list[3].split(',')
             end_date_list = end_date_list[10:]
@@ -177,7 +177,7 @@ def game(request, game_name):
                     new_stimulus.rt = float(rt_list[i])
                 except ValueError:
                     new_stimulus.rt = 1000.0
-                #new_stimulus.start_date = dt.parse(start_date_list[i][:24])
+                new_stimulus.start_date = dt.parse(start_date_list[i][:24])
                 new_stimulus.end_date = dt.parse(end_date_list[i][:24])
                 new_stimulus.save()
         elif game_name == 'cardsort':
@@ -196,7 +196,7 @@ def game(request, game_name):
             new_score.rt = sum/len(rt_list)
             new_score.save()
 
-            #start_date_list = data_list[2].split(',')
+            start_date_list = data_list[2].split(',')
             end_date_list = data_list[3].split(',')
 
             for i in range(len(rt_list)):
@@ -206,7 +206,7 @@ def game(request, game_name):
                     new_stimulus.rt = float(rt_list[i])
                 except ValueError:
                     new_stimulus.rt = 1000.0
-                #new_stimulus.start_date = dt.parse(start_date_list[i][:24])
+                new_stimulus.start_date = dt.parse(start_date_list[i][:24])
                 new_stimulus.end_date = dt.parse(end_date_list[i][:24])
                 new_stimulus.save()
         elif game_name == 'digitnback':
@@ -226,7 +226,7 @@ def game(request, game_name):
             new_score.rt = sum/len(rt_list)
             new_score.save()
 
-            #start_date_list = data_list[2].split(',')
+            start_date_list = data_list[2].split(',')
             end_date_list = data_list[3].split(',')
 
             for i in range(len(rt_list)):
@@ -236,7 +236,7 @@ def game(request, game_name):
                     new_stimulus.rt = float(rt_list[i])
                 except ValueError:
                     new_stimulus.rt = 2000.0
-                #new_stimulus.start_date = dt.parse(start_date_list[i][:24])
+                new_stimulus.start_date = dt.parse(start_date_list[i][:24])
                 new_stimulus.end_date = dt.parse(end_date_list[i][:24])
                 new_stimulus.save()
         elif game_name == 'imagenback':
@@ -255,7 +255,7 @@ def game(request, game_name):
             new_score.rt = sum/len(rt_list)
             new_score.save()
 
-            #start_date_list = data_list[2].split(',')
+            start_date_list = data_list[2].split(',')
             end_date_list = data_list[3].split(',')
 
             for i in range(len(rt_list)):
@@ -265,7 +265,7 @@ def game(request, game_name):
                     new_stimulus.rt = float(rt_list[i])
                 except ValueError:
                     new_stimulus.rt = 2000.0
-                #new_stimulus.start_date = dt.parse(start_date_list[i][:24])
+                new_stimulus.start_date = dt.parse(start_date_list[i][:24])
                 new_stimulus.end_date = dt.parse(end_date_list[i][:24])
                 new_stimulus.save()
         elif game_name == 'tetris':
@@ -292,7 +292,7 @@ def game(request, game_name):
             new_score.rt = sum/len(rt_list)
             new_score.save()
 
-            #start_date_list = data_list[2].split(',')
+            start_date_list = data_list[2].split(',')
             end_date_list = data_list[3].split(',')
 
             for i in range(len(rt_list)):
@@ -302,7 +302,7 @@ def game(request, game_name):
                     new_stimulus.rt = float(rt_list[i])
                 except ValueError:
                     new_stimulus.rt = 5000.0
-                #new_stimulus.start_date = dt.parse(start_date_list[i][:24])
+                new_stimulus.start_date = dt.parse(start_date_list[i][:24])
                 new_stimulus.end_date = dt.parse(end_date_list[i][:24])
                 new_stimulus.save()
         elif game_name == 'balloon':
@@ -352,7 +352,7 @@ def game(request, game_name):
             new_score.rt = sum/len(rt_list)
             new_score.save()
 
-            #start_date_list = data_list[2].split(',')
+            start_date_list = data_list[2].split(',')
             end_date_list = data_list[3].split(',')
 
             for i in range(len(rt_list)):
@@ -362,7 +362,7 @@ def game(request, game_name):
                     new_stimulus.rt = float(rt_list[i])
                 except ValueError:
                     new_stimulus.rt = 5000.0
-                #new_stimulus.start_date = dt.parse(start_date_list[i][:24])
+                new_stimulus.start_date = dt.parse(start_date_list[i][:24])
                 new_stimulus.end_date = dt.parse(end_date_list[i][:24])
                 new_stimulus.save()
         # After saving the usre's score, redirect the user to game-result webpage
@@ -498,12 +498,16 @@ def researcher_game(request, researcher_name, game_name):
         return redirect('/researcher/sign-in/')
     return render(request, 'game/' + researcher_name + '/' + game_name + '.html')
 
-def txt_preprocessing(path, src, replace):
+def txt_preprocessing(path, src):
     fsrc = codecs.open(path+'/'+src, 'r', 'utf-8')
     lines = fsrc.readlines()
     fdest = open(path+'/'+src, 'w', encoding='utf-8')
     for line in lines:
-        line = line.replace(replace, path+'/'+replace)
+        #line = line.replace(replace, path+'/'+replace)
+        if "text_file" in line:
+            line_list = line.split(' ')
+            line_list[2] = path + '/' + line_list[2]
+            line = ' '.join(line_list)
         fdest.write(line)
 
 def html_postprocessing(html_path_name, res_name, game_name):
@@ -522,6 +526,9 @@ def csv_to_template(html_fname, res_name, game_name):
             i += 1
         line = jspsych_parse(line)
         line = img_parse(line, res_name, game_name)
+        line = audio_parse(line, res_name, game_name)
+        line = video_parse(line, res_name, game_name)
+        """
         line = line.replace("jsPsych.data.get().localSave('csv', 'data.csv');", \
                 "var trials = jsPsych.data.get().filter({test_part: 'test'});\n\
                 var correct_trials = trials.filter({ correct: true});\n\
@@ -532,6 +539,7 @@ def csv_to_template(html_fname, res_name, game_name):
                 xhr.open('POST', '/game/" + res_name + '/' + game_name + "/', true);\n\
                 xhr.setReqeustHeader('Content-type', 'application/json');\n\
                 ");
+        """
         fout.write(line)
 
 def img_parse(line, res_name, game_name):
@@ -540,14 +548,20 @@ def img_parse(line, res_name, game_name):
     line = line.replace("img/", "/upload_files/" + res_name + '/' + game_name + '/img/')
     return line
 
+def audio_parse(line, res_name, game_name):
+    line = line.replace("audio/", "/upload_files/" + res_name + '/' + game_name + '/audio/')
+    return line
+
+def video_parse(line, res_name, game_name):
+    line = line.replace("video/", "/upload_files/" + res_name + '/' + game_name + '/video/')
+    return line
+
 def jspsych_parse(line):
     line = line.replace("jspsych.js", "{% static 'game/scripts/jspsych.js")  # {% static 'game/scripts/jspsych.js' %} => /static/game/scripts/jspsych.js
     line = line.replace("jspsych-6", "{% static 'game/jspsych-6")
     line = line.replace(".js\">", ".js' %}\">")
     line = line.replace("jspsych.css", "{% static 'game/styles/jspsych.css' %}")
     return line
-
-
 
 def CreateGame(fzip, rname, gname, path):
     # unzip to ./researchers/<researcher_name>/
@@ -560,36 +574,47 @@ def CreateGame(fzip, rname, gname, path):
     zip_ref.extractall(path)
     zip_ref.close()
     
-    txt_preprocessing(path, "test_exp.txt", "test_inst.txt")
+    txt_preprocessing(path, "exp.txt")
     # Generate HTML file from parser
-    generate_html(path+'/test_exp.txt', path)  # /uploads/ymkim_test3/djgame3/test_exp.txt
+    generate_html(path+'/exp.txt', path)  # /uploads/ymkim_test3/djgame3/test_exp.txt
     # Move the created file from here to template directory
-    source = path + '/Test_Experiment.html'
+    source = path + '/Experiment.html'
     html_postprocessing(source, rname, gname)
     dest = os.path.join(settings.BASE_DIR, 'game/templates/game/' + rname + '/' +  gname + '.html')
     os.rename(source, dest)
+
+def remove_game_dir(rname, gname):
+    os.rmtree(settings.MEDIA_ROOT, rname, gname)
+
+def delete_game(request, rname, gname):
+    remove_game_dir(rname, gname)
+    return redirect('/researcher/'+rname+'/')
 
 def upload(request, researcher_name):
     if 'res_name' not in request.session:
         return redirect('/researcher/sign-up/')
     researcher_name = request.session['res_name']
     if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            print("The form is valid!")
-            from django.conf import settings
-            path = os.path.join(settings.MEDIA_ROOT, researcher_name + '/' + form.cleaned_data['title'])
-            os.mkdir(path)
-            CreateGame(request.FILES['file'], researcher_name, form.cleaned_data['title'], path)
-            new_game = ResearcherGame()
-            new_game.researcher = get_object_or_404(Researcher, name=researcher_name)
-            new_game.game_name = form.cleaned_data['title']
-            new_game.path = '/game/templates/game/' + new_game.researcher.name + '/' + new_game.game_name + '.html'
-            new_game.save()
-        print("The form is invalid!")
+        try:
+            form = UploadFileForm(request.POST, request.FILES)
+            if form.is_valid():
+                print("The form is valid!")
+                from django.conf import settings
+                path = os.path.join(settings.MEDIA_ROOT, researcher_name + '/' + form.cleaned_data['title'])
+                os.mkdir(path)
+                CreateGame(request.FILES['file'], researcher_name, form.cleaned_data['title'], path)
+                new_game = ResearcherGame()
+                new_game.researcher = get_object_or_404(Researcher, name=researcher_name)
+                new_game.game_name = form.cleaned_data['title']
+                new_game.comment = form.cleaned_data['comment']
+                new_game.path = '/game/templates/game/' + new_game.researcher.name + '/' + new_game.game_name + '.html'
+                new_game.save()
+        except:
+            print("ERROR occured while creating game")
+            remove_game_dir(researcher_name, form.cleaned_data['title'])
+            
         return redirect('/researcher/' + researcher_name + '/upload/')
     else:
         form = UploadFileForm()
         return render(request, 'game/upload.html', {'form':form, 'researcher_name':researcher_name})
-
 

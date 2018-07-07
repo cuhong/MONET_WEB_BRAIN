@@ -4,7 +4,8 @@
   <head>
     <title>gonogo</title>
     <meta charset="utf-8">
-    <script src="{% static 'game/scripts/jspsych.js' %}"></script>
+    <!--<script src="{% static 'game/scripts/jspsych.js' %}"></script>-->
+    <script src="/static/game/scripts/jspsych.js"></script>
     <script src="{% static 'game/jspsych-6/plugins/jspsych-html-keyboard-response.js' %}"></script>
     <script src="{% static 'game/jspsych-6/plugins/jspsych-html-button-response.js' %}"></script>
     <script src="{% static 'game/jspsych-6/plugins/jspsych-fullscreen.js' %}"></script>
@@ -107,10 +108,9 @@
       stimulus: jsPsych.timelineVariable('stimulus'),
       choices: ['GO'],
       data: jsPsych.timelineVariable('data'),
-      conditional_function: function(){
+      on_load: function(){
         var curr_time = new Date();
         start_time_list.push(curr_time);
-        return true;
       },
       on_finish: function(data){
         var curr_time = new Date();

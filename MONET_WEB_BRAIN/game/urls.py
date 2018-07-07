@@ -18,4 +18,7 @@ urlpatterns = [
     path('researcher/<slug:researcher_name>/', views.researcher, name='researcher'),
     path('researcher/<slug:researcher_name>/upload/', views.upload, name='upload'),
     path('researcher/<slug:researcher_name>/<slug:game_name>/', views.researcher_game, name = 'researcher_game'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

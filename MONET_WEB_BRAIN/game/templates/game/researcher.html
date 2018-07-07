@@ -1,15 +1,64 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> MONET Wevrain </title>
+        <title> MONET Webrain </title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
     </head>
 
     <body>
+        <div class="main_control fixed" >
+            <div class="container-fluid" style="padding:100px; background-color: black;color:white;">
+                <div class="row">
+                    <div class="col-md-12" style="text-align: center; ">
+                        <h1 >
+                            <b>Your Experiments</b> 
+                        </h1>
+                        <h2>
+                            Customize your own projects!
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid" style="margin: 10px;">
+                {% if games %}
+                    {% for game in games %}
+                    <div class="row" style="margin:10px">
+                        <div class="col-md-4 d-flex justify-content-center" > <h4>{{game.game_name}}</h4></div>
+                        <div class="col-md-4 d-flex justify-content-center">
+                            <p>
+                                {{ game.comment }}
+                            </p>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-center">
+                            <a href="/researcher/{{game.researcher.name}}/{{game.game_name}}/">
+                                <button type="button" class="btn btn-primary start">
+                                    START
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                   {% endfor %}
+                {% endif %}
+                <div class="col-md-12 d-flex justify-content-center">
+                    <a href="/researcher/{{researcher_name}}/upload/"><h4>Go to upload page</h4></a>
+                </div>
+            </div>
+        </div>
+        <!--
         {% if games %}
             {% for game in games %}
             <li><a href="/researcher/{{game.researcher.name}}/{{game.game_name}}/">{{ game.game_name }}</a></li>   
             {% endfor %}
         {% endif %}
-        <a href="/researcher/{{researcher_name}}/upload/">Go to upload page</a>
+        -->
+        <script>
+            $(".main_control").css("width", $(window).width());
+        </script>
+        
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
     </body>
 </html>

@@ -22,6 +22,7 @@ class Researcher(models.Model):
 class ResearcherGame(models.Model):
     researcher = models.ForeignKey(Researcher, on_delete=models.CASCADE)
     game_name = models.CharField(max_length=20, null=False, blank=False)
+    comment = models.TextField(max_length=200)
     path = models.CharField(max_length=150, null=False, blank=False)
     def __str__(self):
         return self.game_name
@@ -52,8 +53,8 @@ class GonogoScore(models.Model):
 class GonogoStimulus(models.Model):
     gs = models.ForeignKey(GonogoScore, on_delete=models.CASCADE)
     rt = models.FloatField(default=-1.0)
-    start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField(auto_now_add=True)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
     def __str__(self):
         return self.gs.user.name + ' / response_time:' + str(self.rt) + ' / ' + str(self.end_date)
 
@@ -69,8 +70,8 @@ class CardsortScore(models.Model):
 class CardsortStimulus(models.Model):
     cs = models.ForeignKey(CardsortScore, on_delete=models.CASCADE)
     rt = models.FloatField(default=-1.0)
-    start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField(auto_now_add=True)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
     def __str__(self):
         return self.cs.user.name + ' / response_time:' + str(self.rt) + ' / ' + str(self.end_date)
 
@@ -86,8 +87,8 @@ class DigitNbackScore(models.Model):
 class DigitNbackStimulus(models.Model):
     ds = models.ForeignKey(DigitNbackScore, on_delete=models.CASCADE)
     rt = models.FloatField(default=-1.0)
-    start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField(auto_now_add=True)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
     def __str__(self):
         return self.ds.user.name + ' / response_time:' + str(self.rt) + ' / ' + str(self.end_date)
 
@@ -103,8 +104,8 @@ class ImageNbackScore(models.Model):
 class ImageNbackStimulus(models.Model):
     ims = models.ForeignKey(ImageNbackScore, on_delete=models.CASCADE)
     rt = models.FloatField(default=-1.0)
-    start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField(auto_now_add=True)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
     def __str__(self):
         return self.ims.user.name + ' / response_time:' + str(self.rt) + ' / ' + str(self.end_date)
 
@@ -128,8 +129,8 @@ class StroopScore(models.Model):
 class StroopStimulus(models.Model):
     ss = models.ForeignKey(StroopScore, on_delete=models.CASCADE)
     rt = models.FloatField(default=-1.0)
-    start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField(auto_now_add=True)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
     def __str__(self):
         return self.ss.user.name + ' / response_time:' + str(self.rt) + ' / ' + str(self.end_date)
 
@@ -145,8 +146,8 @@ class Balloon(models.Model):
     bs = models.ForeignKey(BalloonScore, on_delete=models.CASCADE)
     txt = models.CharField(max_length=50, null=False, blank=False)
     rt = models.FloatField(default=-1.0)
-    start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField(auto_now_add=True)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
     response = models.IntegerField(default=0)
     def __str__(self):
         return self.bs.user.name + ' / response_time:' + str(self.rt) + ' / ' + str(self.txt)
@@ -168,8 +169,8 @@ class Stroop2Score(models.Model):
 class Stroop2Stimulus(models.Model):
     s2s = models.ForeignKey(Stroop2Score, on_delete=models.CASCADE)
     rt = models.FloatField(default=-1.0)
-    start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField(auto_now_add=True)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
     def __str__(self):
         return self.s2s.user.name + ' / ' + str(self.rt) + ' / ' + str(self.end_date)
 

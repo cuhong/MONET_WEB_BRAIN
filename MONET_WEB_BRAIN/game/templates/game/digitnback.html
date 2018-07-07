@@ -103,7 +103,7 @@
       stimulus: jsPsych.timelineVariable('stimulus'),
       choices: ["GO"],
       data: jsPsych.timelineVariable('data'),
-      conditional_function: function(){
+      on_load: function(){
         var curr_time = new Date();
         start_time_list.push(curr_time);
         return true;

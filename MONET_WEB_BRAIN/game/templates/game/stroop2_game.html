@@ -25,1067 +25,2128 @@
 
         </head>
 
-<body>
-<script>
-var timeline = [];
-var start_time_list = [];
-var end_time_list = [];
-timeline.push({
-type: 'html-keyboard-response',
-stimulus: '연습한번 해볼까요?',
-trial_duration: 3000,
-data: { test_part: "test"},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">파랑<br><br></div><br><br>초록',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: yellow">파랑<br><br></div><br><br>노랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "trial", correct_response: 0},
-response_ends_trial: true,
-on_finish: function (data) {
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">파랑<br><br></div><br><br>빨강',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">파랑<br><br></div><br><br>노랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">파랑<br><br></div><br><br>파랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "trial", correct_response: 0},
-response_ends_trial: true,
-on_finish: function (data) {
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: red">초록<br><br></div><br><br>노랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">파랑<br><br></div><br><br>파랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "trial", correct_response: 0},
-response_ends_trial: true,
-on_finish: function (data) {
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: green">초록<br><br></div><br><br>빨강',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">초록<br><br></div><br><br>빨랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: yellow">초록<br><br></div><br><br>파랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-keyboard-response',
-stimulus: '이제 시작합니다!',
-trial_duration: 3000,
-data: { test_part: "trial"},
-response_ends_trial: true,
-on_finish: function (data) {
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">빨강<br><br></div><br><br>빨강',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: red">빨강<br><br></div><br><br>파랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">파랑<br><br></div><br><br>파랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: red">빨강<br><br></div><br><br>초록',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: yellow">노랑<br><br></div><br><br>노랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">파랑<br><br></div><br><br>파랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: green">초록<br><br></div><br><br>초록',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: red">노랑<br><br></div><br><br>빨강',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: yellow">노랑<br><br></div><br><br>빨강',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">파랑<br><br></div><br><br>초록',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: yellow">노랑<br><br></div><br><br>파랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">노랑<br><br></div><br><br>파랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: yellow">빨강<br><br></div><br><br>파랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">초록<br><br></div><br><br>파랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: red">빨강<br><br></div><br><br>빨강',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">노랑<br><br></div><br><br>초록',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: green">초록<br><br></div><br><br>노랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: yellow">노랑<br><br></div><br><br>초록',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: green">파랑<br><br></div><br><br>빨강',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: red">파랑<br><br></div><br><br>빨강',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: red">빨강<br><br></div><br><br>노랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: green">노랑<br><br></div><br><br>빨강',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">파랑<br><br></div><br><br>파랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: yellow">초록<br><br></div><br><br>파랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">초록<br><br></div><br><br>빨랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: green">빨강<br><br></div><br><br>초록',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: yellow">노랑<br><br></div><br><br>노랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: yellow">초록<br><br></div><br><br>노랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">파랑<br><br></div><br><br>빨강',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: yellow">파랑<br><br></div><br><br>초록',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: green">초록<br><br></div><br><br>초록',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: yellow">파랑<br><br></div><br><br>노랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: green">파랑<br><br></div><br><br>초록',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: green">빨강<br><br></div><br><br>노랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: green">초록<br><br></div><br><br>초록',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: yellow">빨강<br><br></div><br><br>노랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: red">노랑<br><br></div><br><br>노랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: red">초록<br><br></div><br><br>빨강',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: red">빨강<br><br></div><br><br>빨강',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">빨강<br><br></div><br><br>파랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: green">초록<br><br></div><br><br>빨강',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: green">초록<br><br></div><br><br>파랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: red">파랑<br><br></div><br><br>노랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: green">노랑<br><br></div><br><br>초록',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: red">빨강<br><br></div><br><br>빨강',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: yellow">노랑<br><br></div><br><br>노랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 0},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: blue">파랑<br><br></div><br><br>노랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-button-response',
-stimulus: '<div style="color: red">초록<br><br></div><br><br>노랑',
-trial_duration: 5000,
-choices: ["<",">"],
-data: { test_part: "test", correct_response: 1},
-response_ends_trial: true,
-conditional_function: function(){
-                    var curr_time = new Date();
-                    start_time_list.push(curr_time);
-                    return true;
-                    },
-on_finish: function (data) {
-                    var curr_time = new Date();
-                    end_time_list.push(curr_time);
-                    data.correct = data.button_pressed == data.correct_response;
-                    }
-});
-timeline.push({
-type: 'html-keyboard-response',
-stimulus: function () {
-				var trials = jsPsych.data.get().filter({ test_part: 'test' });
-				var correct_trials = trials.filter({ correct: true });
-				var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
+<body>
+
+<script>
+
+var timeline = [];
+
+var start_time_list = [];
+
+var end_time_list = [];
+
+timeline.push({
+
+type: 'html-keyboard-response',
+
+stimulus: '연습한번 해볼까요?',
+
+trial_duration: 3000,
+
+data: { test_part: "test"},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">파랑<br><br></div><br><br>초록',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: yellow">파랑<br><br></div><br><br>노랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "trial", correct_response: 0},
+
+response_ends_trial: true,
+
+on_finish: function (data) {
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">파랑<br><br></div><br><br>빨강',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">파랑<br><br></div><br><br>노랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">파랑<br><br></div><br><br>파랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "trial", correct_response: 0},
+
+response_ends_trial: true,
+
+on_finish: function (data) {
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: red">초록<br><br></div><br><br>노랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">파랑<br><br></div><br><br>파랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "trial", correct_response: 0},
+
+response_ends_trial: true,
+
+on_finish: function (data) {
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: green">초록<br><br></div><br><br>빨강',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">초록<br><br></div><br><br>빨랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: yellow">초록<br><br></div><br><br>파랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-keyboard-response',
+
+stimulus: '이제 시작합니다!',
+
+trial_duration: 3000,
+
+data: { test_part: "trial"},
+
+response_ends_trial: true,
+
+on_finish: function (data) {
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">빨강<br><br></div><br><br>빨강',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: red">빨강<br><br></div><br><br>파랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">파랑<br><br></div><br><br>파랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: red">빨강<br><br></div><br><br>초록',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: yellow">노랑<br><br></div><br><br>노랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">파랑<br><br></div><br><br>파랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: green">초록<br><br></div><br><br>초록',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: red">노랑<br><br></div><br><br>빨강',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: yellow">노랑<br><br></div><br><br>빨강',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">파랑<br><br></div><br><br>초록',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: yellow">노랑<br><br></div><br><br>파랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">노랑<br><br></div><br><br>파랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: yellow">빨강<br><br></div><br><br>파랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">초록<br><br></div><br><br>파랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: red">빨강<br><br></div><br><br>빨강',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">노랑<br><br></div><br><br>초록',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: green">초록<br><br></div><br><br>노랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: yellow">노랑<br><br></div><br><br>초록',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: green">파랑<br><br></div><br><br>빨강',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: red">파랑<br><br></div><br><br>빨강',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: red">빨강<br><br></div><br><br>노랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: green">노랑<br><br></div><br><br>빨강',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">파랑<br><br></div><br><br>파랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: yellow">초록<br><br></div><br><br>파랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">초록<br><br></div><br><br>빨랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: green">빨강<br><br></div><br><br>초록',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: yellow">노랑<br><br></div><br><br>노랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: yellow">초록<br><br></div><br><br>노랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">파랑<br><br></div><br><br>빨강',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: yellow">파랑<br><br></div><br><br>초록',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: green">초록<br><br></div><br><br>초록',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: yellow">파랑<br><br></div><br><br>노랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: green">파랑<br><br></div><br><br>초록',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: green">빨강<br><br></div><br><br>노랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: green">초록<br><br></div><br><br>초록',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: yellow">빨강<br><br></div><br><br>노랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: red">노랑<br><br></div><br><br>노랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: red">초록<br><br></div><br><br>빨강',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: red">빨강<br><br></div><br><br>빨강',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">빨강<br><br></div><br><br>파랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: green">초록<br><br></div><br><br>빨강',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: green">초록<br><br></div><br><br>파랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: red">파랑<br><br></div><br><br>노랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: green">노랑<br><br></div><br><br>초록',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: red">빨강<br><br></div><br><br>빨강',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: yellow">노랑<br><br></div><br><br>노랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 0},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: blue">파랑<br><br></div><br><br>노랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-button-response',
+
+stimulus: '<div style="color: red">초록<br><br></div><br><br>노랑',
+
+trial_duration: 5000,
+
+choices: ["<",">"],
+
+data: { test_part: "test", correct_response: 1},
+
+response_ends_trial: true,
+
+on_load: function(){
+
+                    var curr_time = new Date();
+
+                    start_time_list.push(curr_time);
+
+                    return true;
+
+                    },
+
+on_finish: function (data) {
+
+                    var curr_time = new Date();
+
+                    end_time_list.push(curr_time);
+
+                    data.correct = data.button_pressed == data.correct_response;
+
+                    }
+
+});
+
+timeline.push({
+
+type: 'html-keyboard-response',
+
+stimulus: function () {
+
+				var trials = jsPsych.data.get().filter({ test_part: 'test' });
+
+				var correct_trials = trials.filter({ correct: true });
+
+				var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
+
 				var rt = trials.select('rt').values;
 
                 var avg_rt = trials.select('rt').mean();
@@ -1121,16 +2182,28 @@ stimulus: function () {
 
                 return "<p>수고하셨습니다 잠시만 기다려 주십시오...</p>";
 
-			},
-trial_duration: 5000,
-});
-jsPsych.init({
-			timeline: timeline,
-			show_preload_progress_bar: true,
-            on_finish: function() {
-                jsPsych.data.get().localSave('csv','data.csv');
-            }
-		});
-</script>
-</body>
+			},
+
+trial_duration: 5000,
+
+});
+
+jsPsych.init({
+
+			timeline: timeline,
+
+			show_preload_progress_bar: true,
+
+            on_finish: function() {
+
+                jsPsych.data.get().localSave('csv','data.csv');
+
+            }
+
+		});
+
+</script>
+
+</body>
+
 </html>

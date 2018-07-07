@@ -1,0 +1,520 @@
+Task WM Digitspan_Audio
+[Descriptions]
+text_file S /home/ymkim/yumin_MONET_WEB_BRAIN/MONET_WEB_BRAIN/uploads/monet/audio_test_game2/digitspan_inst.txt n n
+text T0 "?" 30 white
+text T1 "1" 30 black
+text T2 "2" 30 black
+text T3 "3" 30 black
+text T4 "4" 30 black
+text T5 "5" 30 black
+text T6 "6" 30 black
+text T7 "7" 30 black
+text T8 "8" 30 black
+text T9 "9" 30 black
+text F "+" 20 black
+text B "+" 1 white
+text T10 "Thank you" 40 n
+image I1 img/anger/1.png
+image I2 img/anger/2.png
+image I3 img/anger/3.png
+image I4 img/anger/4.png
+image I5 img/anger/5.png 
+image I6 img/anger/6.png
+image I7 img/anger/7.png
+image I8 img/anger/8.png
+image I9 img/anger/9.png
+image I10 img/anger/10.png
+image I11 img/anger/11.png
+image I12 img/anger/12.png
+image I13 img/calm/13.png
+image I14 img/calm/14.png
+image I15 img/calm/15.png
+image I16 img/calm/16.png
+image I17 img/calm/17.png
+image I18 img/calm/18.png
+image I19 img/calm/19.png
+image I20 img/calm/20.png
+image I21 img/calm/21.png
+image I22 img/calm/22.png
+image I23 img/calm/23.png
+image I24 img/calm/24.png
+audio A1 audio/1.mp3
+[EndDescriptions]
+
+[PreSeq]
+0 S 1000 n inf n 0 inf n n n n n
+[EndPreSeq]
+
+[MainSeq]
+0 A1 100 I1 inf n 0 1000 n n n n n
+0 I1 1000 B inf n 0 100 n n n n n
+0 T1 1000 I1 inf n 0 1000 n n n n n
+0 I1 1000 B inf n 0 100 n n n n n
+0 T1 1000 I1 inf n 0 1000 n n n n n
+0 I1 1000 B inf n 0 100 n n n n n
+0 T1 1000 I1 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I13 1000 T6 inf n 0 1000 n n n n n
+0 I13 1000 B inf n 0 100 n n n n n
+0 I13 1000 T1 inf n 0 1000 n n n n n
+0 I13 1000 B inf n 0 100 n n n n n
+0 I13 1000 T5 inf n 0 1000 n n n n n
+0 I13 1000 B inf n 0 100 n n n n n
+0 I13 1000 T8 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I2 1000 T8 inf n 0 1000 n n n n n
+0 I2 1000 B inf n 0 100 n n n n n
+0 I2 1000 T4 inf n 0 1000 n n n n n
+0 I2 1000 B inf n 0 100 n n n n n
+0 I2 1000 T2 inf n 0 1000 n n n n n
+0 I2 1000 B inf n 0 100 n n n n n
+0 I2 1000 T3 inf n 0 1000 n n n n n
+0 I2 1000 B inf n 0 100 n n n n n
+0 I2 1000 T9 inf n 0 1000 n n n n n
+0 I2 1000 B inf n 0 100 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I14 1000 T5 inf n 0 1000 n n n n n
+0 I14 1000 B inf n 0 100 n n n n n
+0 I14 1000 T2 inf n 0 1000 n n n n n
+0 I14 1000 B inf n 0 100 n n n n n
+0 I14 1000 T1 inf n 0 1000 n n n n n
+0 I14 1000 B inf n 0 100 n n n n n
+0 I14 1000 T8 inf n 0 1000 n n n n n
+0 I14 1000 B inf n 0 100 n n n n n
+0 I14 1000 T6 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I15 1000 T3 inf n 0 1000 n n n n n
+0 I15 1000 B inf n 0 100 n n n n n
+0 I15 1000 T8 inf n 0 1000 n n n n n
+0 I15 1000 B inf n 0 100 n n n n n
+0 I15 1000 T9 inf n 0 1000 n n n n n
+0 I15 1000 B inf n 0 100 n n n n n
+0 I15 1000 T1 inf n 0 1000 n n n n n
+0 I15 1000 B inf n 0 100 n n n n n
+0 I15 1000 T7 inf n 0 1000 n n n n n
+0 I15 1000 B inf n 0 100 n n n n n
+0 I15 1000 T4 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I3 1000 T7 inf n 0 1000 n n n n n
+0 I3 1000 B inf n 0 100 n n n n n
+0 I3 1000 T9 inf n 0 1000 n n n n n
+0 I3 1000 B inf n 0 100 n n n n n
+0 I3 1000 T6 inf n 0 1000 n n n n n
+0 I3 1000 B inf n 0 100 n n n n n
+0 I3 1000 T4 inf n 0 1000 n n n n n
+0 I3 1000 B inf n 0 100 n n n n n
+0 I3 1000 T8 inf n 0 1000 n n n n n
+0 I3 1000 B inf n 0 100 n n n n n
+0 I3 1000 T3 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I4 1000 T5 inf n 0 1000 n n n n n
+0 I4 1000 B inf n 0 100 n n n n n
+0 I4 1000 T1 inf n 0 1000 n n n n n
+0 I4 1000 B inf n 0 100 n n n n n
+0 I4 1000 T7 inf n 0 1000 n n n n n
+0 I4 1000 B inf n 0 100 n n n n n
+0 I4 1000 T4 inf n 0 1000 n n n n n
+0 I4 1000 B inf n 0 100 n n n n n
+0 I4 1000 T2 inf n 0 1000 n n n n n
+0 I4 1000 B inf n 0 100 n n n n n
+0 I4 1000 T8 inf n 0 1000 n n n n n
+0 I4 1000 B inf n 0 100 n n n n n
+0 I4 1000 T3 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I16 1000 T9 inf n 0 1000 n n n n n
+0 I16 1000 B inf n 0 100 n n n n n
+0 I16 1000 T8 inf n 0 1000 n n n n n
+0 I16 1000 B inf n 0 100 n n n n n
+0 I16 1000 T5 inf n 0 1000 n n n n n
+0 I16 1000 B inf n 0 100 n n n n n
+0 I16 1000 T2 inf n 0 1000 n n n n n
+0 I16 1000 B inf n 0 100 n n n n n
+0 I16 1000 T1 inf n 0 1000 n n n n n
+0 I16 1000 B inf n 0 100 n n n n n
+0 I16 1000 T6 inf n 0 1000 n n n n n
+0 I16 1000 B inf n 0 100 n n n n n
+0 I16 1000 T3 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I17 1000 T1 inf n 0 1000 n n n n n
+0 I17 1000 B inf n 0 100 n n n n n
+0 I17 1000 T6 inf n 0 1000 n n n n n
+0 I17 1000 B inf n 0 100 n n n n n
+0 I17 1000 T4 inf n 0 1000 n n n n n
+0 I17 1000 B inf n 0 100 n n n n n
+0 I17 1000 T5 inf n 0 1000 n n n n n
+0 I17 1000 B inf n 0 100 n n n n n
+0 I17 1000 T9 inf n 0 1000 n n n n n
+0 I17 1000 B inf n 0 100 n n n n n
+0 I17 1000 T7 inf n 0 1000 n n n n n
+0 I17 1000 B inf n 0 100 n n n n n
+0 I17 1000 T6 inf n 0 1000 n n n n n
+0 I17 1000 B inf n 0 100 n n n n n
+0 I17 1000 T3 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I5 1000 T2 inf n 0 1000 n n n n n
+0 I5 1000 B inf n 0 100 n n n n n
+0 I5 1000 T9 inf n 0 1000 n n n n n
+0 I5 1000 B inf n 0 100 n n n n n
+0 I5 1000 T7 inf n 0 1000 n n n n n
+0 I5 1000 B inf n 0 100 n n n n n
+0 I5 1000 T6 inf n 0 1000 n n n n n
+0 I5 1000 B inf n 0 100 n n n n n
+0 I5 1000 T3 inf n 0 1000 n n n n n
+0 I5 1000 B inf n 0 100 n n n n n
+0 I5 1000 T1 inf n 0 1000 n n n n n
+0 I5 1000 B inf n 0 100 n n n n n
+0 I5 1000 T5 inf n 0 1000 n n n n n
+0 I5 1000 B inf n 0 100 n n n n n
+0 I5 1000 T4 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I18 1000 T5 inf n 0 1000 n n n n n
+0 I18 1000 B inf n 0 100 n n n n n
+0 I18 1000 T3 inf n 0 1000 n n n n n
+0 I18 1000 B inf n 0 100 n n n n n
+0 I18 1000 T8 inf n 0 1000 n n n n n
+0 I18 1000 B inf n 0 100 n n n n n
+0 I18 1000 T7 inf n 0 1000 n n n n n
+0 I18 1000 B inf n 0 100 n n n n n
+0 I18 1000 T1 inf n 0 1000 n n n n n
+0 I18 1000 B inf n 0 100 n n n n n
+0 I18 1000 T2 inf n 0 1000 n n n n n
+0 I18 1000 B inf n 0 100 n n n n n
+0 I18 1000 T4 inf n 0 1000 n n n n n
+0 I18 1000 B inf n 0 100 n n n n n
+0 I18 1000 T6 inf n 0 1000 n n n n n
+0 I18 1000 B inf n 0 100 n n n n n
+0 I18 1000 T9 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I6 1000 T4 inf n 0 1000 n n n n n
+0 I6 1000 B inf n 0 100 n n n n n
+0 I6 1000 T2 inf n 0 1000 n n n n n
+0 I6 1000 B inf n 0 100 n n n n n
+0 I6 1000 T6 inf n 0 1000 n n n n n
+0 I6 1000 B inf n 0 100 n n n n n
+0 I6 1000 T9 inf n 0 1000 n n n n n
+0 I6 1000 B inf n 0 100 n n n n n
+0 I6 1000 T1 inf n 0 1000 n n n n n
+0 I6 1000 B inf n 0 100 n n n n n
+0 I6 1000 T7 inf n 0 1000 n n n n n
+0 I6 1000 B inf n 0 100 n n n n n
+0 I6 1000 T8 inf n 0 1000 n n n n n
+0 I6 1000 B inf n 0 100 n n n n n
+0 I6 1000 T3 inf n 0 1000 n n n n n
+0 I6 1000 B inf n 0 100 n n n n n
+0 I6 1000 T5 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 I7 1000 T2 inf n 0 1000 n n n n n
+0 I7 1000 B inf n 0 100 n n n n n
+0 I7 1000 T8 inf n 0 1000 n n n n n
+0 I7 1000 B inf n 0 100 n n n n n
+0 I7 1000 T4 inf n 0 1000 n n n n n
+0 I7 1000 B inf n 0 100 n n n n n
+0 I7 1000 T1 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I19 1000 T7 inf n 0 1000 n n n n n
+0 I19 1000 B inf n 0 100 n n n n n
+0 I19 1000 T9 inf n 0 1000 n n n n n
+0 I19 1000 B inf n 0 100 n n n n n
+0 I19 1000 T1 inf n 0 1000 n n n n n
+0 I19 1000 B inf n 0 100 n n n n n
+0 I19 1000 T7 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I8 1000 T3 inf n 0 1000 n n n n n
+0 I8 1000 B inf n 0 100 n n n n n
+0 I8 1000 T1 inf n 0 1000 n n n n n
+0 I8 1000 B inf n 0 100 n n n n n
+0 I8 1000 T4 inf n 0 1000 n n n n n
+0 I8 1000 B inf n 0 100 n n n n n
+0 I8 1000 T7 inf n 0 1000 n n n n n
+0 I8 1000 B inf n 0 100 n n n n n
+0 I8 1000 T8 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I20 1000 T8 inf n 0 1000 n n n n n
+0 I20 1000 B inf n 0 100 n n n n n
+0 I20 1000 T7 inf n 0 1000 n n n n n
+0 I20 1000 B inf n 0 100 n n n n n
+0 I20 1000 T6 inf n 0 1000 n n n n n
+0 I20 1000 B inf n 0 100 n n n n n
+0 I20 1000 T5 inf n 0 1000 n n n n n
+0 I20 1000 B inf n 0 100 n n n n n
+0 I20 1000 T5 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I21 1000 T3 inf n 0 1000 n n n n n
+0 I21 1000 B inf n 0 100 n n n n n
+0 I21 1000 T4 inf n 0 1000 n n n n n
+0 I21 1000 B inf n 0 100 n n n n n
+0 I21 1000 T2 inf n 0 1000 n n n n n
+0 I21 1000 B inf n 0 100 n n n n n
+0 I21 1000 T1 inf n 0 1000 n n n n n
+0 I21 1000 B inf n 0 100 n n n n n
+0 I21 1000 T6 inf n 0 1000 n n n n n
+0 I21 1000 B inf n 0 100 n n n n n
+0 I21 1000 T2 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I9 1000 T8 inf n 0 1000 n n n n n
+0 I9 1000 B inf n 0 100 n n n n n
+0 I9 1000 T4 inf n 0 1000 n n n n n
+0 I9 1000 B inf n 0 100 n n n n n
+0 I9 1000 T2 inf n 0 1000 n n n n n
+0 I9 1000 B inf n 0 100 n n n n n
+0 I9 1000 T4 inf n 0 1000 n n n n n
+0 I9 1000 B inf n 0 100 n n n n n
+0 I9 1000 T1 inf n 0 1000 n n n n n
+0 I9 1000 B inf n 0 100 n n n n n
+0 I9 1000 T5 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I10 1000 T6 inf n 0 1000 n n n n n
+0 I10 1000 B inf n 0 100 n n n n n
+0 I10 1000 T7 inf n 0 1000 n n n n n
+0 I10 1000 B inf n 0 100 n n n n n
+0 I10 1000 T5 inf n 0 1000 n n n n n
+0 I10 1000 B inf n 0 100 n n n n n
+0 I10 1000 T7 inf n 0 1000 n n n n n
+0 I10 1000 B inf n 0 100 n n n n n
+0 I10 1000 T3 inf n 0 1000 n n n n n
+0 I10 1000 B inf n 0 100 n n n n n
+0 I10 1000 T8 inf n 0 1000 n n n n n
+0 I10 1000 B inf n 0 100 n n n n n
+0 I10 1000 T3 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I22 1000 T4 inf n 0 1000 n n n n n
+0 I22 1000 B inf n 0 100 n n n n n
+0 I22 1000 T7 inf n 0 1000 n n n n n
+0 I22 1000 B inf n 0 100 n n n n n
+0 I22 1000 T1 inf n 0 1000 n n n n n
+0 I22 1000 B inf n 0 100 n n n n n
+0 I22 1000 T2 inf n 0 1000 n n n n n
+0 I22 1000 B inf n 0 100 n n n n n
+0 I22 1000 T6 inf n 0 1000 n n n n n
+0 I22 1000 B inf n 0 100 n n n n n
+0 I22 1000 T3 inf n 0 1000 n n n n n
+0 I22 1000 B inf n 0 100 n n n n n
+0 I22 1000 T3 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I23 1000 T6 inf n 0 1000 n n n n n
+0 I23 1000 B inf n 0 100 n n n n n
+0 I23 1000 T3 inf n 0 1000 n n n n n
+0 I23 1000 B inf n 0 100 n n n n n
+0 I23 1000 T4 inf n 0 1000 n n n n n
+0 I23 1000 B inf n 0 100 n n n n n
+0 I23 1000 T8 inf n 0 1000 n n n n n
+0 I23 1000 B inf n 0 100 n n n n n
+0 I23 1000 T4 inf n 0 1000 n n n n n
+0 I23 1000 B inf n 0 100 n n n n n
+0 I23 1000 T5 inf n 0 1000 n n n n n
+0 I23 1000 B inf n 0 100 n n n n n
+0 I23 1000 T5 inf n 0 1000 n n n n n
+0 I23 1000 B inf n 0 100 n n n n n
+0 I23 1000 T5 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I11 1000 T7 inf n 0 1000 n n n n n
+0 I11 1000 B inf n 0 100 n n n n n
+0 I11 1000 T4 inf n 0 1000 n n n n n
+0 I11 1000 B inf n 0 100 n n n n n
+0 I11 1000 T7 inf n 0 1000 n n n n n
+0 I11 1000 B inf n 0 100 n n n n n
+0 I11 1000 T9 inf n 0 1000 n n n n n
+0 I11 1000 B inf n 0 100 n n n n n
+0 I11 1000 T4 inf n 0 1000 n n n n n
+0 I11 1000 B inf n 0 100 n n n n n
+0 I11 1000 T3 inf n 0 1000 n n n n n
+0 I11 1000 B inf n 0 100 n n n n n
+0 I11 1000 T3 inf n 0 1000 n n n n n
+0 I11 1000 B inf n 0 100 n n n n n
+0 I11 1000 T9 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I24 1000 T6 inf n 0 1000 n n n n n
+0 I24 1000 B inf n 0 100 n n n n n
+0 I24 1000 T2 inf n 0 1000 n n n n n
+0 I24 1000 B inf n 0 100 n n n n n
+0 I24 1000 T7 inf n 0 1000 n n n n n
+0 I24 1000 B inf n 0 100 n n n n n
+0 I24 1000 T1 inf n 0 1000 n n n n n
+0 I24 1000 B inf n 0 100 n n n n n
+0 I24 1000 T2 inf n 0 1000 n n n n n
+0 I24 1000 B inf n 0 100 n n n n n
+0 I24 1000 T5 inf n 0 1000 n n n n n
+0 I24 1000 B inf n 0 100 n n n n n
+0 I24 1000 T1 inf n 0 1000 n n n n n
+0 I24 1000 B inf n 0 100 n n n n n
+0 I24 1000 T6 inf n 0 1000 n n n n n
+0 I24 1000 B inf n 0 100 n n n n n
+0 I24 1000 T3 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 F 1000 n inf n 0 inf n n n n n
+0 I12 1000 T5 inf n 0 1000 n n n n n
+0 I12 1000 B inf n 0 100 n n n n n
+0 I12 1000 T5 inf n 0 1000 n n n n n
+0 I12 1000 B inf n 0 100 n n n n n
+0 I12 1000 T3 inf n 0 1000 n n n n n
+0 I12 1000 B inf n 0 100 n n n n n
+0 I12 1000 T8 inf n 0 1000 n n n n n
+0 I12 1000 B inf n 0 100 n n n n n
+0 I12 1000 T9 inf n 0 1000 n n n n n
+0 I12 1000 B inf n 0 100 n n n n n
+0 I12 1000 T1 inf n 0 1000 n n n n n
+0 I12 1000 B inf n 0 100 n n n n n
+0 I12 1000 T5 inf n 0 1000 n n n n n
+0 I12 1000 B inf n 0 100 n n n n n
+0 I12 1000 T5 inf n 0 1000 n n n n n
+0 I12 1000 B inf n 0 100 n n n n n
+0 I12 1000 T6 inf n 0 1000 n n n n n
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+0 T0 inf T1,T2,T3,T4,T5,T6,T7,T8,T9 inf n 0 inf n n n n y
+[EndMainSeq]
+
+[PostSeq]
+0 T10 5000 n inf n 0 inf n n n n n
+[EndPostSeq]

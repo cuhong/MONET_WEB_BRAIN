@@ -11,4 +11,5 @@ class SignupForm(forms.Form):
 
 class UploadFileForm(forms.Form):
     title = forms.CharField(max_length=50)
+    comment = forms.CharField(widget=forms.Textarea)
     file = forms.FileField()
