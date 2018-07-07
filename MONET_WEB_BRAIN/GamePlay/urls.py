@@ -9,5 +9,4 @@ urlpatterns = [
     path('Stroop/', views.StroopRQ),
     path('CardSorting/', views.CardSortingRQ),
     path('MissionSatisfaction/', views.MissionSatisfactionRQ)
-
 ]

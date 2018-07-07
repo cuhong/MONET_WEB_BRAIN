@@ -18,6 +18,17 @@ class Researcher(models.Model):
     def __str__(self):
         return self.name + ' / ' + str(self.date)
 
+# The games that belong to Resaercher
+class ResearcherGame(models.Model):
+    researcher = models.ForeignKey(Researcher, on_delete=models.CASCADE)
+    game_name = models.CharField(max_length=20, null=False, blank=False)
+    path = models.CharField(max_length=150, null=False, blank=False)
+    def __str__(self):
+        return self.game_name
+    def path(self):
+        return '/game/templates/game/' + self.researcher.name + '/' + self.game_name +'.html'
+
+
 # Behavorial Experimental Game
 class BehavGameScore(models.Model):
     researcher = models.ForeignKey(Researcher, on_delete=models.CASCADE)

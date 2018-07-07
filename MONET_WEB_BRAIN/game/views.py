@@ -6,9 +6,18 @@ from django.shortcuts import get_object_or_404
 import json
 import csv
 import dateutil.parser as dt
+import os
+import codecs
+import parser
 
 from .models import *
 from .forms import *
+from .parser import *
+
+def ssl(request):
+    from django.conf import settings
+    f = open(os.path.join(settings.BASE_DIR, '1C7ACCC95D8133480DCF4A4EA241DD59.txt'), 'r')
+    return HttpResponse(f, content_type='text/plain')
 
 def index(request):
     """
@@ -441,17 +450,146 @@ def logout(request):
 
 def researcher_sign_up(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        return redirect('/researcher/'+researcher.name)
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            new_researcher = Researcher()
+            new_researcher.name = form.cleaned_data['name']
+            new_researcher.pw = form.cleaned_data['pw']
+            new_researcher.email = form.cleaned_data['email']
+            new_researcher.save()
+            request.session['res_name'] = form.cleaned_data['name']
+            # Create Researcher Directories
+            from django.conf import settings
+            os.mkdir(os.path.join(settings.MEDIA_ROOT, form.cleaned_data['name']))
+            os.mkdir(os.path.join(settings.BASE_DIR, 'game/templates/game/' + form.cleaned_data['name']))
+            return redirect('/researcher/' + form.cleaned_data['name'] + '/upload/')
+        return redirect('/researcher/sign-up/')
     else:
-        form = SignUpForm()
+        form = SignupForm()
         return render(request, 'game/res-sign-up.html', {'form':form})
 
-def cardsort_game(request):
-    return render(request, 'game/cardsort_game.html')
-def stroop_game(request):
-    return render(request, 'game/stroop_game.html')
-def stroop2_game(request):
-    return render(request, 'game/stroop2_game.html')
+def researcher_sign_in(request):
+    if request.method == 'POST':
+        form = SigninForm(request.POST)
+        if form.is_valid():
+            this_researcher = get_object_or_404(Researcher, name=form.cleaned_data['name'])
+            if form.cleaned_data['pw'] == this_researcher.pw:
+                request.session['res_name'] = form.cleaned_data['name']
+                return redirect('/researcher/'+form.cleaned_data['name']+'/upload/')
+            return redirect('/researcher/sign-in/')
+        else:
+            return redirect('/researcher/sign-in/')
+    else:
+        form = SigninForm()
+        return render(request, 'game/res-sign-in.html', {'form':form})
 
-# Create your views here.
+def researcher(request, researcher_name):
+    if 'res_name' not in request.session:
+        return redirect('/researcher/sign-in/')
+    if request.method == 'POST':
+        path = 'game/' + request.session['res_name'] + '/'
+        return render(request, path+request.POST['game_name']+'.html')
+    this_researcher = get_object_or_404(Researcher, name=request.session['res_name'])
+    games = ResearcherGame.objects.filter(researcher=this_researcher)
+    return render(request, 'game/researcher.html', {'games':games, 'researcher_name':researcher_name})
+
+def researcher_game(request, researcher_name, game_name):
+    if ('res_name' not in request.session) and ('name' not in request.session):
+        return redirect('/researcher/sign-in/')
+    return render(request, 'game/' + researcher_name + '/' + game_name + '.html')
+
+def txt_preprocessing(path, src, replace):
+    fsrc = codecs.open(path+'/'+src, 'r', 'utf-8')
+    lines = fsrc.readlines()
+    fdest = open(path+'/'+src, 'w', encoding='utf-8')
+    for line in lines:
+        line = line.replace(replace, path+'/'+replace)
+        fdest.write(line)
+
+def html_postprocessing(html_path_name, res_name, game_name):
+    #csv_to_template('Test_Experiment.html', 'ymkim', 'game1')
+    csv_to_template(html_path_name, res_name, game_name)
+
+def csv_to_template(html_fname, res_name, game_name):
+    f = codecs.open(html_fname, 'r', 'utf-8')
+    lines = f.readlines()
+    fout = open(html_fname, 'w', encoding='utf-8')
+
+    i = 0
+    for line in lines:
+        if i == 0:
+            line = line.replace(line, line+'{% load static %}\n')
+            i += 1
+        line = jspsych_parse(line)
+        line = img_parse(line, res_name, game_name)
+        line = line.replace("jsPsych.data.get().localSave('csv', 'data.csv');", \
+                "var trials = jsPsych.data.get().filter({test_part: 'test'});\n\
+                var correct_trials = trials.filter({ correct: true});\n\
+                var accuracy = Math.round(correct_trials.count() / trials.count() * 100);\n\
+                var rt = trials.select('rt').values;\n\
+                var avg_rt = trials.select('rt').mean();\n\
+                var xhr = new XMLHttpRequest();\n\
+                xhr.open('POST', '/game/" + res_name + '/' + game_name + "/', true);\n\
+                xhr.setReqeustHeader('Content-type', 'application/json');\n\
+                ");
+        fout.write(line)
+
+def img_parse(line, res_name, game_name):
+    #line = line.replace("img src=\"img/", "img src=\"/uploads/" + res_name + '/' + game_name +'/img/')
+    #line = line.replace("img src = ", "img src=' + ")
+    line = line.replace("img/", "/upload_files/" + res_name + '/' + game_name + '/img/')
+    return line
+
+def jspsych_parse(line):
+    line = line.replace("jspsych.js", "{% static 'game/scripts/jspsych.js")  # {% static 'game/scripts/jspsych.js' %} => /static/game/scripts/jspsych.js
+    line = line.replace("jspsych-6", "{% static 'game/jspsych-6")
+    line = line.replace(".js\">", ".js' %}\">")
+    line = line.replace("jspsych.css", "{% static 'game/styles/jspsych.css' %}")
+    return line
+
+
+
+def CreateGame(fzip, rname, gname, path):
+    # unzip to ./researchers/<researcher_name>/
+    with open(path+'/'+gname+'.zip', 'wb+') as destination:
+        for chunk in fzip.chunks():
+            destination.write(chunk)
+    import zipfile
+    from django.conf import settings
+    zip_ref = zipfile.ZipFile(path+'/'+gname+'.zip', 'r') 
+    zip_ref.extractall(path)
+    zip_ref.close()
+    
+    txt_preprocessing(path, "test_exp.txt", "test_inst.txt")
+    # Generate HTML file from parser
+    generate_html(path+'/test_exp.txt', path)  # /uploads/ymkim_test3/djgame3/test_exp.txt
+    # Move the created file from here to template directory
+    source = path + '/Test_Experiment.html'
+    html_postprocessing(source, rname, gname)
+    dest = os.path.join(settings.BASE_DIR, 'game/templates/game/' + rname + '/' +  gname + '.html')
+    os.rename(source, dest)
+
+def upload(request, researcher_name):
+    if 'res_name' not in request.session:
+        return redirect('/researcher/sign-up/')
+    researcher_name = request.session['res_name']
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            print("The form is valid!")
+            from django.conf import settings
+            path = os.path.join(settings.MEDIA_ROOT, researcher_name + '/' + form.cleaned_data['title'])
+            os.mkdir(path)
+            CreateGame(request.FILES['file'], researcher_name, form.cleaned_data['title'], path)
+            new_game = ResearcherGame()
+            new_game.researcher = get_object_or_404(Researcher, name=researcher_name)
+            new_game.game_name = form.cleaned_data['title']
+            new_game.path = '/game/templates/game/' + new_game.researcher.name + '/' + new_game.game_name + '.html'
+            new_game.save()
+        print("The form is invalid!")
+        return redirect('/researcher/' + researcher_name + '/upload/')
+    else:
+        form = UploadFileForm()
+        return render(request, 'game/upload.html', {'form':form, 'researcher_name':researcher_name})
+
+

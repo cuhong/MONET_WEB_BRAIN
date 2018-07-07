@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> MONET Wevrain </title>
+    </head>
+
+    <body>
+        {% if games %}
+            {% for game in games %}
+            <li><a href="/researcher/{{game.researcher.name}}/{{game.game_name}}/">{{ game.game_name }}</a></li>   
+            {% endfor %}
+        {% endif %}
+        <a href="/researcher/{{researcher_name}}/upload/">Go to upload page</a>
+    </body>
+</html>

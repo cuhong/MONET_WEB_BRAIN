@@ -82,7 +82,7 @@ def CardSortingRQ(request):
         return HttpResponse("Post Error:CardSorting")
 
 def MissionSatisfactionRQ(request):
-    if request.methos == 'POST':
+    if request.method == 'POST':
         username = request.POST['userName']
         mission = request.POST['mission']
         understood = request.POST['underStood']
