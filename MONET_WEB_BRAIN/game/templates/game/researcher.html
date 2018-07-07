@@ -20,6 +20,16 @@
                         </h2>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        
+                    </div>
+                    <div class="col-md-2 d-flex justify-content-center">
+                        <button type="button" class="btn btn-success" onclick="window.location.href='/researcher/logout/'">
+                            logout
+                        </button>
+                    </div>
+                </div>
             </div>
             <div class="container-fluid" style="margin: 10px;">
                 {% if games %}
@@ -33,10 +43,14 @@
                         </div>
                         <div class="col-md-4 d-flex justify-content-center">
                             <a href="/researcher/{{game.researcher.name}}/{{game.game_name}}/">
-                                <button type="button" class="btn btn-primary start">
+                                <button type="button" class="btn btn-primary start" style="margin:10px">
                                     START
                                 </button>
                             </a>
+                            <button type="button" class="btn btn-danger" style="margin:10px"  onclick="window.location.href='/researcher/{{game.researcher.name}}/{{game.game_name}}/'">
+                                delete
+                            </button>
+
                         </div>
                     </div>
                    {% endfor %}

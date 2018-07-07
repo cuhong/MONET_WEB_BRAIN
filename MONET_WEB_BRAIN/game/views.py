@@ -586,7 +586,7 @@ def CreateGame(fzip, rname, gname, path):
 def remove_game_dir(rname, gname):
     os.rmtree(settings.MEDIA_ROOT, rname, gname)
 
-def delete_game(request, rname, gname):
+def delete_game(request, researcher_game, game_name):
     remove_game_dir(rname, gname)
     return redirect('/researcher/'+rname+'/')
 
@@ -617,4 +617,11 @@ def upload(request, researcher_name):
     else:
         form = UploadFileForm()
         return render(request, 'game/upload.html', {'form':form, 'researcher_name':researcher_name})
+
+def res_logout(request):
+    try:
+        del request.session['res_name']
+    except KeyError:
+        pass
+    return redirect('/')
 
