@@ -46,7 +46,7 @@ class ResearcherGameStimulus(models.Model):
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     def __str__(self):
-        return self.rgs.user.name + ' / response_time:' + str(self.rt) + ' / ' + str(self.end_date)
+        return self.rgs.researcher.name + ' / response_time:' + str(self.rt) + ' / ' + str(self.end_time)
 
 # Gonogo Game
 class GonogoScore(models.Model):
