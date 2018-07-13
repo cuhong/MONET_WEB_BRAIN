@@ -15,11 +15,11 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('researcher/sign-up/', views.researcher_sign_up, name='researcher_sign_up'),
     path('researcher/sign-in/', views.researcher_sign_in, name='researcher_sign_in'),
+    path('researcher/logout/', views.res_logout, name='res_logout'),
     path('researcher/<slug:researcher_name>/', views.researcher, name='researcher'),
     path('researcher/<slug:researcher_name>/upload/', views.upload, name='upload'),
     path('researcher/<slug:researcher_name>/<slug:game_name>/', views.researcher_game, name = 'researcher_game'),
     path('researcher/<slug:researcher_name>/<slug:game_name>/delete/', views.delete_game, name='delete_game'),
-    path('researcher/logout/', views.res_logout, name='res_logout'),
 ]
 
 if settings.DEBUG:

@@ -95,7 +95,7 @@ function falling_balloon(size, current_index, left, main_balloon = true) {
                 $(this).text(text_array[current_index]);
                 //$(this).boxfit({ multiline: true });
                 $(this).wordBreakKeepAll();
-                $(this).css("font-size","30px");
+                $(this).css("font-size","20px");
                 var start_time = new Date();
                 start_time_list.push(start_time);
                 main_balloon_index += 1;
@@ -184,25 +184,42 @@ function button_pressed(btn_number){
 }
 
 
-var progress_bar = $("<div/>", {
-    "class": "progress",
-    "id" : "progress_bar"
-}).append($("<div/>", {
-    "class": "progress-bar progress-bar-success progress-bar-striped",
-    "role": "progress-bar",
-    "aria-valuenow": "0",
-    "aria-valuemin": "0",
-    "aria-valuemax": "100",
-    "style": "width:0%"
-}));
+
 $(".start").click(function () {
     /* remove the layout of the main page */
     $(".main_control").remove();
     /* change to full-screen mode */
-    $("#main2").addClass("fixed");
-    game_height = $(window).height() * 0.9;
+    if (screenfull.enabled) {
+        screenfull.request();
+        $(document.body).css("width", $(window).width());
+        $(document.body).css("height", $(window).height());
+    }
+    var main2 = $("<div/>", {
+        "id": "main2"
+    }).append($("<div/>",{
+        "class": "game"
+    }));
+    main2.css("width", $(window).width());
+    main2.css("height", $(window).height());
+    main2.append($("<div/>",{
+        "class": "bottom"
+    }));
+    $(document.body).append(main2);
+    //$("#main2").addClass("fixed");
+    game_height = $(window).height() * 0.8;
     /* add the layout for the game */
     $(".game").css({ "height": game_height, "background-color": "#ffffff" });
+    var progress_bar = $("<div/>", {
+        "class": "progress",
+        "id" : "progress_bar"
+    }).append($("<div/>", {
+        "class": "progress-bar progress-bar-success progress-bar-striped",
+        "role": "progress-bar",
+        "aria-valuenow": "0",
+        "aria-valuemin": "0",
+        "aria-valuemax": "100",
+        "style": "width:0%"
+    }));
     $(".game").append(progress_bar);
     /* start the game */
     //$(".bottom").css({ "height": game_height * 0.25, "background-color":"#dddddd"});
@@ -276,12 +293,9 @@ $(".start").click(function () {
     row.append(col7);
 
     $(".bottom").append(row);
-    /*
-    if (screenfull.enabled) {
-        screenfull.request($("#main2")[0]);
-	$("#main2").css("width", $(window).width());
-    }
-    */
+    
+
+    
 
     for (i = 0; small_balloon_size * (i + 1) < $(".game").width() / 2 - balloon_size / 2; i++) {
         falling_balloon(small_balloon_size * 0.8, 0, i * small_balloon_size + 0.1 * small_balloon_size, false);

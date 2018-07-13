@@ -293,6 +293,7 @@ def get_result_page():
                                     console.log(start_time_list);\n\
                                     console.log(end_time_list);\n\
                                     console.log(rt);\n\
+                                    /* yumin accuracy */\n\
                                     return \"<p>You responded correctly on \" + accuracy + \"% of the trials.</p>\" +\n\
                                         \"<p>Your average response time was \" + average(rt) / 1000 + \"s.</p>\";\n}\n\
                                 else {\n\
@@ -300,6 +301,7 @@ def get_result_page():
                                     console.log(start_time_list);\n\
                                     console.log(end_time_list);\n\
                                     console.log(rt);\n\
+                                    /* yumin no accuracy */\n\
                                     return \"<p>Your average response time was \" + average(rt) / 1000 + \"s.</p>\";\n}\n\
                             },\n\
                 trial_duration: 10000,\n\
@@ -382,7 +384,7 @@ def get_body():
 			timeline: timeline,\n\
 			show_preload_progress_bar: true,\n\
             on_finish: function() {\n\
-                jsPsych.data.get().localSave('csv','data.csv');\n\
+                //jsPsych.data.get().localSave('csv','data.csv');\n\
             }\n\
 		});\n"
     body_string += "</script>\n</body>\n"

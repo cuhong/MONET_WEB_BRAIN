@@ -29,17 +29,24 @@ class ResearcherGame(models.Model):
     def path(self):
         return '/game/templates/game/' + self.researcher.name + '/' + self.game_name +'.html'
 
-
 # Behavorial Experimental Game
-class BehavGameScore(models.Model):
+class ResearcherGameScore(models.Model):
     researcher = models.ForeignKey(Researcher, on_delete=models.CASCADE)
     game_name = models.CharField(max_length=20, null=False, blank=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    score = models.FloatField(default=-1.0)
-    rt = models.FloatField(default=-1.0)
+    #user = models.ForeignKey(User, on_delete=models.CASCADE)
+    accuracy = models.FloatField(default=-1.0)
+    avg_rt = models.FloatField(default=-1.0)
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.user.name + ' / accuracy:' + str(self.score) + ' / average_response_time:' + str(self.rt)
+        return self.researcher.name + ' / accuracy:' + str(self.accuracy) + ' / average_response_time:' + str(self.avg_rt)
+
+class ResearcherGameStimulus(models.Model):
+    rgs = models.ForeignKey(ResearcherGameScore, on_delete=models.CASCADE)
+    rt = models.FloatField(default=-1.0)
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+    def __str__(self):
+        return self.rgs.user.name + ' / response_time:' + str(self.rt) + ' / ' + str(self.end_date)
 
 # Gonogo Game
 class GonogoScore(models.Model):
@@ -173,6 +180,4 @@ class Stroop2Stimulus(models.Model):
     end_date = models.DateTimeField()
     def __str__(self):
         return self.s2s.user.name + ' / ' + str(self.rt) + ' / ' + str(self.end_date)
-
-
 

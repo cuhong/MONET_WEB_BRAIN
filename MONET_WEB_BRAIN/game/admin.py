@@ -3,6 +3,9 @@ from django.contrib import admin
 from .models import *
 
 admin.site.register(User)
+admin.site.register(Researcher)
+admin.site.register(ResearcherGame)
+admin.site.register(ResearcherGameScore)
 admin.site.register(GonogoScore)
 admin.site.register(CardsortScore)
 admin.site.register(DigitNbackScore)

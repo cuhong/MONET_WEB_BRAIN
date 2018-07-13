@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404
 from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
+from django.conf import settings
 import json
 import csv
 import dateutil.parser as dt
@@ -15,7 +16,6 @@ from .forms import *
 from .parser import *
 
 def ssl(request):
-    from django.conf import settings
     f = open(os.path.join(settings.BASE_DIR, '1C7ACCC95D8133480DCF4A4EA241DD59.txt'), 'r')
     return HttpResponse(f, content_type='text/plain')
 
@@ -461,7 +461,7 @@ def researcher_sign_up(request):
             # Create Researcher Directories
             from django.conf import settings
             os.mkdir(os.path.join(settings.MEDIA_ROOT, form.cleaned_data['name']))
-            os.mkdir(os.path.join(settings.BASE_DIR, 'game/templates/game/' + form.cleaned_data['name']))
+            os.mkdir(os.path.join(settings.BASE_DIR, 'game/templates/game/researchers/' + form.cleaned_data['name']))
             return redirect('/researcher/' + form.cleaned_data['name'] + '/upload/')
         return redirect('/researcher/sign-up/')
     else:
@@ -494,9 +494,43 @@ def researcher(request, researcher_name):
     return render(request, 'game/researcher.html', {'games':games, 'researcher_name':researcher_name})
 
 def researcher_game(request, researcher_name, game_name):
+    if request.method == 'POST':
+        # accuracy game
+        base_response_time = 3000.0
+        new_score = ResearcherGameScore()
+        new_score.game_name = game_name
+        #new_score.User = get_object_or_404(User, name=this_user_name)
+        new_score.researcher = get_object_or_404(Researcher, name=researcher_name)
+        data = request.body.decode('utf-8')
+        data_list = data.split('!')
+        new_score.accuracy = float(json.loads(data_list[0]))  # accuracy
+        sum = 0.0
+        rt_list = data_list[1].split(',')  # response time list
+        for rt in rt_list:
+            try:
+                sum += float(rt)
+            except ValueError:
+                sum += base_response_time
+        if len(rt_list) != 0:
+            new_score.avg_rt = sum/len(rt_list)
+        new_score.save()
+        start_time_list = data_list[2].split(',')
+        end_time_list = data_list[3].split(',')
+
+        for i in range(len(rt_list)):
+            new_stimulus = ResearcherGameStimulus()
+            new_stimulus.rgs = new_score
+            try:
+                new_stimulus.rt = float(rt_list[i])
+            except ValueError:
+                new_stimulus.rt = base_response_time
+            new_stimulus.start_time = dt.parse(start_time_list[i][:24])
+            new_stimulus.end_time = dt.parse(end_time_list[i][:24])
+            new_stimulus.save()
+
     if ('res_name' not in request.session) and ('name' not in request.session):
         return redirect('/researcher/sign-in/')
-    return render(request, 'game/' + researcher_name + '/' + game_name + '.html')
+    return render(request, 'game/researchers/' + researcher_name + '/' + game_name + '.html')
 
 def txt_preprocessing(path, src):
     fsrc = codecs.open(path+'/'+src, 'r', 'utf-8')
@@ -528,19 +562,41 @@ def csv_to_template(html_fname, res_name, game_name):
         line = img_parse(line, res_name, game_name)
         line = audio_parse(line, res_name, game_name)
         line = video_parse(line, res_name, game_name)
-        """
-        line = line.replace("jsPsych.data.get().localSave('csv', 'data.csv');", \
-                "var trials = jsPsych.data.get().filter({test_part: 'test'});\n\
-                var correct_trials = trials.filter({ correct: true});\n\
-                var accuracy = Math.round(correct_trials.count() / trials.count() * 100);\n\
-                var rt = trials.select('rt').values;\n\
-                var avg_rt = trials.select('rt').mean();\n\
-                var xhr = new XMLHttpRequest();\n\
-                xhr.open('POST', '/game/" + res_name + '/' + game_name + "/', true);\n\
-                xhr.setReqeustHeader('Content-type', 'application/json');\n\
-                ");
-        """
+        line = send_result(line, res_name, game_name)
         fout.write(line)
+
+def send_result(line, res_name, game_name):
+    line = line.replace("/* yumin accuracy */", "\
+        accuracy = accuracy.toString();\n\
+        start_time_list = start_time_list.toString();\n\
+        end_time_list = end_time_list.toString();\n\
+        response_time_list = rt.toString();\n\
+        var xhr = new XMLHttpRequest();\n\
+        xhr.open('POST', '/researcher/" + res_name +  "/" + game_name + "/', true);\n\
+        xhr.setRequestHeader('Content-type', 'application/json');\n\
+        xhr.onreadystatechange = function () {\n\
+            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {\n\
+            }\n\
+        };\n\
+        xhr.send(accuracy + '!' + response_time_list + '!' + start_time_list + '!' + end_time_list);\n\
+        setTimeout(function () { window.location.replace('/researcher/" + res_name + "/'); }, 1000);\n")
+
+    line = line.replace("/* yumin no accuracy */", "\
+        start_time_list = start_time_list.toString();\n\
+        end_time_list = end_time_list.toString();\n\
+        response_time_list = rt.toString();\n\
+        var xhr = new XMLHttpRequest();\n\
+        xhr.open('POST', '/researcher/" + res_name +  "/" + game_name + "/', true);\n\
+        xhr.setRequestHeader('Content-type', 'application/json');\n\
+        xhr.onreadystatechange = function () {\n\
+            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {\n\
+            }\n\
+        };\n\
+        xhr.send(response_time_list + '!' + start_time_list + '!' + end_time_list);\n\
+        setTimeout(function () { window.location.replace('/researcher/"+ res_name + "/'); }, 1000);\n")
+
+
+    return line
 
 def img_parse(line, res_name, game_name):
     #line = line.replace("img src=\"img/", "img src=\"/uploads/" + res_name + '/' + game_name +'/img/')
@@ -580,15 +636,23 @@ def CreateGame(fzip, rname, gname, path):
     # Move the created file from here to template directory
     source = path + '/Experiment.html'
     html_postprocessing(source, rname, gname)
-    dest = os.path.join(settings.BASE_DIR, 'game/templates/game/' + rname + '/' +  gname + '.html')
+    dest = os.path.join(settings.BASE_DIR, 'game/templates/game/researchers/' + rname + '/' +  gname + '.html')
     os.rename(source, dest)
 
 def remove_game_dir(rname, gname):
-    os.rmtree(settings.MEDIA_ROOT, rname, gname)
+    import shutil
+    print(rname, gname)
+    shutil.rmtree(os.path.join(settings.MEDIA_ROOT, rname, gname + '/'))
+    os.remove(os.path.join(settings.BASE_DIR, 'game', 'templates', 'game', 'researchers', rname, gname + '.html'))
 
-def delete_game(request, researcher_game, game_name):
-    remove_game_dir(rname, gname)
-    return redirect('/researcher/'+rname+'/')
+def delete_game(request, researcher_name, game_name):
+    print('Before delete game')
+    remove_game_dir(researcher_name, game_name)
+    print('Before delete game in DB')
+    removed_game = get_object_or_404(ResearcherGame, game_name=game_name, researcher=get_object_or_404(Researcher, name=researcher_name))
+    removed_game.delete()
+    print('Everything done')
+    return redirect('/researcher/'+researcher_name+'/')
 
 def upload(request, researcher_name):
     if 'res_name' not in request.session:
@@ -613,7 +677,7 @@ def upload(request, researcher_name):
             print("ERROR occured while creating game")
             remove_game_dir(researcher_name, form.cleaned_data['title'])
             
-        return redirect('/researcher/' + researcher_name + '/upload/')
+        return redirect('/researcher/' + researcher_name + '/')
     else:
         form = UploadFileForm()
         return render(request, 'game/upload.html', {'form':form, 'researcher_name':researcher_name})
@@ -623,5 +687,5 @@ def res_logout(request):
         del request.session['res_name']
     except KeyError:
         pass
-    return redirect('/')
+    return redirect('/researcher/sign-in/')
 
