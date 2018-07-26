@@ -102,8 +102,10 @@
         margin-top: 100px;
         }
         body {
-        background-image: url("{% static 'game/images/backgroundimg.png' %}"); /* fallback for old browsers */
+        background-image: url("/static/game/images/backgroundimg.png"); /* fallback for old browsers */
+        /*background-image: url("{% static 'game/images/backgroundimg.png' %}"); */
         font-family: "Roboto", sans-serif;
+
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         }
@@ -119,16 +121,14 @@
     <div class="login-page">
       <img class="webrain" src="{% static 'game/images/webrain.png' %}"><br><br><br>
       <div class="form">
-        <form class="login-form" action = "{% url 'game:researcher_sign_in' %}" method="post">
+        <form class="login-form" action = "{% url 'researcher:sign_up' %}" method="post">
           {% csrf_token %}
           {{ form }}
           <button>start</button>
         </form>
-        <!--<a href="{% url 'game:sign_up' %}">I don't have an ID!</a>-->
-        <input type="button" value="I don't have an ID!" onclick="window.location.href='/researcher/sign-up/'" />
+          <!--<a href="{% url 'game:sign_in' %}">I already have an ID!</a>-->
+        <input type="button" value="I already have an ID!" onclick="window.location.href='/researcher/sign-in/'" />
         <input type="button" value="I am a user!" onclick="window.location.href='/sign-up/'" />
-
-
       </div>
     </div>
   </body>

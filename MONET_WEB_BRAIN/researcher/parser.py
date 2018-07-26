@@ -337,7 +337,7 @@ def parse(fname):
                 if "[EndPostSeq]" in line:
                     return exp_name
                 continue
-            print(phase)
+            # print(phase)
             if phase == 1:
                 parse_stimulus(line)
             elif phase > 1:
@@ -391,14 +391,24 @@ def get_body():
     return body_string
 
 
-def generate_html(fname, path):
+def generate_html(fname, gname):
     exp_name = parse(fname)  # test_exp.txt  ==> /uploads/ResearcherName/gamename/test_exp.txt
+    # exp_name = Experiment
+    print()
+    print('exp_name', exp_name)
+    print("###fname in generate_html()###")
+    print(fname)
+    print("###gname in generate_html()###")
+    print(gname)
+    print("###")
     html = '<!DOCTYPE html>\n<html>\n'
     html += get_header(exp_name)
     html += get_body()
     html += '</html>'
-    with open(path+"/%s.html"%(exp_name.replace(" ", "_")), "w+", encoding="utf-8") as f:
+    with open(gname, "w+", encoding="utf-8") as f:
         f.write(html)
+    global sequence_list
+    sequence_list = []
 
 """
 if __name__ == "__main__":
