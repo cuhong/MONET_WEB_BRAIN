@@ -192,10 +192,12 @@ def game(request, game_name):
         else:
             # start the chosen game
             if game_name == 'balloon':
+                from random import shuffle
                 # For the balloon game, we need to pre-read txts will be displayed in the balloons.
                 this_user = User.objects.get(name=request.session['name'])
                 questions = BalloonText.objects.all()
                 questions = [question.txt for question in questions]
+                shuffle(questions)
                 # Pass the Question texts to the Web Client to display.
                 balloon_txts = ','.join(questions)
                 return render(request, 'game/{}.html'.format(game_name), {'balloon_txts': balloon_txts})
