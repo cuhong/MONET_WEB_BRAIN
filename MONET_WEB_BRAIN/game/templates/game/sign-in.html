@@ -126,6 +126,7 @@
           <input name = "password" type="password" placeholder="password"/>
           -->
           {{ form }}
+          <input type="hidden" name="next" value="{{request.path}}">
           <button>start</button>
         </form>
         <!--<a href="{% url 'game:sign_up' %}">I don't have an ID!</a>-->

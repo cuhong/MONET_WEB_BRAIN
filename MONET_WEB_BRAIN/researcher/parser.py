@@ -390,7 +390,6 @@ def get_body():
     body_string += "</script>\n</body>\n"
     return body_string
 
-
 def generate_html(fname, gname):
     exp_name = parse(fname)  # test_exp.txt  ==> /uploads/ResearcherName/gamename/test_exp.txt
     # exp_name = Experiment

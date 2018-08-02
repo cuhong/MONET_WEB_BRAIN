@@ -67,6 +67,8 @@ def sign_up(request):
                 # From now, the user logged in.
                 request.session['name'] = request.POST['name']
                 # Redirect the user to game-selection webpage
+                if 'prev' in request.session:
+                    return redirect(request.session['prev'])
                 return HttpResponseRedirect(reverse('game:which_game'))
             else:
                 # If the given form is invalid, raise 404 error
@@ -106,6 +108,8 @@ def sign_in(request):
             if form.cleaned_data['pw'] == this_user.pw:
                 # Validate the typed pw. If correct, redirect the user to game selection page.
                 request.session['name'] = form.cleaned_data['name']
+                if 'prev' in request.session:
+                    return redirect(request.session['prev'])
                 return HttpResponseRedirect(reverse('game:which_game'))
             else:
                 # If validation failed, redirect the user to sign-in webpage
@@ -376,6 +380,7 @@ def game_result(request, game_name):
 def logout(request):
     try:
         del request.session['name']
+        del request.session['prev']
     except KeyError:
         pass
     return redirect('/')
