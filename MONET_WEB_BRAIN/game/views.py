@@ -32,7 +32,6 @@ def index(request):
     if 'name' not in request.session:
         # User need to sign up or sign in
         ##return redirect('/sign-up/') --> Hard-coded version
-        signup_form = SignupForm()
         return HttpResponseRedirect(reverse('game:sign_up'))
     else:
         # Redirect the user to game selection webpage.
@@ -198,14 +197,19 @@ def game(request, game_name):
             # start the chosen game
             if game_name == 'balloon':
                 from random import shuffle
-                # For the balloon game, we need to pre-read txts will be displayed in the balloons.
-                this_user = User.objects.get(name=request.session['name'])
-                questions = BalloonText.objects.all()
-                questions = [question.txt for question in questions]
-                shuffle(questions)
-                # Pass the Question texts to the Web Client to display.
-                balloon_txts = ','.join(questions)
-                return render(request, 'game/{}.html'.format(game_name), {'balloon_txts': balloon_txts})
+                
+                questions = []
+                with open(os.path.join(settings.BASE_DIR, 'static/game/balloon_questions.txt'), 'r') as f:
+                    lines = f.readlines()
+                    for line in lines:
+                        line = line.replace('\n', '')
+                        questions.append(line)
+                    #shuffle(questions)
+
+                    balloon_txts = ','.join(questions)
+                    
+                    return render(request, 'game/{}.html'.format(game_name), {'balloon_txts': balloon_txts})
+
             else: 
                 return render(request, 'game/{}.html'.format(game_name))
 
@@ -245,7 +249,12 @@ def game(request, game_name):
             balloon_score.save()
 
             # Read all the questions in the balloons from our database
-            questions = BalloonText.objects.all()
+            questions = []
+            with open(os.path.join(settings.BASE_DIR, 'static/game/balloon_questions.txt'), 'r') as f:
+                lines = f.readlines()
+                for line in lines:
+                    line = line.replace('\n', '')
+                    questions.append(line)
 
             # Read the data sent by User in HttpRequest and parse it
             data = request.body.decode('utf-8')
@@ -255,7 +264,7 @@ def game(request, game_name):
             et_list = data_list[2].split(',')
             responses_list = data_list[3].split(',')
 
-            rt_list = [float(json.loads(i)) for i in rt_array_list]
+            rt_list = [float(json.loads(i)) for i in rt_list]
 
             # Create and add balloons to our database.
             for i, question in enumerate(questions):

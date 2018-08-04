@@ -1,5 +1,7 @@
 from django.db import models
 
+from game.models import User
+
 # The researcher
 class Researcher(models.Model):
     name = models.CharField(max_length=30, unique=True, null=False, blank=False)
@@ -16,7 +18,7 @@ class ResearcherPrj(models.Model):
     comment = models.TextField(max_length=200)
     path = models.CharField(max_length=150, null=False, blank=False)
     def __str__(self):
-        return self.game_name
+        return self.prj_name
 
 # The experiments that belong to ResearcherPrj
 class ResearcherExp(models.Model):
@@ -28,17 +30,34 @@ class ResearcherExp(models.Model):
 # Behavorial Experimental Game
 class ResearcherExpScore(models.Model):
     exp = models.ForeignKey(ResearcherExp, on_delete=models.CASCADE)
-    #user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     accuracy = models.FloatField(default=-1.0)
     avg_rt = models.FloatField(default=-1.0)
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return ' / accuracy:' + str(self.accuracy) + ' / average_response_time:' + str(self.avg_rt)
+        return self.user.name + ' / accuracy:' + str(self.accuracy) + ' / average_response_time:' + str(self.avg_rt)
 
 class ResearcherExpStimulus(models.Model):
-    rgs = models.ForeignKey(ResearcherExpScore, on_delete=models.CASCADE)
+    res = models.ForeignKey(ResearcherExpScore, on_delete=models.CASCADE)
     rt = models.FloatField(default=-1.0)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     def __str__(self):
-        return ' / response_time:' + str(self.rt) + ' / ' + str(self.end_time)
+        return self.res.user.name + ' / response_time:' + str(self.rt) + ' / ' + str(self.end_time)
+
+class BalloonExpScore(models.Model):
+    exp = models.ForeignKey(ResearcherExp, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return ' / accuracy:' + str(self.accuracy) + ' / average_response_time:' + str(self.avg_rt)
+
+class BalloonExpStimulus(models.Model):
+    bes = models.ForeignKey(BalloonExpScore, on_delete=models.CASCADE)
+    txt = models.CharField(max_length=100, null=False, blank=False)
+    rt = models.FloatField(default=-1.0)
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+    reponse = models.IntegerField(default=-1)
+    def __str__(self):
+        return '{} / response: {} / rt: {}'.format(self.bes.user.name, self.response, self.rt)
