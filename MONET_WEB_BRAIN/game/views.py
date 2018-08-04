@@ -32,6 +32,7 @@ def index(request):
     if 'name' not in request.session:
         # User need to sign up or sign in
         ##return redirect('/sign-up/') --> Hard-coded version
+        signup_form = SignupForm()
         return HttpResponseRedirect(reverse('game:sign_up'))
     else:
         # Redirect the user to game selection webpage.
