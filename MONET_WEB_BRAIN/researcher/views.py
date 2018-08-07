@@ -48,7 +48,7 @@ def sign_up(request):
             # Create Researcher Directories
             os.mkdir(os.path.join(settings.MEDIA_ROOT, researcher_name))
             os.mkdir(os.path.join(settings.BASE_DIR, 'researcher/templates/researcher/researchers/{}'.format(researcher_name)))
-            
+
             # Redirect the user to game upload webpage
             if 'prev' in request.session:
                 return redirect(request.session['prev'])
@@ -100,7 +100,7 @@ def experiments(request, researcher_name, prj_name):
         request.session['prev'] = request.path
         return HttpResponseRedirect(reverse('researcher:sign_in'))
     """
-    
+
     this_researcher = get_object_or_404(Researcher, name=researcher_name)
     this_prj = get_object_or_404(ResearcherPrj, researcher=this_researcher, prj_name=prj_name)
     experiments = ResearcherExp.objects.filter(prj=this_prj)
@@ -110,8 +110,8 @@ def experiment(request, researcher_name, prj_name, exp_name):
     if request.method == 'POST':
         if 'res_name' not in request.session:
             request.session['prev'] = request.path
-            return HttpResponseRedirect(reverse('researcher:sign_in'))    
-        
+            return HttpResponseRedirect(reverse('researcher:sign_in'))
+
         if exp_name.stratswith('balloon'):
             # Ballon Experiment!
             data = request.body.decode('utf-8')
@@ -120,22 +120,22 @@ def experiment(request, researcher_name, prj_name, exp_name):
             start_time_list = data_list[1].split(',')
             end_time_list = data_list[2].split(',')
             responses_list = data_list[3].split(',')
-            
+
             rt_list = [float(rt) for rt in rt_list]
 
             new_score = BalloonExpScore()
-            
+
             this_researcher = get_object_or_404(Researcher, name=researcher_name)
             this_prj = get_object_or_404(ResearcherPrj, researcher=this_researcher, prj_name=prj_name)
             this_user = get_object_or_404(User, name=request.session['name'])
-            
+
             new_score.exp = get_object_or_404(ResearcherExp, prj=this_prj, exp_name=exp_name)
             new_score.user = this_user
             new_score.save()
 
             # Read all the questions in the balloons from our database
             questions = []
-            with open(os.path.join(settings.MEDIA_ROOT, '{}/{}/{}.txt'.format(researcher_name, prj_name, exp_name)), 'r') as f:
+            with open(os.path.join(settings.MEDIA_ROOT, '{}/{}/{}.txt'.format(researcher_name, prj_name, exp_name)), 'r', encoding='utf-8') as f:
                 lines = f.readlines()
                 for line in lines:
                     line = line.replace('\n', '')
@@ -206,9 +206,9 @@ def remove_prj_dir(researcher_name, prj_name):
         shutil.rmtree(os.path.join(settings.BASE_DIR, 'researcher/templates/researcher/researchers/{}/{}/'.format(researcher_name, prj_name)))
     except:
         print("html not created")
-    
+
 def delete_prj(request, researcher_name, prj_name):
-        
+
     # Remove the physical directories of our server
     remove_prj_dir(researcher_name, prj_name)
 
@@ -307,7 +307,7 @@ def upload(request, researcher_name):
 
     def parse_descriptor(researcher_name, prj_name, prj_dir):
         exp_names = []
-        
+
         with open(os.path.join(prj_dir, 'descriptor.txt'), 'r') as f:  # /uploads/{{researcher_name}}/{{prj_name}}/descriptor.txt
             print("Read descriptor.txt!")
             rows = f.readlines()
@@ -320,7 +320,7 @@ def upload(request, researcher_name):
                 exp_dir = os.path.join(prj_dir, exp_name)  # exp_dir = /uploads/{{researcher_name}}/{{prj_name}}/{{exp_name}}
                 exp_file = os.path.join(exp_dir, 'exp.txt')  # exp_file = /uploads/{{researcher_name}}/{{prj_name}}/{{exp_name}}/exp.txt
                 html_file = os.path.join(exp_dir, exp_name+'.html')  # html_file = /uploads/{{researcher_name}}/{{prj_name}}/{{exp_name}}/{{exp_name}}.html
-                
+
                 # If the exp_name starts with 'balloon', then this is balloon project.
                 if exp_name.startswith('balloon'):
                     balloon_src = os.path.join(settings.BASE_DIR, 'game/templates/game/balloon.html')
@@ -350,7 +350,7 @@ def upload(request, researcher_name):
                                 line = line.replace('{{ balloon_txts }}', questions)
                                 line = line.replace('/game/balloon/game-result/', '/researcher/{}/{}/'.format(researcher_name, prj_name))
                                 fw.write(line)
-                    
+
                     shutil.copy2(balloon_dest, html_dest)
                     continue
 
@@ -373,10 +373,10 @@ def upload(request, researcher_name):
         with open(fzip_file, 'wb+') as destination:
             for chunk in fzip.chunks():
                 destination.write(chunk)
-        
+
         # Unzip zipfile into prj_dir
         import zipfile
-        zip_ref = zipfile.ZipFile(fzip_file, 'r') 
+        zip_ref = zipfile.ZipFile(fzip_file, 'r')
         zip_ref.extractall(prj_dir)
         zip_ref.close()
         print("Successfully unzipped!")
@@ -385,9 +385,9 @@ def upload(request, researcher_name):
         return parse_descriptor(researcher_name, prj_name, prj_dir)
 
         """
-        # Preprocess 
+        # Preprocess
         txt_preprocessing(path, "exp.txt")
-        
+
         # Generate HTML file from parser
         parser.generate_html(path+'/exp.txt', path+'/'+gname+'.html')  # /uploads/ymkim_test3/djgame3/test_exp.txt
 
@@ -431,7 +431,7 @@ def upload(request, researcher_name):
                 new_exp.researcher = new_prj.researcher
                 new_exp.prj = new_prj
                 new_exp.exp_name = exp_name
-                new_exp.save() 
+                new_exp.save()
 
         return HttpResponseRedirect(reverse('researcher:upload', args=(researcher_name,)))
 
@@ -465,7 +465,7 @@ def upload(request, researcher_name):
                     new_exp.researcher = new_prj.researcher
                     new_exp.prj = new_prj
                     new_exp.exp_name = exp_name
-                    new_exp.save()  
+                    new_exp.save()
 
         except:
             print("ERROR occured while creating project")
