@@ -28,3 +28,13 @@
 .footer {
   margin-top: 25px;
 }
+
+@media (max-width:500px) {
+  .logo {
+    width: 80%;
+  }
+
+  .form {
+    width: 80%;
+  }
+}
