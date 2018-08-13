@@ -72,13 +72,16 @@ def sign_up(request):
                 return HttpResponseRedirect(reverse('game:which_game'))
             else:
                 # If the given form is invalid, raise 404 error
-                raise Http404("It's not e-mail format!")
+                #raise Http404("It's not e-mail format!")
+                return render(request, 'game/sign-up.html', {'form': SignupForm(), 'error': "입력한 양식이 올바르지 않습니다."})
         except IntegrityError as e:
             # If there's already same name or email, reject the request
             if 'unique constraint' in e.message:
-                raise Http404("You've already have an ID!")
+                #raise Http404("You've already have an ID!")
+                return render(request, 'game/sign-up.html', {'form': SignupForm(), 'error': "이미 존재하는 계정입니다."})
             else:
-                raise Http404("Database Integrity Error Occurred!")
+                #raise Http404("Database Integrity Error Occurred!")
+                return render(request, 'game/sign-up.html', {'form': SignupForm(), 'error': "올바르지 않은 데이터베이스 접근입니다."})
     else:
         # We only support GET and POST methods, others are ignored by 404 error.
         return Http404('Invalid Request Method!\nOnly GET and POST are supported.')
@@ -100,7 +103,12 @@ def sign_in(request):
 
     elif request.method == 'POST':
         # Read this user from the database. If failed, then return 404 error
-        this_user = get_object_or_404(User, name=request.POST['name'])
+        #this_user = get_object_or_404(User, name=request.POST['name'])
+        try:
+            this_user = User.objects.get(name=request.POST['name'])
+        except:
+            return render(request, 'game/sign-in.html', {'form':SigninForm(), 'error': "존재하지 않는 계정입니다."})
+
         form = SigninForm(request.POST)
         if form.is_valid():
             # If the typed password is eqaul to the user's password in DB,
@@ -113,10 +121,13 @@ def sign_in(request):
                 return HttpResponseRedirect(reverse('game:which_game'))
             else:
                 # If validation failed, redirect the user to sign-in webpage
-                return HttpResponseRedirect(reverse('game:sign_in'))
+                #return HttpResponseRedirect(reverse('game:sign_in'))
+                return render(request, 'game/sign-in.html', {'form': SigninForm(), 'error': "비밀번호가 올바르지 않습니다."})
         else:
             # If the form is invalid, then return 404
-            return Http404('Invalid Form')
+            #return Http404('Invalid Form')
+            return render(request, 'game/sign-in.html', {'form': SigninForm(), 'error': "입력한 양식이 올바르지 않습니다."})
+
     else:
         # We only support GET and POST methods, others are ignored by 404 error.
         return Http404('Invalid Request Method!\nOnly GET and POST are supported.')

@@ -12,21 +12,29 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{% static 'game/login.css' %}">
-    <style>
-
-    </style>
   </head>
 
   <body>
     <div class=container>
       <img class="logo" src="https://brain.yonsei.ac.kr/static/game/images/webrain.png">
 
+      <div class="who">
+        <p>사용자 회원가입 페이지</p>
+      </div>
+
+      <div class="error">
+        {% if error %}
+          {{ error }}
+        {% endif %}
+      </div>
+
       <div class="form">
         {% crispy form %}
       </div>
 
       <div class="footer">
-        이미 계정이 있나요? <a href="{% url 'game:sign_in' %}">여기서 로그인 하세요!</a>
+        <p>이미 계정이 있나요? <a href="{% url 'game:sign_in' %}">여기서 로그인 하세요!</a></p>
+        <p>사용자가 아니라 연구자 이신가요? <a href="{% url 'researcher:sign_up' %}">여기를 클릭하세요!</a></p>
       </div>
     </div>
 

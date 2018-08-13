@@ -17,7 +17,7 @@ class SignupForm(forms.Form):
         self.helper.form_id = 'id-signup-form'
         self.helper.from_method = 'post'
         self.helper.form_action = reverse('game:sign_up')
-        self.helper.add_input(Submit('submit', '가입', css_class='btn btn-primary btn-block', style='background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%); background-color: #28a745'))
+        self.helper.add_input(Submit('submit', '시작', css_class='btn btn-primary btn-block', style='background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%); background-color: #28a745'))
 
 
 class SigninForm(forms.Form):
@@ -30,4 +30,4 @@ class SigninForm(forms.Form):
         self.helper.form_id = 'id-signin-form'
         self.helper.from_method = 'post'
         self.helper.form_action = reverse('game:sign_in')
-        self.helper.add_input(Submit('submit', '가입', css_class='btn btn-primary btn-block', style='background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%); background-color: #28a745'))
+        self.helper.add_input(Submit('submit', '시작', css_class='btn btn-primary btn-block', style='background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%); background-color: #28a745'))
