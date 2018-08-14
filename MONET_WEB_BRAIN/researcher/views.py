@@ -20,8 +20,7 @@ import codecs
 import parser
 
 from .models import *
-from .forms import UploadFileForm
-from game.forms import SignupForm, SigninForm
+from .forms import UploadFileForm, SignupForm, SigninForm
 from game.models import User
 #from .parser import *
 from . import parser
