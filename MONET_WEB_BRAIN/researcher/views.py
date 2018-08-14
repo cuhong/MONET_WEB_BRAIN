@@ -224,7 +224,7 @@ def upload(request, researcher_name):
         """
         Change the path of text_file from relative path to absolute path
         """
-        fsrc = codecs.open(exp_file, 'r', 'utf-8')
+        fsrc = codecs.open(exp_file, 'r', encoding='utf-8')
         lines = fsrc.readlines()
         fdest = open(exp_file, 'w', encoding='utf-8')
         for line in lines:
@@ -289,7 +289,7 @@ def upload(request, researcher_name):
                 setTimeout(function () { window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/'); }, 1000);\n")
             return line
 
-        f = codecs.open(html_file, 'r', 'utf-8')
+        f = codecs.open(html_file, 'r', encoding='utf-8')
         lines = f.readlines()
         fout = open(html_file, 'w', encoding='utf-8')
 
@@ -308,7 +308,7 @@ def upload(request, researcher_name):
     def parse_descriptor(researcher_name, prj_name, prj_dir):
         exp_names = []
 
-        with open(os.path.join(prj_dir, 'descriptor.txt'), 'r') as f:  # /uploads/{{researcher_name}}/{{prj_name}}/descriptor.txt
+        with open(os.path.join(prj_dir, 'descriptor.txt'), 'r', encoding='utf-8') as f:  # /uploads/{{researcher_name}}/{{prj_name}}/descriptor.txt
             print("Read descriptor.txt!")
             rows = f.readlines()
             rows = [row.replace('\n', '') for row in rows]
@@ -329,7 +329,7 @@ def upload(request, researcher_name):
                     text_file = os.path.join(settings.MEDIA_ROOT, '{}/{}/{}/{}.txt'.format(researcher_name, prj_name, exp_name, exp_name))
 
                     questions = []
-                    with open(text_file, 'r') as f:
+                    with open(text_file, 'r', encoding='utf-8') as f:
                         lines = f.readlines()
                         for line in lines:
                             line = line.replace('\n', '')
@@ -342,9 +342,9 @@ def upload(request, researcher_name):
                     print(questions)
 
                     shutil.copy2(balloon_src, balloon_dest)
-                    with open(balloon_dest, 'r') as f:
+                    with open(balloon_dest, 'r', encoding='utf-8') as f:
                         lines = f.readlines()
-                        with open(balloon_dest, 'w') as fw:
+                        with open(balloon_dest, 'w', encoding='utf-8') as fw:
                             for line in lines:
                                 line = line.replace('/game/balloon/', '/researcher/{}/{}/{}/'.format(researcher_name, prj_name, exp_name))
                                 line = line.replace('{{ balloon_txts }}', questions)
