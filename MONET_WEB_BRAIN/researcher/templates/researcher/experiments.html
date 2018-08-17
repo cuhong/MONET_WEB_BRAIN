@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-md-12" style="text-align: center; ">
                         <h1 >
-                            <b>{{researcher_name}} Experiments</b> 
+                            <b>{{researcher_name}}'s Experiments</b> 
                         </h1>
                         <h2>
                             These are the experiments in {{prj_name}}
@@ -25,6 +25,7 @@
                         
                     </div>
                     <div class="col-md-2 d-flex justify-content-center">
+                            <a href="{% url 'researcher:logout' %}" class="btn btn-success">logout</a>
                         <!--
                         <button type="button" class="btn btn-success" onclick="window.location.href='/researcher/logout/'">
                             logout
@@ -33,11 +34,11 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid" style="margin: 10px;">
+            <div class="container-fluid" style="margin: 10px; display: flex; justify-content: center; flex-direction:column;">
                 {% if experiments %}
                     {% for experiment in experiments %}
                     <div class="row" style="margin:10px">
-                        <div class="col-md-4 d-flex justify-content-center" > <h4>{{project.prj_name}}</h4></div>
+                        <div class="col-md-4 d-flex justify-content-center" > <h4>{{experiment.exp_name}}</h4></div>
                         <div class="col-md-4 d-flex justify-content-center">
                             <p>
                                 Start Your Experiment!

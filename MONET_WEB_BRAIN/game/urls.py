@@ -13,6 +13,8 @@ urlpatterns = [
     path('game/<slug:game_name>/', views.game, name='game'),
     path('game/<slug:game_name>/game-result/', views.game_result, name='game_result'),
     path('logout/', views.logout, name='logout'),
+    path('activate/<slug:uidb64>/<slug:token>/', views.activate, name='activate'),
+
 ]
 
 if settings.DEBUG:

@@ -1,60 +1,42 @@
 <!DOCTYPE html>
+{% load crispy_forms_tags %}
 {% load static %}
 <html>
   <head>
-    <title>login</title>
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <title>MONET Researcher Upload Project</title>
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'researcher/login.css' %}">
 
   </head>
   <body>
-      <div class="main_control fixed" >
-          <div class="container-fluid" style="padding:100px; background-color: black;color:white;">
-              <div class="row">
-                  <div class="col-md-12" style="text-align: center; ">
-                      <h1 >
-                          <b>Your Experiments</b> 
-                      </h1>
-                      <h2>
-                          Customize your own projects!
-                      </h2>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-md-10">
-                      
-                  </div>
-                  <div class="col-md-2 d-flex justify-content-center">
-                      <button type="button" class="btn btn-success" onclick="window.location.href='/researcher/logout/'">
-                          logout
-                      </button>
-                  </div>
-              </div>
-
-          </div>
-          <div class="container-fluid" style="margin: 10px;">
-            <div class="row">
-              <div class="col-md-12 d-flex justify-content-center">
-                  <div class="form">
-                      <form class="login-form" action = "/researcher/{{researcher_name}}/upload/" method="post" enctype="multipart/form-data" novalidate>
-                      <!--
-                      <input name = "name" type="text" placeholder="NAME"/>
-                      <input name = "password" type="password" placeholder="password"/>
-                      -->
-                      {{ form.as_p }}
-                      <button>start</button>
-                    </form> 
-                  </div>      
-              </div>
+        <div class=container>
+            <img class="logo" src="https://brain.yonsei.ac.kr/static/game/images/webrain.png">
+        
+            <div class="who">
+                <p>당신이 원하는 프로젝트를 생성하세요!</p>
             </div>
-            <div class="row">
-                <div class="col-md-12 d-flex justify-content-center">
-                    <a href="/researcher/{{researcher_name}}/"><h5>Go to see my experiments</h5></a>
-                </div>
-    
+        
+            {% include 'researcher/messages.html' %}
+
+            <div class="error">
+                {% if error %}
+                <p>{{ error }}</p>
+                {% endif %}
+            </div>
+        
+            <div class="form">
+                {% crispy form %}
             </div>
 
-          </div>
-    </div>
+            <div class="footer">
+                <p><a href="{% url 'researcher:logout' %}">로그아웃 하시겠습니까?</a></p>
+                <p><a href="/researcher/{{researcher_name}}/">생성된 프로젝트 목록</a></p>
+            </div>
+        </div>
+    <!-- Bootstrap 4 -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
 </html>

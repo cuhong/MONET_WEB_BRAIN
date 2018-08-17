@@ -8,6 +8,21 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
 
+# Email
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_text
+from django.core.mail import EmailMessage
+from .tokens import account_activation_token
+
+from .models import *
+from .forms import *
+
+# django authentication
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
+
 import json
 import csv
 import dateutil.parser as dt
@@ -15,8 +30,7 @@ import os
 import codecs
 import parser
 
-from .models import *
-from .forms import *
+
 
 """
 def ssl(request):
@@ -37,6 +51,18 @@ def index(request):
         # Redirect the user to game selection webpage.
         return HttpResponseRedirect(reverse('game:which_game'))
 
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+    else:
+        return HttpResponse('Activation link is not valid')
 
 @csrf_exempt
 def sign_up(request):
@@ -58,17 +84,31 @@ def sign_up(request):
             # If the given form is valid & there's no error while querying, accept it.
             form = SignupForm(request.POST)
             if form.is_valid():
-                # Add new user to our database
-                new_user = User()
-                new_user.name = form.cleaned_data['name']
-                new_user.email = form.cleaned_data['email']
-                new_user.pw = form.cleaned_data['pw']
-                new_user.save()
-                # From now, the user logged in.
-                request.session['name'] = request.POST['name']
+                if form.cleaned_data['parent_email']:
+                    user = form.save(commit=False)
+                    user.is_active = False
+                    user.save()
+
+                    current_site = get_current_site(request)
+                    mail_subject = "[MONET WeBRAIN] 계정 인증"
+                    message = render_to_string('game/acc_active_email.html', {
+                        'user': user,
+                        'domain': current_site.domain,
+                        'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),  # django 2.0 -> decode()
+                        'token': account_activation_token.make_token(user),
+                    })
+                    to_email = form.cleaned_data.get('parent_email')
+                    email = EmailMessage(mail_subject, message, to=[to_email])
+                    email.send()
+                    return HttpResponse('{}님의 부모님께 계정 인증 메일을 보냈습니다. 부모님이 해당 메일을 보시고 링크를 누르시면 회원가입이 완료됩니다.'.format(user.username))
+
+                user = form.save()
+                request.session['name'] = user.username
+
                 # Redirect the user to game-selection webpage
                 if 'prev' in request.session:
                     return redirect(request.session['prev'])
+
                 return HttpResponseRedirect(reverse('game:which_game'))
             else:
                 # If the given form is invalid, raise 404 error
@@ -105,7 +145,7 @@ def sign_in(request):
         # Read this user from the database. If failed, then return 404 error
         #this_user = get_object_or_404(User, name=request.POST['name'])
         try:
-            this_user = User.objects.get(name=request.POST['name'])
+            this_user = User.objects.get(username=request.POST['name'])
         except:
             return render(request, 'game/sign-in.html', {'form':SigninForm(), 'error': "존재하지 않는 계정입니다."})
 
@@ -113,7 +153,7 @@ def sign_in(request):
         if form.is_valid():
             # If the typed password is eqaul to the user's password in DB,
             # then allow the login request
-            if form.cleaned_data['pw'] == this_user.pw:
+            if authenticate(username=this_user.username, password=form.cleaned_data['pw']) is not None:
                 # Validate the typed pw. If correct, redirect the user to game selection page.
                 request.session['name'] = form.cleaned_data['name']
                 if 'prev' in request.session:
@@ -226,7 +266,7 @@ def game(request, game_name):
 
     elif request.method == 'POST':
         # Read the user's name from session and use it for querying
-        this_user = User.objects.get(name=request.session['name'])
+        this_user = User.objects.get(username=request.session['name'])
 
         if game_name == 'gonogo':
             # No response default value
@@ -356,7 +396,7 @@ def game_result(request, game_name):
         return redirect('/')
 
     # Save this user's user object as 'this_user'
-    this_user = User.objects.get(name=request.session['name'])
+    this_user = User.objects.get(username=request.session['name'])
 
     # Save this game's score object as 'this_game'
     if game_name == 'gonogo':

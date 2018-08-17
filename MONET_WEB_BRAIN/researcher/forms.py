@@ -33,6 +33,14 @@ class SigninForm(forms.Form):
         self.helper.add_input(Submit('submit', '시작', css_class='btn btn-primary btn-block', style='background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%); background-color: #28a745'))
 
 class UploadFileForm(forms.Form):
-    title = forms.CharField(max_length=50)
-    comment = forms.CharField(widget=forms.Textarea)
-    file = forms.FileField()
+    title = forms.CharField(max_length=50, label='프로젝트명')
+    comment = forms.CharField(widget=forms.Textarea, label='이 프로젝트에 대한 개요')
+    file = forms.FileField(label='zip 파일')
+
+    def __init__(self, *args, **kwargs):
+        super(UploadFileForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_id = 'id-upload-form'
+        self.helper.form_method = 'post'
+        #self.helper.form_action = reverse('researcher:upload', args=(researcher_name,))
+        self.helper.add_input(Submit('submit', '시작', css_class='btn btn-primary btn-block', style='background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%); background-color: #28a745'))
