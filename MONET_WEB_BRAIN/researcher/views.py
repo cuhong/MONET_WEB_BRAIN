@@ -95,11 +95,9 @@ def projects(request, researcher_name):
     return render(request, 'researcher/projects.html', {'projects':projects, 'researcher_name':researcher_name})
 
 def experiments(request, researcher_name, prj_name):
-    """
-    if 'res_name' not in request.session:
+    if 'name' not in request.session:
         request.session['prev'] = request.path
-        return HttpResponseRedirect(reverse('researcher:sign_in'))
-    """
+        return redirect('/game/sign_up/')
 
     this_researcher = get_object_or_404(Researcher, name=researcher_name)
     this_prj = get_object_or_404(ResearcherPrj, researcher=this_researcher, prj_name=prj_name)
