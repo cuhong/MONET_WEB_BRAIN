@@ -224,7 +224,7 @@ $(".start").click(function () {
     /* start the game */
     //$(".bottom").css({ "height": game_height * 0.25, "background-color":"#dddddd"});
     //var residual_height = $(document).height - $(".game").height
-    $(".bottom").css({ "height": $("#main2").height(), "width":$("#main2").width(), "overflow":"hidden", "background-color":"#dddddd"});
+    $(".bottom").css({ "position":"fixed", "top":game_height, "height": $("#main2").height(), "width":$("#main2").width(), "overflow":"hidden", "background-color":"#dddddd"});
 
     var row0 = $("<div/>", { class: "row", style:"margin: 20px; padding-bottom: 10px "});
     var col01 = $("<col/>", {class:"col-5"});
