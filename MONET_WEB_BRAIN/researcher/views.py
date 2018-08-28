@@ -113,7 +113,7 @@ def experiments(request, researcher_name, prj_name):
     this_researcher = get_object_or_404(Researcher, name=researcher_name)
     this_prj = get_object_or_404(ResearcherPrj, researcher=this_researcher, prj_name=prj_name)
     experiments = ResearcherExp.objects.filter(prj=this_prj)
-    return render(request, 'researcher/experiments.html', {'experiments':experiments, 'researcher_name':researcher_name, 'prj_name':prj_name})
+    return render(request, 'researcher/experiments.html', {'project':this_prj, 'experiments':experiments, 'researcher_name':researcher_name, 'prj_name':prj_name})
 
 def experiment(request, researcher_name, prj_name, exp_name):
     if request.method == 'POST':
@@ -202,6 +202,7 @@ def experiment(request, researcher_name, prj_name, exp_name):
             new_stimulus.start_time = dt.parse(start_time_list[i][:24])
             new_stimulus.end_time = dt.parse(end_time_list[i][:24])
             new_stimulus.save()
+        return HttpResponse("Nice! This works")
 
     if 'name' not in request.session:
         request.session['prev'] = request.path

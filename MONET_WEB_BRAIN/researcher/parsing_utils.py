@@ -58,10 +58,11 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
             xhr.setRequestHeader('Content-type', 'application/json');\n\
             xhr.onreadystatechange = function () {\n\
                 if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {\n\
+                    window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/" + exp_name + "/result');\n\
                 }\n\
             };\n\
             xhr.send(accuracy + '!' + response_time_list + '!' + start_time_list + '!' + end_time_list);\n\
-            setTimeout(function () { window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/" + exp_name + "/result'); }, 1000);\n")
+            ")
 
         line = line.replace("/* yumin no accuracy */", "\
             start_time_list = start_time_list.toString();\n\
@@ -72,10 +73,11 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
             xhr.setRequestHeader('Content-type', 'application/json');\n\
             xhr.onreadystatechange = function () {\n\
                 if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {\n\
+                    window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/" + exp_name + "/result');\n\
                 }\n\
             };\n\
             xhr.send(response_time_list + '!' + start_time_list + '!' + end_time_list);\n\
-            setTimeout(function () { window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/" + exp_name + "/result'); }, 1000);\n")
+            ")
         return line
 
     f = codecs.open(html_file, 'r', encoding='utf-8')
