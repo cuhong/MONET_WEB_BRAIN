@@ -39,6 +39,7 @@ class UploadFileForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(UploadFileForm, self).__init__(*args, **kwargs)
+        self.fields['title'].help_text = '프로젝트 명은 오직 알파벳(a-z, A-Z)과 숫자(0-9)로만 이루어져야 합니다.'
         self.helper = FormHelper()
         self.helper.form_id = 'id-upload-form'
         self.helper.form_method = 'post'

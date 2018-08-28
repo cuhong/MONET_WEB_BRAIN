@@ -2,6 +2,11 @@
 {% load static %}
 {% block styling %}
 <style>
+    body {
+        background-image: url("/upload_files/{{researcher_name}}/{{prj_name}}/background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
   .container {
     display: flex;
     flex-direction: column;

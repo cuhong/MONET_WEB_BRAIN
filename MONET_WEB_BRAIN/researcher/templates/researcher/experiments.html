@@ -2,6 +2,11 @@
 {% load static %}
 {% block styling %}
 <style>
+    body {
+        background-image: url("/upload_files/{{researcher_name}}/{{prj_name}}/background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
     .container {
         display: flex;
         flex-direction: column-reverse;
@@ -48,6 +53,12 @@
     h2 {
         margin-bottom: 100px;
     }
+
+    .checkbox {
+        width: 70px;
+        height: 70px;
+        padding-top: 20px;
+    }
     @media (max-width: 767px) {
         .content {
             width: 90%;
@@ -62,24 +73,40 @@
 {% block content %}
     <h2>{{project.comment}}</h2>
     {% if experiments %}
-        {% for experiment in experiments %}
+        {% for exp in experiments %}
         <div class="box">
+            {% if exp.done %}
+                <img class="checkbox" src="{% static 'researcher/images/checkbox.jpg' %}">
+            {% endif %}
+
             <div class="logo">
-                <a href="/researcher/{{experiment.prj.researcher.name}}/{{experiment.prj.prj_name}}/{{experiment.exp_name}}/">
-                    <img width="100px" height="100px" src="/upload_files/{{researcher_name}}/{{experiment.prj.prj_name}}/{{experiment.exp_name}}/logo.jpg">
+                <a href="/researcher/{{exp.experiment.prj.researcher.name}}/{{exp.experiment.prj.prj_name}}/{{exp.experiment.exp_name}}/">
+                    <img width="100px" height="100px" src="/upload_files/{{researcher_name}}/{{exp.experiment.prj.prj_name}}/{{exp.experiment.exp_name}}/logo.jpg">
                 </a>       
             </div>
 
             <div class="element">
-                <h4>{{experiment.exp_name}}</h4>
+                <h4>{{exp.exp_name}}</h4>
 
             </div>
             <div class="element">
                 <p>
-                    {{experiment.description}}
+                    {{exp.experiment.description}}
                 </p>
+            </div>
+            <div class="element">
+                약 {{ exp.experiment.playtime }} 분 소요
+            </div>
+            <div class="element">
+                ({{ exp.accuracy }}) 점
             </div>
         </div>
         {% endfor %}
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{ done_percent }}"
+                aria-valuemin="0" aria-valuemax="100" style="width:{{ done_percent }}%">
+                <span class="sr-only">70% Complete</span>
+            </div>
+            </div>
     {% endif %}
 {% endblock content %}

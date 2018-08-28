@@ -25,6 +25,7 @@ class ResearcherExp(models.Model):
     prj = models.ForeignKey(ResearcherPrj, on_delete=models.CASCADE)
     exp_name = models.CharField(max_length=20, null=False, blank=False)
     description = models.CharField(max_length=200, default="New Experiment")
+    playtime = models.PositiveIntegerField(default=0)
     def __str__(self):
         return self.exp_name
 

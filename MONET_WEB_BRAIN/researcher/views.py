@@ -110,10 +110,31 @@ def experiments(request, researcher_name, prj_name):
         request.session['prev'] = request.path
         return redirect('/game/sign_up/')
 
+    this_user = get_object_or_404(User, username=request.session['name'])
     this_researcher = get_object_or_404(Researcher, name=researcher_name)
     this_prj = get_object_or_404(ResearcherPrj, researcher=this_researcher, prj_name=prj_name)
     experiments = ResearcherExp.objects.filter(prj=this_prj)
-    return render(request, 'researcher/experiments.html', {'project':this_prj, 'experiments':experiments, 'researcher_name':researcher_name, 'prj_name':prj_name})
+
+    # add booleans (T/F) denote that each project is done by this user.
+    class exp:
+        def __init__(self, experiment, user):
+            scores = ResearcherExpScore.objects.filter(exp=experiment, user=user)
+            if len(scores) == 0:
+                self.done = False
+            else:
+                self.done = True
+                self.accuracy = scores[0].accuracy
+            self.experiment = experiment
+            self.exp_name = experiment.exp_name.replace('_', ' ')
+    experiments = [exp(experiment, this_user) for experiment in experiments]
+    
+    done = [exp.done for exp in experiments]
+    done_true = [i for i in done if i]
+    try:
+        done_percent = int(len(done_true)/len(done)*100)
+    except:
+        done_percent = 0
+    return render(request, 'researcher/experiments.html', {'done_percent': done_percent, 'done':done, 'project':this_prj, 'experiments':experiments, 'researcher_name':researcher_name, 'prj_name':prj_name})
 
 def experiment(request, researcher_name, prj_name, exp_name):
     if request.method == 'POST':
@@ -240,7 +261,7 @@ def upload(request, researcher_name):
             os.mkdir(prj_dir2)
 
             # Create the project
-            exp_names, exp_descriptions = CreatePrj(request.FILES['file'], researcher_name, prj_name, prj_dir)
+            exp_names, exp_descriptions, exp_playtimes = CreatePrj(request.FILES['file'], researcher_name, prj_name, prj_dir)
 
             print("Project Created!")
 
@@ -258,6 +279,7 @@ def upload(request, researcher_name):
                 new_exp.prj = new_prj
                 new_exp.exp_name = exp_name
                 new_exp.description = exp_descriptions[i]
+                new_exp.playtime = exp_playtimes[i]
                 new_exp.save()
         messages.success(request, '성공적으로 프로젝트가 생성되었습니다.')
         return HttpResponseRedirect(reverse('researcher:upload', args=(researcher_name,)))
