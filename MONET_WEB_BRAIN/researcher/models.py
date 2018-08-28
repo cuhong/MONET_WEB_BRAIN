@@ -1,6 +1,6 @@
 from django.db import models
 
-from game.models import User
+from django.contrib.auth.models import User
 
 # The researcher
 class Researcher(models.Model):
@@ -24,6 +24,7 @@ class ResearcherPrj(models.Model):
 class ResearcherExp(models.Model):
     prj = models.ForeignKey(ResearcherPrj, on_delete=models.CASCADE)
     exp_name = models.CharField(max_length=20, null=False, blank=False)
+    description = models.CharField(max_length=200, default="New Experiment")
     def __str__(self):
         return self.exp_name
 
@@ -35,7 +36,7 @@ class ResearcherExpScore(models.Model):
     avg_rt = models.FloatField(default=-1.0)
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.user.name + ' / accuracy:' + str(self.accuracy) + ' / average_response_time:' + str(self.avg_rt)
+        return self.user.username + ' / accuracy:' + str(self.accuracy) + ' / average_response_time:' + str(self.avg_rt)
 
 class ResearcherExpStimulus(models.Model):
     res = models.ForeignKey(ResearcherExpScore, on_delete=models.CASCADE)
@@ -43,14 +44,14 @@ class ResearcherExpStimulus(models.Model):
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     def __str__(self):
-        return self.res.user.name + ' / response_time:' + str(self.rt) + ' / ' + str(self.end_time)
+        return self.res.user.username + ' / response_time:' + str(self.rt) + ' / ' + str(self.end_time)
 
 class BalloonExpScore(models.Model):
     exp = models.ForeignKey(ResearcherExp, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return ' / accuracy:' + str(self.accuracy) + ' / average_response_time:' + str(self.avg_rt)
+        return self.user.username + self.date
 
 class BalloonExpStimulus(models.Model):
     bes = models.ForeignKey(BalloonExpScore, on_delete=models.CASCADE)
@@ -58,6 +59,6 @@ class BalloonExpStimulus(models.Model):
     rt = models.FloatField(default=-1.0)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
-    reponse = models.IntegerField(default=-1)
+    response = models.IntegerField(default=-1)
     def __str__(self):
-        return '{} / response: {} / rt: {}'.format(self.bes.user.name, self.response, self.rt)
+        return '{} / response: {} / rt: {}'.format(self.bes.user.username, self.response, self.rt)

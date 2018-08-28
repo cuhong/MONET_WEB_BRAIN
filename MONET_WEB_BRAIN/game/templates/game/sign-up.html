@@ -16,17 +16,13 @@
 
   <body>
     <div class=container>
-      <img class="logo" src="https://brain.yonsei.ac.kr/static/game/images/webrain.png">
+      <img class="logo" src="{% static 'game/images/webrain.png' %}">
 
       <div class="who">
         <p>사용자 회원가입 페이지</p>
       </div>
 
-      <div class="error">
-        {% if error %}
-          {{ error }}
-        {% endif %}
-      </div>
+      {% include 'researcher/messages.html' %}
 
       <div class="form">
         {% crispy form %}

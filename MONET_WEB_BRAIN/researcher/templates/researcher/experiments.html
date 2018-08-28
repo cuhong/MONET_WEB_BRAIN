@@ -1,74 +1,81 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title> MONET Webrain </title>
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+{% extends 'researcher/base.html' %}
+{% load static %}
+{% block styling %}
+<style>
+    .container {
+        display: flex;
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
 
-    </head>
+        align-items: center;
+        justify-content: center;
 
-    <body>
-        <div class="main_control fixed" >
-            <div class="container-fluid" style="padding:100px; background-color: black;color:white;">
-                <div class="row">
-                    <div class="col-md-12" style="text-align: center; ">
-                        <h1 >
-                            <b>{{researcher_name}}'s Experiments</b> 
-                        </h1>
-                        <h2>
-                            These are the experiments in {{prj_name}}
-                        </h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-10">
-                        
-                    </div>
-                    <div class="col-md-2 d-flex justify-content-center">
-                            <a href="{% url 'researcher:logout' %}" class="btn btn-success">logout</a>
-                        <!--
-                        <button type="button" class="btn btn-success" onclick="window.location.href='/researcher/logout/'">
-                            logout
-                        </button>
-                        -->
-                    </div>
-                </div>
+        margin-top: 100px;
+    }
+    .content {
+    }
+
+    .box {
+        width: 800px;
+        height: 130px;
+        padding: 10px;
+        margin: 3px;
+
+        display:flex;
+        align-content: center;
+        justify-content: center;
+    }
+
+    .element {
+        padding-top: 30px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    a:visited {
+        opacity: 0.5;
+    }
+
+    a:hover {
+        opacity:0.5;
+    }
+
+    .logo {
+        width:100px;
+        height:100px;
+    }
+
+    @media (max-width: 767px) {
+        .content {
+            width: 90%;
+        }
+        .box {
+            width:100%;
+        }
+    }
+</style>
+{% endblock styling %}
+
+{% block content %}
+    {% if experiments %}
+        {% for experiment in experiments %}
+        <div class="box">
+            <div class="logo">
+                <a href="/researcher/{{experiment.prj.researcher.name}}/{{experiment.prj.prj_name}}/{{experiment.exp_name}}/">
+                    <img width="100px" height="100px" src="/upload_files/{{researcher_name}}/{{experiment.prj.prj_name}}/{{experiment.exp_name}}/logo.jpg">
+                </a>       
             </div>
-            <div class="container-fluid" style="margin: 10px; display: flex; justify-content: center; flex-direction:column;">
-                {% if experiments %}
-                    {% for experiment in experiments %}
-                    <div class="row" style="margin:10px">
-                        <div class="col-md-4 d-flex justify-content-center" > <h4>{{experiment.exp_name}}</h4></div>
-                        <div class="col-md-4 d-flex justify-content-center">
-                            <p>
-                                Start Your Experiment!
-                            </p>
-                        </div>
-                        <div class="col-md-4 d-flex justify-content-center">
-                            <a href="/researcher/{{experiment.prj.researcher.name}}/{{experiment.prj.prj_name}}/{{experiment.exp_name}}/">
-                                <button type="button" class="btn btn-primary start" style="margin:10px">
-                                    START
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                   {% endfor %}
-                {% endif %}
+
+            <div class="element">
+                <h4>{{experiment.exp_name}}</h4>
+
+            </div>
+            <div class="element">
+                <p>
+                    {{experiment.description}}
+                </p>
             </div>
         </div>
-        <!--
-        {% if games %}
-            {% for game in games %}
-            <li><a href="/researcher/{{game.researcher.name}}/{{game.game_name}}/">{{ game.game_name }}</a></li>   
-            {% endfor %}
-        {% endif %}
-        -->
-        <script>
-            $(".main_control").css("width", $(window).width());
-        </script>
-        
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
-    </body>
-</html>
+        {% endfor %}
+    {% endif %}
+{% endblock content %}

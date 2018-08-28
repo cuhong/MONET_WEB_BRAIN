@@ -11,6 +11,8 @@ from django.views import generic
 from django.conf import settings
 from django.contrib import messages
 
+from django.contrib.auth.models import User
+
 import shutil
 import json
 import csv
@@ -20,7 +22,6 @@ import codecs
 
 from .models import *
 from .forms import UploadFileForm, SignupForm, SigninForm
-from game.models import User
 #from .parser import *
 from . import parser
 from .parsing_utils import *
@@ -53,6 +54,9 @@ def sign_up(request):
             if 'prev' in request.session:
                 return redirect(request.session['prev'])
             return HttpResponseRedirect(reverse('researcher:upload', args=(researcher_name, )))
+        else:
+            messages.success(request, '올바른 제출 양식이 아닙니다.')
+            return HttpResponseRedirect(reverse('researcher:sign_up'))
 
         return HttpResponseRedirect(reverse('researcher:sign_up'))
     else:
@@ -66,15 +70,22 @@ def sign_in(request):
 
         if form.is_valid():
             researcher_name = form.cleaned_data['name']
-            this_researcher = get_object_or_404(Researcher, name=researcher_name)
+            try:
+                this_researcher = Researcher.objects.get(name=researcher_name)
+            except:
+                messages.success(request, '아이디가 존재하지 않습니다.')
+                return HttpResponseRedirect(reverse('researcher:sign_in'))
             if form.cleaned_data['pw'] == this_researcher.pw:
                 # Redirect the user to game upload webpage
                 request.session['res_name'] = researcher_name
                 if 'prev' in request.session:
                     return redirect(request.session['prev'])
                 return HttpResponseRedirect(reverse('researcher:upload', args=(researcher_name, )))
-            return HttpResponseRedirect(reverse('researcher:sign_in'))
+            else:
+                messages.success(request, '비밀번호가 틀렸습니다.')
+                return HttpResponseRedirect(reverse('researcher:sign_in'))
         else:
+            messages.success(request, '올바른 제출 양식이 아닙니다.')
             return HttpResponseRedirect(reverse('researcher:sign_in'))
     else:
         form = SigninForm()
@@ -106,11 +117,12 @@ def experiments(request, researcher_name, prj_name):
 
 def experiment(request, researcher_name, prj_name, exp_name):
     if request.method == 'POST':
+        print('######################')
         if 'res_name' not in request.session:
             request.session['prev'] = request.path
             return HttpResponseRedirect(reverse('researcher:sign_in'))
 
-        if exp_name.stratswith('balloon'):
+        if exp_name.startswith('balloon'):
             # Ballon Experiment!
             data = request.body.decode('utf-8')
             data_list = data.split('!')
@@ -227,7 +239,8 @@ def upload(request, researcher_name):
             os.mkdir(prj_dir2)
 
             # Create the project
-            exp_names = CreatePrj(request.FILES['file'], researcher_name, prj_name, prj_dir)
+            exp_names, exp_descriptions = CreatePrj(request.FILES['file'], researcher_name, prj_name, prj_dir)
+
             print("Project Created!")
 
             # Save this project's information into our DB
@@ -238,11 +251,12 @@ def upload(request, researcher_name):
             new_prj.path = prj_dir2
             new_prj.save()
 
-            for exp_name in exp_names:
+            for i, exp_name in enumerate(exp_names):
                 new_exp = ResearcherExp()
                 new_exp.researcher = new_prj.researcher
                 new_exp.prj = new_prj
                 new_exp.exp_name = exp_name
+                new_exp.description = exp_descriptions[i]
                 new_exp.save()
         messages.success(request, '성공적으로 프로젝트가 생성되었습니다.')
         return HttpResponseRedirect(reverse('researcher:upload', args=(researcher_name,)))
@@ -289,6 +303,51 @@ def upload(request, researcher_name):
     else:
         form = UploadFileForm()
         return render(request, 'researcher/upload.html', {'form':form, 'researcher_name':researcher_name})
+
+def result(request, researcher_name, prj_name, exp_name):
+    this_researcher = Researcher.objects.get(name=researcher_name)
+    this_user = User.objects.get(username=request.session['name'])
+    this_prj = ResearcherPrj.objects.get(prj_name=prj_name, researcher=this_researcher)
+    this_exp = ResearcherExp.objects.get(exp_name=exp_name, prj=this_prj)
+
+    # Read recent 10 game scores of this user.
+    user_scores = ResearcherExpScore.objects.filter(user=this_user, exp=this_exp).order_by('-date')
+    #user_scores = this_game_score.objects.filter(user=this_user).order_by('date').reverse()
+    this_turn_score = user_scores[0]
+    user_scores = user_scores[1:]
+
+    # Read all scores of this game
+    all_scores = ResearcherExpScore.objects.filter(exp=this_exp).order_by('-accuracy')
+    #all_scores = this_game_score.objects.all().order_by('score').reverse()
+
+    # Calculate the ranking of this user of this game.
+    user_rank = 0
+    for score in all_scores:
+        user_rank += 1
+        if score == this_turn_score:
+            break
+
+    # Data to be delivered to the client(browser)
+    all_scores_list = [str(i.accuracy) for i in all_scores]
+    all_scores_list_str = ','.join(all_scores_list)
+
+    user_per = user_rank / len(all_scores) * 100
+    user_per_str = str(user_per)[:4]
+    user_per = float(user_per_str)
+
+    # Context to be delivered to the template renderer of django
+    context = { 'user_scores': user_scores,
+    'all_scores': all_scores,
+    'this_turn_score': this_turn_score,
+    'user_rank': user_rank,
+    'user_per': user_per,
+    'user_num': len(all_scores),
+    'all_scores_list_str': all_scores_list_str,
+    'researcher_name': researcher_name,
+    'prj_name': prj_name,
+     }
+
+    return render(request, 'researcher/result.html', context)
 
 
 def logout(request):

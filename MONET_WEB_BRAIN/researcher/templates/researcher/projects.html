@@ -1,81 +1,73 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title> MONET Webrain </title>
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+{% extends 'researcher/base.html' %}
+{% load static %}
+{% block styling %}
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
 
-    </head>
+        align-items: center;
+        justify-content: center;
 
-    <body>
-        <div class="main_control fixed" >
-            <div class="container-fluid" style="padding:100px; background-color: black;color:white;">
-                <div class="row">
-                    <div class="col-md-12" style="text-align: center; ">
-                        <h1 >
-                            <b>{{researcher_name}}'s Projects</b> 
-                        </h1>
-                        <h2>
-                            Customize your own projects!
-                        </h2>
-                    </div>
+        margin-top: 100px;
+    }
+    .content {
+        width: 1000px;
+    }
+
+    .button {
+        width: 150px;
+        height: 150px;
+        border: 1px solid black;
+    }
+
+    a:visited {
+        opacity: 0.5;
+    }
+
+    a:hover {
+        opacity:0.5;
+    }
+
+    @media (max-width: 767px) {
+        .content {
+            width: 80%;
+        }
+        .button {
+            width: 32%;
+        }
+    }
+</style>
+{% endblock styling %}
+
+{% block content %}
+<div class="container-fluid" style="margin-top: 30px;">
+        {% if projects %}
+            {% for project in projects %}
+            <div class="row" style="margin:10px">
+                <div class="col-md-4 d-flex justify-content-center" > <h4>{{project.prj_name}}</h4></div>
+                <div class="col-md-4 d-flex justify-content-center">
+                    <p>
+                        {{ project.comment }}
+                    </p>
                 </div>
-                <div class="row">
-                    <div class="col-md-10">
-                        
-                    </div>
-                    <div class="col-md-2 d-flex justify-content-center">
-                        <a href="{% url 'researcher:logout' %}" class="btn btn-success">logout</a>
-                        <!--
-                        <button type="button" class="btn btn-success" onclick="window.location.href='/researcher/logout/'">
-                            logout
+                <div class="col-md-4 d-flex justify-content-center">
+                    <a href="/researcher/{{project.researcher.name}}/{{project.prj_name}}/">
+                        <button type="button" class="btn btn-primary start" style="margin:10px">
+                            START
                         </button>
-                        -->
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid" style="margin-top: 30px;">
-                {% if projects %}
-                    {% for project in projects %}
-                    <div class="row" style="margin:10px">
-                        <div class="col-md-4 d-flex justify-content-center" > <h4>{{project.prj_name}}</h4></div>
-                        <div class="col-md-4 d-flex justify-content-center">
-                            <p>
-                                {{ project.comment }}
-                            </p>
-                        </div>
-                        <div class="col-md-4 d-flex justify-content-center">
-                            <a href="/researcher/{{project.researcher.name}}/{{project.prj_name}}/">
-                                <button type="button" class="btn btn-primary start" style="margin:10px">
-                                    START
-                                </button>
-                            </a>
-                            <button type="button" class="btn btn-danger" style="margin:10px"  onclick="window.location.href='/researcher/{{project.researcher.name}}/{{project.prj_name}}/delete/'">
-                                delete
-                            </button>
+                    </a>
+                    <button type="button" class="btn btn-danger" style="margin:10px"  onclick="window.location.href='/researcher/{{project.researcher.name}}/{{project.prj_name}}/delete/'">
+                        delete
+                    </button>
 
-                        </div>
-                    </div>
-                   {% endfor %}
-                {% endif %}
-                <div class="col-md-12 d-flex justify-content-center">
-                    <a href="/researcher/{{researcher_name}}/upload/"><h4>Go to upload page</h4></a>
                 </div>
             </div>
-        </div>
-        <!--
-        {% if games %}
-            {% for game in games %}
-            <li><a href="/researcher/{{game.researcher.name}}/{{game.game_name}}/">{{ game.game_name }}</a></li>   
-            {% endfor %}
+           {% endfor %}
         {% endif %}
-        -->
-        <script>
-            $(".main_control").css("width", $(window).width());
-        </script>
-        
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
-    </body>
-</html>
+        <div class="col-md-12 d-flex justify-content-center">
+            <a href="/researcher/{{researcher_name}}/upload/"><h4>Go to upload page</h4></a>
+        </div>
+    </div>
+{% endblock content %}

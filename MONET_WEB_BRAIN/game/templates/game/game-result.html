@@ -1,92 +1,55 @@
-<!DOCTYPE html>
+{% extends 'game/base.html' %}
 {% load static %}
-<html>
-  <head>
-    <title>link</title>
-    <style>
-    .link{
-      text-align: center;
-      margin: auto;
-      margin-top: 100px;
-      width: 800px;
+{% block styling %}
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 100px;
+  }
+  .content {
+    width: 500px;
+  }
+
+  @media (max-width: 767px) {
+    .content {
+        width: 80%;
     }
-    .button:hover{
+  }
+</style>
+{% endblock styling %}
 
-      opacity: 1;
+{% block script %}
+  <script>
+    rank = Number("{{ user_rank }}");
+    all_scores_str = "{{ all_scores_list_str }}"
+    x = all_scores_str.split(',')
+  </script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock script %}
 
-    }
-    .button{
-
-      width: 250px;
-      height: 250px;
-      border: 0;
-      opacity: 0.5;
-    }
-    body {
-      background-image: url("{% static 'game/images/backgroundimg.png' %}"); /* fallback for old browsers */
-      font-family: "Roboto", sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    .webrain{
-      text-align: center;
-      width: 800px;
-      height: auto;
-      opacity: 1;
-      margin-top: 100px;
-      margin-bottom: 100px;
-    }
-    </style>
-    <script>
-      rank = Number("{{ user_rank }}");
-      all_scores_str = "{{ all_scores_list_str }}"
-      x = all_scores_str.split(',')
-    </script>
-     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  </head>
-  
-  <body>
-    <div class="link">
-        <img class="webrain" src="{% static 'game/images/webrain.png' %}"><br><br><br>
-        <p>Your rank is {{ user_rank }} of {{ user_num }}. Top {{ user_per }}%!</p>
-        <p>[This Time!] Date: {{ this_turn_score.date }}  Score: {{ this_turn_score.score }}</p>
-        <!--<a href="{% url 'game:index' %}">I want to play again!</a>
-        <a href="{% url 'game:logout' %}">I want to log-out!</a>-->
-        <input type="button" value="I want to play again!" onclick="window.location.href='/'" />
-        <input type="button" value="I want to log-out" onclick="window.location.href='/logout/'" />  
-      </div>
-
-    <div id="result_histogram" style="position:absolute; margin-top:100px; margin-bottom:100px;width:50%; text-align:center; left:25% "></div>
-    <script>
-      var data = [
-        {
-          x: x,
-          type: 'histogram',
-          histnorm: 'probability',
-          marker: {
-            color: 'rgb(255, 153, 51)',
-          },
-          selectedpoints: [rank - 1],
-        }
-      ];
-      Plotly.newPlot('result_histogram', data);
-    </script>
-
-<!--
-    <div class="link" >
-        <p>Your rank is {{ user_rank }}. Top {{ user_per }}%!</p>
-        <p>[This Time!] Date: {{ this_turn_score.date }}  Score: {{ this_turn_score.score }}</p>
-        {% for score in user_scores %}
-          <p>Date: {{ score.date }} / Score: {{ score.score }}</p>
-        {% endfor %}
-        {% for score in all_scores %}
-          <p>User: {{ score.user.name }} / Score: {{ score.score }}</p>
-        {% endfor %}
-    </div>
--->
-
-        <!--<a href="{% url 'game:index' %}">I want to play again!</a>
-        <a href="{% url 'game:logout' %}">I want to log-out!</a>-->
-
-  </body>
-</html>
+{% block content %}
+  <p>Your rank is {{ user_rank }} of {{ user_num }}. Top {{ user_per }}%!</p>
+  <p>[This Time!] Date: {{ this_turn_score.date }}  Score: {{ this_turn_score.score }}</p>
+  <a href="{% url 'game:index' %}">Play another experiment</a>
+  <div id="result_histogram" style="position:absolute; margin-top:100px; margin-bottom:100px;width:50%; text-align:center; left:25% "></div>
+  <script>
+    var data = [
+      {
+        x: x,
+        type: 'histogram',
+        histnorm: 'probability',
+        marker: {
+          color: 'rgb(255, 153, 51)',
+        },
+        selectedpoints: [rank - 1],
+      }
+    ];
+    Plotly.newPlot('result_histogram', data);
+  </script>
+{% endblock content %}

@@ -1,5 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
 
+"""
 # The game player (User)
 class User(models.Model):
     name = models.CharField(max_length=30, unique=True, null=False, blank=False)
@@ -8,6 +10,17 @@ class User(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.name + ' / ' + str(self.date)
+"""
+
+# Additional information of a user
+class AdditionalInfo(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    age = models.PositiveIntegerField(default=0)
+    GENDERS = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+    )
+    gender = models.CharField(max_length=1, choices=GENDERS)
 
 # Gonogo Game
 class GonogoScore(models.Model):

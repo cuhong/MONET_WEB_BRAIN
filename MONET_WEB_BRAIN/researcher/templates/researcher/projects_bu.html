@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> MONET Webrain </title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    </head>
+
+    <body>
+        <div class="main_control fixed" >
+            <div class="container-fluid" style="padding:100px; background-color: black;color:white;">
+                <div class="row">
+                    <div class="col-md-12" style="text-align: center; ">
+                        <h1 >
+                            <b>{{researcher_name}} 이 생성한 프로젝트들 입니다.</b>
+                        </h1>
+                        <h2>
+                            당신이 원하는 대로 프로젝트를 생성한하거나 제거하세요!
+                        </h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+
+                    </div>
+                    <div class="col-md-2 d-flex justify-content-center">
+                        <a href="{% url 'researcher:logout' %}" class="btn btn-success">logout</a>
+                        <!--
+                        <button type="button" class="btn btn-success" onclick="window.location.href='/researcher/logout/'">
+                            logout
+                        </button>
+                        -->
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid" style="margin-top: 30px;">
+                {% if projects %}
+                    {% for project in projects %}
+                    <div class="row" style="margin:10px">
+                        <div class="col-md-4 d-flex justify-content-center" > <h4>{{project.prj_name}}</h4></div>
+                        <div class="col-md-4 d-flex justify-content-center">
+                            <p>
+                                {{ project.comment }}
+                            </p>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-center">
+                            <a href="/researcher/{{project.researcher.name}}/{{project.prj_name}}/">
+                                <button type="button" class="btn btn-primary start" style="margin:10px">
+                                    START
+                                </button>
+                            </a>
+                            <button type="button" class="btn btn-danger" style="margin:10px"  onclick="window.location.href='/researcher/{{project.researcher.name}}/{{project.prj_name}}/delete/'">
+                                delete
+                            </button>
+
+                        </div>
+                    </div>
+                   {% endfor %}
+                {% endif %}
+                <div class="col-md-12 d-flex justify-content-center">
+                    <a href="/researcher/{{researcher_name}}/upload/"><h4>Go to upload page</h4></a>
+                </div>
+            </div>
+        </div>
+        <!--
+        {% if games %}
+            {% for game in games %}
+            <li><a href="/researcher/{{game.researcher.name}}/{{game.game_name}}/">{{ game.game_name }}</a></li>
+            {% endfor %}
+        {% endif %}
+        -->
+        <script>
+            $(".main_control").css("width", $(window).width());
+        </script>
+
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    </body>
+</html>

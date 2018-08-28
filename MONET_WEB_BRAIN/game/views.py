@@ -7,6 +7,7 @@ from django.conf import settings
 from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
+from django.contrib import messages
 
 # Email
 from django.contrib.sites.shortcuts import get_current_site
@@ -68,7 +69,7 @@ def activate(request, uidb64, token):
 def sign_up(request):
     """
     Do: [GET] Show the sign-up webpage. [POST] If the user fill-in the sign-up form,
-    then save the user's data into User table in our database and let the user 
+    then save the user's data into User table in our database and let the user
     log-in and redirect him to which-game webpage.
     """
     if request.method == 'GET':
@@ -80,6 +81,42 @@ def sign_up(request):
             form = SignupForm()
             return render(request, 'game/sign-up.html', {'form':form})
     elif request.method == 'POST':
+        # If the given form is valid & there's no error while querying, accept it.
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            if form.cleaned_data['parent_email']:
+                user = form.save(commit=False)
+                user.is_active = False
+                user.save()
+
+                current_site = get_current_site(request)
+                mail_subject = "[MONET WeBRAIN] 계정 인증"
+                message = render_to_string('game/acc_active_email.html', {
+                    'user': user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),  # django 2.0 -> decode()
+                    'token': account_activation_token.make_token(user),
+                })
+                to_email = form.cleaned_data.get('parent_email')
+                email = EmailMessage(mail_subject, message, to=[to_email])
+                email.send()
+                return HttpResponse('{}님의 부모님께 계정 인증 메일을 보냈습니다. 부모님이 해당 메일을 보시고 링크를 누르시면 회원가입이 완료됩니다.'.format(user.username))
+
+            user = form.save()
+            request.session['name'] = user.username
+
+            # Redirect the user to game-selection webpage
+            if 'prev' in request.session:
+                return redirect(request.session['prev'])
+
+            return HttpResponseRedirect(reverse('game:which_game'))
+        else:
+            # If the given form is invalid, raise 404 error
+            messages.error(request, '올바르지 않은 제출 양식입니다.')
+            return HttpResponseRedirect(reverse('game:sign_up'))
+
+        
+        """
         try:
             # If the given form is valid & there's no error while querying, accept it.
             form = SignupForm(request.POST)
@@ -112,16 +149,13 @@ def sign_up(request):
                 return HttpResponseRedirect(reverse('game:which_game'))
             else:
                 # If the given form is invalid, raise 404 error
-                #raise Http404("It's not e-mail format!")
-                return render(request, 'game/sign-up.html', {'form': SignupForm(), 'error': "입력한 양식이 올바르지 않습니다."})
-        except IntegrityError as e:
-            # If there's already same name or email, reject the request
-            if 'unique constraint' in e.message:
-                #raise Http404("You've already have an ID!")
-                return render(request, 'game/sign-up.html', {'form': SignupForm(), 'error': "이미 존재하는 계정입니다."})
-            else:
-                #raise Http404("Database Integrity Error Occurred!")
-                return render(request, 'game/sign-up.html', {'form': SignupForm(), 'error': "올바르지 않은 데이터베이스 접근입니다."})
+                messages.error(request, '올바르지 않은 제출 양식입니다.')
+                return HttpResponseRedirect(reverse('game:sign_up'))
+        except:
+            messages.error(request, '이미 존재하는 아이디 혹은 이메일 입니다.')
+            return HttpResponseRedirect(reverse('game:sign_up'))
+        """
+
     else:
         # We only support GET and POST methods, others are ignored by 404 error.
         return Http404('Invalid Request Method!\nOnly GET and POST are supported.')
@@ -147,7 +181,8 @@ def sign_in(request):
         try:
             this_user = User.objects.get(username=request.POST['name'])
         except:
-            return render(request, 'game/sign-in.html', {'form':SigninForm(), 'error': "존재하지 않는 계정입니다."})
+            messages.error(request, '존재하지 않는 아이디입니다.')
+            return HttpResponseRedirect(reverse('game:sign_in'))
 
         form = SigninForm(request.POST)
         if form.is_valid():
@@ -162,16 +197,18 @@ def sign_in(request):
             else:
                 # If validation failed, redirect the user to sign-in webpage
                 #return HttpResponseRedirect(reverse('game:sign_in'))
-                return render(request, 'game/sign-in.html', {'form': SigninForm(), 'error': "비밀번호가 올바르지 않습니다."})
+                messages.error(request, '비밀번호가 올바르지 않습니다.')
+                return HttpResponseRedirect(reverse('game:sign_in'))
         else:
             # If the form is invalid, then return 404
             #return Http404('Invalid Form')
-            return render(request, 'game/sign-in.html', {'form': SigninForm(), 'error': "입력한 양식이 올바르지 않습니다."})
+            messages.error(request, '올바르지 않은 제출 양식입니다.')
+            return HttpResponseRedirect(reverse('game:sign_in'))
 
     else:
         # We only support GET and POST methods, others are ignored by 404 error.
         return Http404('Invalid Request Method!\nOnly GET and POST are supported.')
-        
+
 
 def which_game(request):
     """
@@ -186,7 +223,7 @@ def which_game(request):
             return render(request, 'game/whichgame.html')
     else:
         return Http404('Invalid Request Method!\nOnly GET is supproted for this webpage.')
-        
+
 
 
 @csrf_exempt
@@ -206,7 +243,7 @@ def game(request, game_name):
             except ValueError:
                 sum += default_value
         return sum / len(rt_list)
-    
+
     def add_stimulus(StimulusClass, new_score, rt_list, start_date_list, end_date_list, default_value):
         # Save the result of each stimulus into database
         for i in range(len(rt_list)):
@@ -248,7 +285,7 @@ def game(request, game_name):
             # start the chosen game
             if game_name == 'balloon':
                 from random import shuffle
-                
+
                 questions = []
                 with open(os.path.join(settings.BASE_DIR, 'static/game/balloon_questions.txt'), 'r') as f:
                     lines = f.readlines()
@@ -258,10 +295,10 @@ def game(request, game_name):
                     #shuffle(questions)
 
                     balloon_txts = ','.join(questions)
-                    
+
                     return render(request, 'game/{}.html'.format(game_name), {'balloon_txts': balloon_txts})
 
-            else: 
+            else:
                 return render(request, 'game/{}.html'.format(game_name))
 
     elif request.method == 'POST':
@@ -330,7 +367,7 @@ def game(request, game_name):
 
             balloon_score.rt = calculate_avg_rt(rt_list, 0.0)
             balloon_score.save()
-    
+
         elif game_name == 'cardsort':
             save_game_result(1000.0, request, CardsortScore, CardsortStimulus, this_user)
 
@@ -377,12 +414,12 @@ def game_result_context_maker(this_game_score, this_user):
     user_per = float(user_per_str)
 
     # Context to be delivered to the template renderer of django
-    context = { 'user_scores': user_scores, 
-    'all_scores': all_scores, 
-    'this_turn_score': this_turn_score, 
-    'user_rank': user_rank, 
-    'user_per': user_per, 
-    'user_num': len(all_scores), 
+    context = { 'user_scores': user_scores,
+    'all_scores': all_scores,
+    'this_turn_score': this_turn_score,
+    'user_rank': user_rank,
+    'user_per': user_per,
+    'user_num': len(all_scores),
     'all_scores_list_str': all_scores_list_str }
 
     return context
