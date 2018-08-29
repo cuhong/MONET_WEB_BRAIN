@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'GamePlay',
     'Research',
     'crispy_forms',
+    'ML',
 ]
 
 MIDDLEWARE = [

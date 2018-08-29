@@ -150,6 +150,24 @@ def parse_descriptor(researcher_name, prj_name, prj_dir):
 
                 shutil.copy2(balloon_dest, html_dest)
                 continue
+            elif exp_name.startswith('face'):
+                html_dest = os.path.join(settings.BASE_DIR, 'researcher/templates/researcher/researchers/{}/{}/{}.html'.format(researcher_name, prj_name, exp_name))
+                text_file = os.path.join(settings.MEDIA_ROOT, '{}/{}/{}/exp.txt'.format(researcher_name, prj_name, exp_name))
+                original_html = os.path.join(settings.BASE_DIR, 'ML/templates/ML/video.html')
+                
+                with open(text_file, 'r') as f:
+                    strings = f.readlines()
+                    strings = [string.replace('\n', '<br>') for string in strings]
+                    string = ''.join(strings)
+
+                with open(original_html, 'r') as f:
+                    with open(html_dest, 'w+') as fw:
+                        rows = f.readlines()
+                        for row in rows:
+                            row = row.replace('REPLACE_THIS', string)
+                            fw.write(row)
+                continue
+
 
             # Process the exp_file into html_file
             txt_preprocessing(exp_file, exp_dir)
