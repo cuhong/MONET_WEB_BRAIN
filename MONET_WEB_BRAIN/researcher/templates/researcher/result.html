@@ -1,0 +1,61 @@
+{% extends 'researcher/base.html' %}
+{% load static %}
+{% block styling %}
+<style>
+    body {
+        background-image: url("/upload_files/{{researcher_name}}/{{prj_name}}/background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+  .container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 100px;
+  }
+  .content {
+    width: 500px;
+  }
+
+  @media (max-width: 767px) {
+    .content {
+        width: 80%;
+    }
+  }
+</style>
+{% endblock styling %}
+
+{% block script %}
+  <script>
+    rank = Number("{{ user_rank }}");
+    all_scores_str = "{{ all_scores_list_str }}"
+    x = all_scores_str.split(',')
+  </script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock script %}
+
+{% block content %}
+  <p>Your rank is {{ user_rank }} of {{ user_num }}. Top {{ user_per }}%!</p>
+  <p>[This Time!] Date: {{ this_turn_score.date }}  </p>
+  <p>Score: {{ this_turn_score.accuracy }}</p>
+  <a href="/researcher/{{researcher_name}}/{{prj_name}}/">Play another experiment</a>
+  <div id="result_histogram" style="position:absolute; margin-top:100px; margin-bottom:100px;width:50%; text-align:center; left:25% "></div>
+  <script>
+    var data = [
+      {
+        x: x,
+        type: 'histogram',
+        histnorm: 'probability',
+        marker: {
+          color: 'rgb(255, 153, 51)',
+        },
+        selectedpoints: [rank - 1],
+      }
+    ];
+    Plotly.newPlot('result_histogram', data);
+  </script>
+{% endblock content %}

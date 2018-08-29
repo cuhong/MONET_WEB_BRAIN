@@ -1,0 +1,73 @@
+{% extends 'researcher/base.html' %}
+{% load static %}
+{% block styling %}
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+
+        align-items: center;
+        justify-content: center;
+
+        margin-top: 100px;
+    }
+    .content {
+        width: 1000px;
+    }
+
+    .button {
+        width: 150px;
+        height: 150px;
+        border: 1px solid black;
+    }
+
+    a:visited {
+        opacity: 0.5;
+    }
+
+    a:hover {
+        opacity:0.5;
+    }
+
+    @media (max-width: 767px) {
+        .content {
+            width: 80%;
+        }
+        .button {
+            width: 32%;
+        }
+    }
+</style>
+{% endblock styling %}
+
+{% block content %}
+<div class="container-fluid" style="margin-top: 30px;">
+        {% if projects %}
+            {% for project in projects %}
+            <div class="row" style="margin:10px">
+                <div class="col-md-4 d-flex justify-content-center" > <h4>{{project.prj_name}}</h4></div>
+                <div class="col-md-4 d-flex justify-content-center">
+                    <p>
+                        {{ project.comment }}
+                    </p>
+                </div>
+                <div class="col-md-4 d-flex justify-content-center">
+                    <a href="/researcher/{{project.researcher.name}}/{{project.prj_name}}/">
+                        <button type="button" class="btn btn-primary start" style="margin:10px">
+                            START
+                        </button>
+                    </a>
+                    <button type="button" class="btn btn-danger" style="margin:10px"  onclick="window.location.href='/researcher/{{project.researcher.name}}/{{project.prj_name}}/delete/'">
+                        delete
+                    </button>
+
+                </div>
+            </div>
+           {% endfor %}
+        {% endif %}
+        <div class="col-md-12 d-flex justify-content-center">
+            <a href="/researcher/{{researcher_name}}/upload/"><h4>Go to upload page</h4></a>
+        </div>
+    </div>
+{% endblock content %}

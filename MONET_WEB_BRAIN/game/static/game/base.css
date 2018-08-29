@@ -1,0 +1,56 @@
+header {
+    border-bottom: 1px solid #999;
+    margin-bottom: 2rem;
+    display: flex;
+  }
+  
+  header h1 a {
+    color: red;
+    text-decoration: none;
+  }
+  
+  .nav-left {
+    margin-right: auto;
+  }
+  
+  .nav-right {
+    display: flex;
+    padding-top: 2rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    align-items: center;
+    justify-content: center;
+
+}
+
+.content {
+    width: 500px;
+}
+
+.button {
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+}
+
+a:link {
+}
+
+a:visited {
+    opacity: 0.5;
+}
+
+a:hover {
+    opacity:0.5;
+}
+
+
+.footer {
+    margin-top: 25px;
+    text-align: center;
+}

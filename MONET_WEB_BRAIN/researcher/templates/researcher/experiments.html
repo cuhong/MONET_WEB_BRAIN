@@ -1,0 +1,112 @@
+{% extends 'researcher/base.html' %}
+{% load static %}
+{% block styling %}
+<style>
+    body {
+        background-image: url("/upload_files/{{researcher_name}}/{{prj_name}}/background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .container {
+        display: flex;
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+
+        align-items: center;
+        justify-content: center;
+
+        margin-top: 100px;
+    }
+    .content {
+    }
+
+    .box {
+        width: 800px;
+        height: 130px;
+        padding: 10px;
+        margin: 3px;
+
+        display:flex;
+        align-content: center;
+        justify-content: center;
+    }
+
+    .element {
+        padding-top: 30px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    a:visited {
+        opacity: 0.5;
+    }
+
+    a:hover {
+        opacity:0.5;
+    }
+
+    .logo {
+        width:100px;
+        height:100px;
+    }
+    
+    h2 {
+        margin-bottom: 100px;
+    }
+
+    .checkbox {
+        width: 70px;
+        height: 70px;
+        padding-top: 20px;
+    }
+    @media (max-width: 767px) {
+        .content {
+            width: 90%;
+        }
+        .box {
+            width:100%;
+        }
+    }
+</style>
+{% endblock styling %}
+
+{% block content %}
+    <h2>{{project.comment}}</h2>
+    {% if experiments %}
+        {% for exp in experiments %}
+        <div class="box">
+            {% if exp.done %}
+                <img class="checkbox" src="{% static 'researcher/images/checkbox.jpg' %}">
+            {% endif %}
+
+            <div class="logo">
+                <a href="/researcher/{{exp.experiment.prj.researcher.name}}/{{exp.experiment.prj.prj_name}}/{{exp.experiment.exp_name}}/">
+                    <img width="100px" height="100px" src="/upload_files/{{researcher_name}}/{{exp.experiment.prj.prj_name}}/{{exp.experiment.exp_name}}/logo.jpg">
+                </a>       
+            </div>
+
+            <div class="element">
+                <h4>{{exp.exp_name}}</h4>
+
+            </div>
+            <div class="element">
+                <p>
+                    {{exp.experiment.description}}
+                </p>
+            </div>
+            <div class="element">
+                약 {{ exp.experiment.playtime }} 분 소요
+            </div>
+            <div class="element">
+                ({{ exp.accuracy }}) 점
+            </div>
+        </div>
+        {% endfor %}
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{ done_percent }}"
+                aria-valuemin="0" aria-valuemax="100" style="width:{{ done_percent }}%">
+                <span class="sr-only">70% Complete</span>
+            </div>
+            </div>
+    {% endif %}
+{% endblock content %}

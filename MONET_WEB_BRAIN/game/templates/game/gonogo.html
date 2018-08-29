@@ -4,7 +4,8 @@
   <head>
     <title>gonogo</title>
     <meta charset="utf-8">
-    <script src="{% static 'game/scripts/jspsych.js' %}"></script>
+    <!--<script src="{% static 'game/scripts/jspsych.js' %}"></script>-->
+    <script src="/static/game/scripts/jspsych.js"></script>
     <script src="{% static 'game/jspsych-6/plugins/jspsych-html-keyboard-response.js' %}"></script>
     <script src="{% static 'game/jspsych-6/plugins/jspsych-html-button-response.js' %}"></script>
     <script src="{% static 'game/jspsych-6/plugins/jspsych-fullscreen.js' %}"></script>
@@ -107,10 +108,9 @@
       stimulus: jsPsych.timelineVariable('stimulus'),
       choices: ['GO'],
       data: jsPsych.timelineVariable('data'),
-      conditional_function: function(){
+      on_load: function(){
         var curr_time = new Date();
         start_time_list.push(curr_time);
-        return true;
       },
       on_finish: function(data){
         var curr_time = new Date();
@@ -155,8 +155,8 @@
         var trials = jsPsych.data.get().filter({test_part: 'test'});
         var correct_trials = trials.filter({correct: true});
         var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
-        var rt = trials.select('rt');
-        var avg_rt = rt.mean();
+        var rt = trials.select('rt').values;
+        var avg_rt = trials.select('rt').mean();
 
         //var all_data = jsPsych.data.get();
         //console.log(jsPsych.data.get().csv());
@@ -173,20 +173,23 @@
                 // Request finished. Do processing here.
             }
         }
-        for(i=0;i<start_time_list.length;i++){
-          console.log(start_time_list[i]);
-          console.log(end_time_list[i]);
-          console.log(rt[i]);
-        }
-        xhr.send(String(accuracy) + ' ' + String(avg_rt));
+
+        //alert(rt.toString());  // Tutorial not counted
+        //alert(trials.count());  // 40, Tutorial not counted
+        //alert(end_time_list.length);  // 50, Tutorial counted
+        //alert(rt.length);  // 40, Tutorial not counted
+        
+        
+        st = start_time_list.toString();
+        et = end_time_list.toString();
+        rts= rt.toString();
+
+        xhr.send(String(accuracy) + '!' + String(avg_rt) + '!' + st + '!' + et + '!' + rts);
 
         setTimeout(function () { window.location.replace("/game/gonogo/game-result"); }, 1000);
 
-        /*
-        return "수고하셨습니다"+
-        "<p>당신의 점수는 "+accuracy+"점 입니다.</p>"+
-        "<p>당신의 Response Rate는 "+rt+"점 입니다.</p>";
-        */
+   
+        return "<p>수고하셨습니다 잠시만 기다려 주십시오...</p>";
       }
     };
     timeline.push(debrief_block);
