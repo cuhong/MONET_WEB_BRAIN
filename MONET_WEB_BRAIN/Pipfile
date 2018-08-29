@@ -9,6 +9,12 @@ django-crispy-forms = "*"
 python-dateutil = "*"
 "psycopg2" = "*"
 tensorflow = "*"
+keras = "*"
+pandas = "*"
+pillow = "*"
+scikit-learn = "*"
+numpy = "*"
+opencv-python = "*"
 
 [dev-packages]
 pylint = "*"

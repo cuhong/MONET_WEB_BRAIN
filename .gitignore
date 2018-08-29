@@ -4,7 +4,6 @@ __pycache__
 db.sqlite3
 /MONET_WEB_BRAIN/static
 .DS_Store
-settings.py
 .vscode
 /MONET_WEB_BRAIN/uploads
 /MONET_WEB_BRAIN/game/templates/game/researchers
