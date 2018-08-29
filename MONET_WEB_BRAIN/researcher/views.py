@@ -134,6 +134,7 @@ def experiments(request, researcher_name, prj_name):
         done_percent = int(len(done_true)/len(done)*100)
     except:
         done_percent = 0
+        
     return render(request, 'researcher/experiments.html', {'done_percent': done_percent, 'done':done, 'project':this_prj, 'experiments':experiments, 'researcher_name':researcher_name, 'prj_name':prj_name})
 
 def experiment(request, researcher_name, prj_name, exp_name):

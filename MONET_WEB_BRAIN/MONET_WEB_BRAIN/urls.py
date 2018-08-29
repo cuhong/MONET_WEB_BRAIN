@@ -21,7 +21,6 @@ from django.conf import settings
 urlpatterns = [
     path('', include('game.urls')),
     path('researcher/', include('researcher.urls')),
-    path('ML/', include('ML.urls')),
     path('GamePlay/', include('GamePlay.urls')),
     path('Research/', include('Research.urls')),
     path('admin/', admin.site.urls),

@@ -9,4 +9,5 @@ settings.py
 /MONET_WEB_BRAIN/uploads
 /MONET_WEB_BRAIN/game/templates/game/researchers
 /MONET_WEB_BRAIN/researcher/templates/researcher/researchers
-migrations
+secret.txt
+secrets.json
