@@ -26,8 +26,6 @@ def get_secret(setting, secrets=secrets):
         error_msg = "Set the {} environment variable".format(setting)
         raise ImproperlyConfigured(error_msg)
 
-SECRET_KEY = get_secret("SECRET_KEY")
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -99,9 +97,9 @@ WSGI_APPLICATION = 'MONET_WEB_BRAIN.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': get_secret('DATABASE_NAME'),
-        'USER': get_secret('DATABASE_USER'),
-        'PASSWORD': get_secret('DATABASE_PASSWORD'),
+        'NAME': 'monet_web_brain',
+        'USER': 'monet_web_brain_user',
+        'PASSWORD': 'wkdrhahspdnpq1234',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -147,6 +145,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'green4469@gmail.com'
+EMAIL_HOST_PASSWORD = 'iekzpealmwsxtjpr'
 EMAIL_PORT = 587
 
 
