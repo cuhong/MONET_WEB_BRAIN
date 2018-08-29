@@ -7,6 +7,7 @@ name = "pypi"
 django = "*"
 django-crispy-forms = "*"
 python-dateutil = "*"
+"psycopg2" = "*"
 
 [dev-packages]
 pylint = "*"
