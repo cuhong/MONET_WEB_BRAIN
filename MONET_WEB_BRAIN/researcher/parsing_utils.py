@@ -155,13 +155,13 @@ def parse_descriptor(researcher_name, prj_name, prj_dir):
                 text_file = os.path.join(settings.MEDIA_ROOT, '{}/{}/{}/exp.txt'.format(researcher_name, prj_name, exp_name))
                 original_html = os.path.join(settings.BASE_DIR, 'ML/templates/ML/video.html')
                 
-                with open(text_file, 'r') as f:
+                with open(text_file, 'r', encoding='utf-8') as f:
                     strings = f.readlines()
                     strings = [string.replace('\n', '<br>') for string in strings]
                     string = ''.join(strings)
 
-                with open(original_html, 'r') as f:
-                    with open(html_dest, 'w+') as fw:
+                with open(original_html, 'r', encoding='utf-8') as f:
+                    with open(html_dest, 'w+', encoding='utf-8') as fw:
                         rows = f.readlines()
                         for row in rows:
                             row = row.replace('REPLACE_THIS', string)
