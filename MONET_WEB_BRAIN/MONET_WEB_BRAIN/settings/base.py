@@ -99,8 +99,8 @@ WSGI_APPLICATION = 'MONET_WEB_BRAIN.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'monet_web_brain',
-        'USER': 'monet_web_brain_user',
+        'NAME': get_secret('DATABASE_NAME'),
+        'USER': get_secret('DATABASE_USER'),
         'PASSWORD': get_secret('DATABASE_PASSWORD'),
         'HOST': 'localhost',
         'PORT': '',
