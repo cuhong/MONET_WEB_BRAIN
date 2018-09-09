@@ -8,7 +8,7 @@ class Stimulus():
 
     def get_html(self):
         return self.stimulusObject.get_html()
-    
+
     def get_plugin(self):
         return self.stimulusObject.get_plugin()
 
@@ -20,10 +20,10 @@ class Text():
         self.content = content
         self.font_size = font_size
         self.font_color = font_color
-    
+
     def get_plugin(self):
         return "html-button-response"
-    
+
     def get_html(self):
         if self.font_color == "n" and self.font_size == "n":
             return self.content
@@ -69,7 +69,7 @@ class Image():
 
     def get_plugin(self):
         return "image-button-response"
-    
+
     def get_html(self):
         return self.path
 
@@ -80,7 +80,7 @@ class Image():
 class Audio():
     def __init__(self, path):
         self.path = path
-    
+
     def get_plugin(self):
         return "audio-button-response"
 
@@ -95,7 +95,7 @@ class Audio():
 class Video():
     def __init__(self, path):
         self.path = path
-    
+
     def get_plugin(self):
         return "video-button-response"
 
@@ -163,7 +163,7 @@ class SequenceVariable():
         else:
             block_string += "type: \"%s\",\n"%(self.stimulus.get_plugin().replace("button", "keyboard"))
         block_string += "stimulus: \'%s\',\n"%(self.stimulus.get_html())
-        if self.stimDur != "inf":        
+        if self.stimDur != "inf":
             if 'image' in self.stimulus.get_plugin() or 'html' in self.stimulus.get_plugin():
                 block_string += "stimulus_duration: %s,\n"%(self.stimDur)
         if self.reactionTime != "inf":
@@ -176,7 +176,7 @@ class SequenceVariable():
         else:
             block_string += "choices: ["
             for choice_obj in self.choices:
-                block_string += "\'%s\',"%(choice_obj.get_choice_html())        
+                block_string += "\'%s\',"%(choice_obj.get_choice_html())
             block_string = block_string[:-1]
             block_string += "],\n"
         if self.answer != "n":
@@ -187,6 +187,7 @@ class SequenceVariable():
                                     data.correct = data.button_pressed == data.correct_response;\n\
                                     var current_time = new Date();\n\
                                     end_time_list.push(current_time);\n\
+                                    user_choices.push(data.button_pressed);\n\
                                     data.choices = [%s]\n\
                                     },\n"%(','.join(['\''+choice_obj.get_choice_html()+'\'' for choice_obj in self.choices]))
                 block_string += "on_load: function(data){\n\
@@ -200,12 +201,13 @@ class SequenceVariable():
             block_string += "on_finish: function(data){\n\
                                 var current_time = new Date();\n\
                                 end_time_list.push(current_time);\n\
+                                user_choices.push(data.button_pressed);\n\
                                 data.choices = [%s]\n\
                                 },\n"%(','.join(['\''+choice_obj.get_choice_html()+'\'' for choice_obj in self.choices]))
             block_string += "on_load: function(data){\n\
                                 var current_time = new Date();\n\
                                 start_time_list.push(current_time);\n\
-                                },\n"            
+                                },\n"
         block_string += "});\n"
         return block_string
 
@@ -266,7 +268,7 @@ def parse_sequence(line):
         sys.exit()
     onSetTime = line[0]
     identifier = line[1]
-    stimDur = line[2] 
+    stimDur = line[2]
     choices = line[3]
     choiceDur = line[4]
     answer = line[5]
@@ -275,7 +277,7 @@ def parse_sequence(line):
     feed_back_type = line[8]
     feed_back_duration = line[9]
     feed_back_1 = line[10]
-    feed_back_2 = line[11]    
+    feed_back_2 = line[11]
     test = line[12]
     sequence = SequenceVariable(onSetTime, identifier, stimDur, choices, choiceDur, answer, choiceOnsetRelativeToSim, reactionTime, feed_back_type, feed_back_duration, feed_back_1, feed_back_2, test)
     sequence_list.append(sequence)
@@ -293,6 +295,7 @@ def get_result_page():
                                     console.log(start_time_list);\n\
                                     console.log(end_time_list);\n\
                                     console.log(rt);\n\
+                                    console.log(user_choices);\n\
                                     /* yumin accuracy */\n\
                                     return \"<p>You responded correctly on \" + accuracy + \"% of the trials.</p>\" +\n\
                                         \"<p>Your average response time was \" + average(rt) / 1000 + \"s.</p>\";\n}\n\
@@ -301,6 +304,7 @@ def get_result_page():
                                     console.log(start_time_list);\n\
                                     console.log(end_time_list);\n\
                                     console.log(rt);\n\
+                                    console.log(user_choices);\n\
                                     /* yumin no accuracy */\n\
                                     return \"<p>Your average response time was \" + average(rt) / 1000 + \"s.</p>\";\n}\n\
                             },\n\
@@ -344,7 +348,7 @@ def parse(fname):
                 parse_sequence(line)
     return exp_name
 
-def get_header(exp_name):    
+def get_header(exp_name):
     return "<head>\n\
         <title>%s</title>\n\
         <meta charset=\"utf-8\">\n\
@@ -369,6 +373,7 @@ def get_body():
     body_string += "var timeline = [];\n"
     body_string += "var start_time_list = [];\n"
     body_string += "var end_time_list = [];\n"
+    body_string += "var user_choices = [];\n"
     body_string += "const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;"
     full_screen_block = "timeline.push({\n\
                         type: \'fullscreen\',\n\
@@ -412,6 +417,6 @@ def generate_html(fname, gname):
 """
 if __name__ == "__main__":
     fname = sys.argv[1]
-    generate_html(fname)        
+    generate_html(fname)
 """
-            
+
