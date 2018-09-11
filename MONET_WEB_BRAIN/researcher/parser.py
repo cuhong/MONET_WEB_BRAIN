@@ -187,6 +187,7 @@ class SequenceVariable():
                                     data.correct = data.button_pressed == data.correct_response;\n\
                                     var current_time = new Date();\n\
                                     end_time_list.push(current_time);\n\
+                                    user_choices.push(data.button_pressed);\n\
                                     data.choices = [%s]\n\
                                     },\n"%(','.join(['\''+choice_obj.get_choice_html()+'\'' for choice_obj in self.choices]))
                 block_string += "on_load: function(data){\n\
@@ -200,6 +201,7 @@ class SequenceVariable():
             block_string += "on_finish: function(data){\n\
                                 var current_time = new Date();\n\
                                 end_time_list.push(current_time);\n\
+                                user_choices.push(data.button_pressed);\n\
                                 data.choices = [%s]\n\
                                 },\n"%(','.join(['\''+choice_obj.get_choice_html()+'\'' for choice_obj in self.choices]))
             block_string += "on_load: function(data){\n\
@@ -369,6 +371,7 @@ def get_body():
     body_string += "var timeline = [];\n"
     body_string += "var start_time_list = [];\n"
     body_string += "var end_time_list = [];\n"
+    body_string += "var user_choices = [];\n"
     body_string += "const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;"
     full_screen_block = "timeline.push({\n\
                         type: \'fullscreen\',\n\

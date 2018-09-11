@@ -42,6 +42,7 @@ class ResearcherExpScore(models.Model):
 class ResearcherExpStimulus(models.Model):
     res = models.ForeignKey(ResearcherExpScore, on_delete=models.CASCADE)
     rt = models.FloatField(default=-1.0)
+    response = models.IntegerField(default=0)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     def __str__(self):

@@ -209,9 +209,10 @@ def experiment(request, researcher_name, prj_name, exp_name):
             new_score.avg_rt = sum/len(rt_list)
         new_score.save()
 
-        # Parse start & end time list
+        # Parse start & end time list & responses
         start_time_list = data_list[2].split(',')
         end_time_list = data_list[3].split(',')
+        response_list = data_list[4].split(',')
 
         # Create and add each stimulus to our database.
         for i in range(len(rt_list)):
@@ -223,6 +224,7 @@ def experiment(request, researcher_name, prj_name, exp_name):
                 new_stimulus.rt = base_response_time
             new_stimulus.start_time = dt.parse(start_time_list[i][:24])
             new_stimulus.end_time = dt.parse(end_time_list[i][:24])
+            new_stimulus.response = int(response_list[i])
             new_stimulus.save()
         return HttpResponse("Nice! This works")
 
