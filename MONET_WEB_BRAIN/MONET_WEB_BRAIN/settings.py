@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'Research',
     'crispy_forms',
     'ML',
+    'sensors',
 ]
 
 MIDDLEWARE = [
