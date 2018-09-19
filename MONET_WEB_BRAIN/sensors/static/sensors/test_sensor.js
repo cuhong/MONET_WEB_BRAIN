@@ -27,7 +27,15 @@ function move_ball(){
 };
 
 function send_position(){
-
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/sensors/gyro/', true);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            console.log('done!');
+        }
+    };
+    xhr.send($("#ball").css("top") + ',' + $("#ball").css("left"));
 }
 
 sensorAbs.start();
