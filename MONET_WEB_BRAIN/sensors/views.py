@@ -11,4 +11,4 @@ def gyro(request):
             f.write(data)
         return HttpResponse("GOOD")
     
-    return render(request, 'sensors/test_sonsor.html')
+    return render(request, 'sensors/test_sensor.html')
