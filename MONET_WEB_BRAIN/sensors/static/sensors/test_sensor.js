@@ -11,7 +11,7 @@ $(document).ready(function(){
     $("#ball").css("top", $(window).height() / 2 - 50);
     $("#ball").css("left", $(window).width() / 2 - 50);
     setInterval(move_ball, 300);
-    serInterval(send_position, 10000);
+    setInterval(send_position, 10000);
 });
 
 function move_ball(){
