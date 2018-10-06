@@ -10,13 +10,13 @@ $(document).ready(function(){
     $("#ball").css("width", "100");
     $("#ball").css("top", $(window).height() / 2 - 50);
     $("#ball").css("left", $(window).width() / 2 - 50);
-    setInterval(move_ball, 300);
+    setInterval(move_ball, 10);
     setInterval(send_position, 10000);
 });
 
 function move_ball(){
-    var new_x = parseInt($("#ball").css("left")) + 0.1 * sensorGyro.x;
-    var new_y = parseInt($("#ball").css("top")) + 0.1 * sensorGyro.y;
+    var new_x = parseInt($("#ball").css("left")) + 1 * sensorGyro.x;
+    var new_y = parseInt($("#ball").css("top")) + 1 * sensorGyro.y;
     if(new_x > $(window).height() || new_x < 0 || new_y > $(window).width() || new_y < 0){
         return
     }
