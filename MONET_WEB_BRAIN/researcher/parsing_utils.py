@@ -54,6 +54,7 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
             end_time_list = end_time_list.toString();\n\
             response_time_list = rt.toString();\n\
             response_list = user_choices.toString();\n\
+            /* \n\
             var gyro_x_avg = 0;\n\
             var gyro_y_avg = 0;\n\
             var gyro_z_avg = 0;\n\
@@ -66,6 +67,8 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
             gyro_y_avg /= gyro_x.length;\n\
             gyro_z_avg /= gyro_x.length;\n\
             var gyro_mag = Math.sqrt(Math.pow(gyro_x_avg, 2) + Math.pow(gyro_y_avg, 2) + Math.pow(gyro_z_avg, 2)).toString();\n\
+            */ \n\
+            gyro_mag = gyro_x.toString();\n\
             var xhr = new XMLHttpRequest();\n\
             xhr.open('POST', '/researcher/" + researcher_name +  "/" + prj_name + "/" + exp_name + "/', true);\n\
             xhr.setRequestHeader('Content-type', 'application/json');\n\
@@ -81,6 +84,7 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
             start_time_list = start_time_list.toString();\n\
             end_time_list = end_time_list.toString();\n\
             response_time_list = rt.toString();\n\
+            /* \n\
             var gyro_x_avg = 0;\n\
             var gyro_y_avg = 0;\n\
             var gyro_z_avg = 0;\n\
@@ -93,6 +97,8 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
             gyro_y_avg /= gyro_x.length;\n\
             gyro_z_avg /= gyro_x.length;\n\
             gyro_mag = Math.sqrt(Math.pow(gyro_x_avg, 2) + Math.pow(gyro_y_avg, 2) + Math.pow(gyro_z_avg, 2)).toString();\n\
+            */ \n\
+            gyro_mag = gyro_x.toString();\n\
             var xhr = new XMLHttpRequest();\n\
             xhr.open('POST', '/researcher/" + researcher_name +  "/" + prj_name + "/" + exp_name + "/', true);\n\
             xhr.setRequestHeader('Content-type', 'application/json');\n\

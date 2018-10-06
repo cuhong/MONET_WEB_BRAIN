@@ -229,8 +229,9 @@ def experiment(request, researcher_name, prj_name, exp_name):
             new_score.avg_rt = sum/len(rt_list)
 
         try:
-            gyro_mag = float(data_list[5])
-            new_score.gyro_mag = gyro_mag
+            gyro_mag = data_list[5]
+            #new_score.gyro_mag = gyro_mag
+            print(gyro_mag)
             print("Successfully saved gyro")
         except:
             print("Failed to save gyro")
