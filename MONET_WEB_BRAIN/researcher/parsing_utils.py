@@ -54,6 +54,10 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
             end_time_list = end_time_list.toString();\n\
             response_time_list = rt.toString();\n\
             response_list = user_choices.toString();\n\
+            gyro_x_avg = math.mean(gyro_x);\n\
+            gyro_y_avg = math.mean(gyro_y);\n\
+            gyro_z_avg = math.mean(gyro_z);\n\
+            gyro_mag = Math.sqrt(Math.pow(gyro_x_avg, 2) + Math.pow(gyro_y_avg, 2) + Math.pow(gyro_z_avg, 2)).toString();\n\
             var xhr = new XMLHttpRequest();\n\
             xhr.open('POST', '/researcher/" + researcher_name +  "/" + prj_name + "/" + exp_name + "/', true);\n\
             xhr.setRequestHeader('Content-type', 'application/json');\n\
@@ -62,13 +66,17 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
                     window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/" + exp_name + "/result');\n\
                 }\n\
             };\n\
-            xhr.send(accuracy + '!' + response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list);\n\
+            xhr.send(accuracy + '!' + response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list + '!' + gyro_mag);\n\
             ")
 
         line = line.replace("/* yumin no accuracy */", "\
             start_time_list = start_time_list.toString();\n\
             end_time_list = end_time_list.toString();\n\
             response_time_list = rt.toString();\n\
+            gyro_x_avg = math.mean(gyro_x);\n\
+            gyro_y_avg = math.mean(gyro_y);\n\
+            gyro_z_avg = math.mean(gyro_z);\n\
+            gyro_mag = Math.sqrt(Math.pow(gyro_x_avg, 2) + Math.pow(gyro_y_avg, 2) + Math.pow(gyro_z_avg, 2)).toString();\n\
             var xhr = new XMLHttpRequest();\n\
             xhr.open('POST', '/researcher/" + researcher_name +  "/" + prj_name + "/" + exp_name + "/', true);\n\
             xhr.setRequestHeader('Content-type', 'application/json');\n\
@@ -77,7 +85,7 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
                     window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/" + exp_name + "/result');\n\
                 }\n\
             };\n\
-            xhr.send(response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list);\n\
+            xhr.send(response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list + '!' + gyro_mag);\n\
             ")
         return line
 

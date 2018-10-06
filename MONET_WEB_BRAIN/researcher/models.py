@@ -35,6 +35,7 @@ class ResearcherExpScore(models.Model):
     exp = models.ForeignKey(ResearcherExp, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     accuracy = models.FloatField(default=-1.0)
+    gyro_mag = models.FloatField(default=-1.0)
     avg_rt = models.FloatField(default=-1.0)
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
