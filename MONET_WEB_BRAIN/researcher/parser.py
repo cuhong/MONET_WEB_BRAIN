@@ -8,7 +8,7 @@ class Stimulus():
 
     def get_html(self):
         return self.stimulusObject.get_html()
-    
+
     def get_plugin(self):
         return self.stimulusObject.get_plugin()
 
@@ -20,10 +20,10 @@ class Text():
         self.content = content
         self.font_size = font_size
         self.font_color = font_color
-    
+
     def get_plugin(self):
         return "html-button-response"
-    
+
     def get_html(self):
         if self.font_color == "n" and self.font_size == "n":
             return self.content
@@ -69,7 +69,7 @@ class Image():
 
     def get_plugin(self):
         return "image-button-response"
-    
+
     def get_html(self):
         return self.path
 
@@ -80,7 +80,7 @@ class Image():
 class Audio():
     def __init__(self, path):
         self.path = path
-    
+
     def get_plugin(self):
         return "audio-button-response"
 
@@ -95,7 +95,7 @@ class Audio():
 class Video():
     def __init__(self, path):
         self.path = path
-    
+
     def get_plugin(self):
         return "video-button-response"
 
@@ -163,7 +163,7 @@ class SequenceVariable():
         else:
             block_string += "type: \"%s\",\n"%(self.stimulus.get_plugin().replace("button", "keyboard"))
         block_string += "stimulus: \'%s\',\n"%(self.stimulus.get_html())
-        if self.stimDur != "inf":        
+        if self.stimDur != "inf":
             if 'image' in self.stimulus.get_plugin() or 'html' in self.stimulus.get_plugin():
                 block_string += "stimulus_duration: %s,\n"%(self.stimDur)
         if self.reactionTime != "inf":
@@ -176,7 +176,7 @@ class SequenceVariable():
         else:
             block_string += "choices: ["
             for choice_obj in self.choices:
-                block_string += "\'%s\',"%(choice_obj.get_choice_html())        
+                block_string += "\'%s\',"%(choice_obj.get_choice_html())
             block_string = block_string[:-1]
             block_string += "],\n"
         if self.answer != "n":
@@ -207,7 +207,7 @@ class SequenceVariable():
             block_string += "on_load: function(data){\n\
                                 var current_time = new Date();\n\
                                 start_time_list.push(current_time);\n\
-                                },\n"            
+                                },\n"
         block_string += "});\n"
         return block_string
 
@@ -268,7 +268,7 @@ def parse_sequence(line):
         sys.exit()
     onSetTime = line[0]
     identifier = line[1]
-    stimDur = line[2] 
+    stimDur = line[2]
     choices = line[3]
     choiceDur = line[4]
     answer = line[5]
@@ -277,7 +277,7 @@ def parse_sequence(line):
     feed_back_type = line[8]
     feed_back_duration = line[9]
     feed_back_1 = line[10]
-    feed_back_2 = line[11]    
+    feed_back_2 = line[11]
     test = line[12]
     sequence = SequenceVariable(onSetTime, identifier, stimDur, choices, choiceDur, answer, choiceOnsetRelativeToSim, reactionTime, feed_back_type, feed_back_duration, feed_back_1, feed_back_2, test)
     sequence_list.append(sequence)
@@ -346,7 +346,7 @@ def parse(fname):
                 parse_sequence(line)
     return exp_name
 
-def get_header(exp_name):    
+def get_header(exp_name):
     return "<head>\n\
         <title>%s</title>\n\
         <meta charset=\"utf-8\">\n\
@@ -368,6 +368,18 @@ def get_header(exp_name):
 def get_body():
     global sequence_list
     body_string = "<body>\n<script>\n"
+    body_string += "var gyro_x = [];\n"
+    body_string += "var gyro_y = [];\n"
+    body_string += "var gyro_z = [];\n"
+    body_string += "const sensorGyro = new Gyroscope();\n"
+    body_string += "$(document).ready(function(){\n\
+                    setInterval(save_gyro, 100);\n\
+                    });\n"
+    body_string += "function save_gyro(){\n\
+                    gyro_x.push(sensorGyro.x);\n\
+                    gyro_y.push(sensorGyro.y);\n\
+                    gyro_z.push(sensorGyro.z);\n\
+                    };\n"
     body_string += "var timeline = [];\n"
     body_string += "var start_time_list = [];\n"
     body_string += "var end_time_list = [];\n"
@@ -415,6 +427,6 @@ def generate_html(fname, gname):
 """
 if __name__ == "__main__":
     fname = sys.argv[1]
-    generate_html(fname)        
+    generate_html(fname)
 """
-            
+
