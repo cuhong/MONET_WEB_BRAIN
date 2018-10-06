@@ -54,26 +54,13 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
             end_time_list = end_time_list.toString();\n\
             response_time_list = rt.toString();\n\
             response_list = user_choices.toString();\n\
-            /* \n\
-            var gyro_x_avg = 0;\n\
-            var gyro_y_avg = 0;\n\
-            var gyro_z_avg = 0;\n\
-            for(var i=0; i<gyro_x.length; i++) {\n\
-                gyro_x_avg += gyro_x[i];\n\
-                gyro_y_avg += gyro_y[i];\n\
-                gyro_z_avg += gyro_z[i];\n\
-            }\n\
-            gyro_x_avg /= gyro_x.length;\n\
-            gyro_y_avg /= gyro_x.length;\n\
-            gyro_z_avg /= gyro_x.length;\n\
-            var gyro_mag = Math.sqrt(Math.pow(gyro_x_avg, 2) + Math.pow(gyro_y_avg, 2) + Math.pow(gyro_z_avg, 2)).toString();\n\
-            gyro_mag = gyro_x.toString();\n\
-            */ \n\
             var xhr = new XMLHttpRequest();\n\
             xhr.open('POST', '/researcher/" + researcher_name +  "/" + prj_name + "/" + exp_name + "/', true);\n\
             xhr.setRequestHeader('Content-type', 'application/json');\n\
             xhr.onreadystatechange = function () {\n\
                 if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {\n\
+                    console.log(xhr.response);\n\
+                    console.log(xhr.responseText);\n\
                     window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/" + exp_name + "/result');\n\
                 }\n\
             };\n\
@@ -84,26 +71,13 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
             start_time_list = start_time_list.toString();\n\
             end_time_list = end_time_list.toString();\n\
             response_time_list = rt.toString();\n\
-            /* \n\
-            var gyro_x_avg = 0;\n\
-            var gyro_y_avg = 0;\n\
-            var gyro_z_avg = 0;\n\
-            for(var i=0; i<gyro_x.length; i++) {\n\
-                gyro_x_avg += gyro_x[i];\n\
-                gyro_y_avg += gyro_y[i];\n\
-                gyro_z_avg += gyro_z[i];\n\
-            }\n\
-            gyro_x_avg /= gyro_x.length;\n\
-            gyro_y_avg /= gyro_x.length;\n\
-            gyro_z_avg /= gyro_x.length;\n\
-            gyro_mag = Math.sqrt(Math.pow(gyro_x_avg, 2) + Math.pow(gyro_y_avg, 2) + Math.pow(gyro_z_avg, 2)).toString();\n\
-            gyro_mag = gyro_x.toString();\n\
-            */ \n\
             var xhr = new XMLHttpRequest();\n\
             xhr.open('POST', '/researcher/" + researcher_name +  "/" + prj_name + "/" + exp_name + "/', true);\n\
             xhr.setRequestHeader('Content-type', 'application/json');\n\
             xhr.onreadystatechange = function () {\n\
                 if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {\n\
+                    console.log(xhr.response);\n\
+                    console.log(xhr.responseText);\n\
                     window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/" + exp_name + "/result');\n\
                 }\n\
             };\n\

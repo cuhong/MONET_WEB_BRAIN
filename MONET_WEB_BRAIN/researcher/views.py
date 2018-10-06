@@ -227,18 +227,6 @@ def experiment(request, researcher_name, prj_name, exp_name):
                 sum += base_response_time
         if len(rt_list) != 0:
             new_score.avg_rt = sum/len(rt_list)
-
-        """
-        try:
-            gyro_mag = data_list[5]
-            #new_score.gyro_mag = gyro_mag
-            print(gyro_mag)
-            print("Successfully saved gyro")
-        except:
-            print("Failed to save gyro")
-            pass
-        """
-
         new_score.save()
 
         # Parse start & end time list & responses
