@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.db import IntegrityError
+from django.db import IntegrityError 
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
 from django.conf import settings 
@@ -228,6 +228,7 @@ def experiment(request, researcher_name, prj_name, exp_name):
         if len(rt_list) != 0:
             new_score.avg_rt = sum/len(rt_list)
 
+        """
         try:
             gyro_mag = data_list[5]
             #new_score.gyro_mag = gyro_mag
@@ -236,6 +237,7 @@ def experiment(request, researcher_name, prj_name, exp_name):
         except:
             print("Failed to save gyro")
             pass
+        """
 
         new_score.save()
 
