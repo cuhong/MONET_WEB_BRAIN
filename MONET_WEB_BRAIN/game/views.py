@@ -114,7 +114,6 @@ def sign_up(request):
             # If the given form is invalid, raise 404 error
             messages.error(request, '올바르지 않은 제출 양식입니다.')
             return HttpResponseRedirect(reverse('game:sign_up'))
-
         
         """
         try:
@@ -159,6 +158,30 @@ def sign_up(request):
     else:
         # We only support GET and POST methods, others are ignored by 404 error.
         return Http404('Invalid Request Method!\nOnly GET and POST are supported.')
+
+def teen_auth(request, user_name):
+    if request.method == 'GET':
+        form = AuthForm()
+        form.helper.form_action = reverse('game:teen_auth', kwargs={'user_name':user_name})
+        return render(request, 'game/teen_auth.html', {'form':form})
+    else:
+        form = AuthForm(request.POST)
+        if form.is_valid():
+            if form.cleaned_data['auth_code'] == '0000':
+                user = User.objects.get(username=user_name)
+                user.is_active = True
+                user.save()
+                request.session['name'] = user_name
+
+                # Redirect the user to game-selection webpage
+                if 'prev' in request.session:
+                    return redirect(request.session['prev'])
+
+                return HttpResponseRedirect(reverse('game:which_game'))
+            else:
+                messages.error(request, '암호가 일치하지 않습니다.')
+                return HttpResponseRedirect(reverse('game:teen_auth', kwargs={'user_name':user_name}))
+
 
 def sign_in(request):
     """

@@ -86,7 +86,7 @@
             </div>
 
             <div class="element">
-                <h4>{{exp.exp_name}}</h4>
+                <h4>{{exp.experiment.kor_exp_name}}</h4>
 
             </div>
             <div class="element">
@@ -99,6 +99,16 @@
             </div>
             <div class="element">
                 ({{ exp.accuracy }}) 점
+            </div>
+            <div class="element">
+                ({{ exp.per }}) %
+            </div>
+
+            
+            <div class="element">
+                <a href="/researcher/{{exp.experiment.prj.researcher.name}}/{{exp.experiment.prj.prj_name}}/{{exp.experiment.exp_name}}/csv/">
+                    csv
+                </a>
             </div>
         </div>
         {% endfor %}

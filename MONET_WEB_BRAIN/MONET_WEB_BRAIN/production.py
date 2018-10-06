@@ -1,5 +1,6 @@
 from .base import *
-ALLOWED_HOSTS = ['*']
+
+ALLOWED_HOSTS = ['brain.yonsei.ac.kr']
 
 SECRET_KEY = '1x7w9-)9+tb)ns@az%sng+vl8n132p^w5=qauz#7x@@nvs9(n8'
 

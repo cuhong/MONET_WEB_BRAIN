@@ -1,5 +1,7 @@
 from .base import *
 
+ALLOWED_HOSTS = ['127.0.0.1']
+
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 

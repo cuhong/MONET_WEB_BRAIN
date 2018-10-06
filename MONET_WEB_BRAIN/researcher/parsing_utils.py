@@ -9,7 +9,7 @@ from django.conf import settings
 from . import parser
 
 
-def txt_preprocessing(exp_file, exp_dir):
+def txt_preprocessing(exp_file, exp_dir): 
     """
     Change the path of text_file from relative path to absolute path
     """
@@ -101,6 +101,7 @@ def parse_descriptor(researcher_name, prj_name, prj_dir):
     exp_names = []
     exp_descriptions = []
     exp_playtimes = []
+    exp_kor_names = [] 
 
     with open(os.path.join(prj_dir, 'descriptor.txt'), 'r', encoding='utf-8') as f:  # /uploads/{{researcher_name}}/{{prj_name}}/descriptor.txt
         print("Read descriptor.txt!")
@@ -110,10 +111,11 @@ def parse_descriptor(researcher_name, prj_name, prj_dir):
             # Read exp_name from descriptor.txt
             if row == '\n' or row == '':
                 continue
-            exp_name, exp_description, exp_playtime = row.split(':')
+            exp_name, exp_kor_name, exp_description, exp_playtime = row.split(':')
             exp_names.append(exp_name)
             exp_descriptions.append(exp_description)
             exp_playtimes.append(int(exp_playtime))
+            exp_kor_names.append(exp_kor_name)
 
             exp_dir = os.path.join(prj_dir, exp_name)  # exp_dir = /uploads/{{researcher_name}}/{{prj_name}}/{{exp_name}}
             exp_file = os.path.join(exp_dir, 'exp.txt')  # exp_file = /uploads/{{researcher_name}}/{{prj_name}}/{{exp_name}}/exp.txt
@@ -179,7 +181,7 @@ def parse_descriptor(researcher_name, prj_name, prj_dir):
             dest = os.path.join(settings.BASE_DIR, 'researcher/templates/researcher/researchers/{}/{}/{}.html'.format(researcher_name, prj_name, exp_name))
             shutil.copy2(html_file, dest)
 
-    return exp_names, exp_descriptions, exp_playtimes
+    return exp_names, exp_kor_names, exp_descriptions, exp_playtimes
 
 def CreatePrj(fzip, researcher_name, prj_name, prj_dir):
     # prj_dir = /uploads/{{researcher_name}}/{{prj_name}}

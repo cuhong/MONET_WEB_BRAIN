@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
-from django.conf import settings
+from django.conf import settings 
 from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
@@ -118,14 +118,34 @@ def experiments(request, researcher_name, prj_name):
     # add booleans (T/F) denote that each project is done by this user.
     class exp:
         def __init__(self, experiment, user):
-            scores = ResearcherExpScore.objects.filter(exp=experiment, user=user)
+            scores = ResearcherExpScore.objects.filter(exp=experiment, user=user).order_by('-date')
+            all_scores = ResearcherExpScore.objects.all()
+
             if len(scores) == 0:
                 self.done = False
             else:
                 self.done = True
                 self.accuracy = scores[0].accuracy
+
+                # Calculate the ranking of this user of this game.
+                user_rank = 0
+                for score in all_scores:
+                    user_rank += 1
+                    if score == self.accuracy:
+                        break
+
+            try:
+                user_per = int(user_rank / len(all_scores) * 100)
+            except:
+                user_per = ''
+
+
+            self.per = user_per
+
             self.experiment = experiment
             self.exp_name = experiment.exp_name.replace('_', ' ')
+
+            
     experiments = [exp(experiment, this_user) for experiment in experiments]
     
     done = [exp.done for exp in experiments]
@@ -233,6 +253,24 @@ def experiment(request, researcher_name, prj_name, exp_name):
         return redirect('/game/sign_up/')
     return render(request, 'researcher/researchers/{}/{}/{}.html'.format(researcher_name, prj_name, exp_name))
 
+def csv_download(request, researcher_name, prj_name, exp_name):
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="some.csv"'
+
+    writer = csv.writer(response)
+    
+    this_researcher = Researcher.objects.get(name=researcher_name)
+    this_prj = ResearcherPrj.objects.get(researcher=this_researcher, prj_name=prj_name)
+    this_exp = ResearcherExp.objects.get(prj=this_prj, exp_name=exp_name)
+
+    scores = ResearcherExpScore.objects.filter(exp=this_exp).order_by('-date')
+
+    for score in scores:
+        writer.writerow([score.date, score.user.username, score.accuracy])
+
+    return response
+
 def delete_prj(request, researcher_name, prj_name):
 
     # Remove the physical directories of our server
@@ -264,7 +302,7 @@ def upload(request, researcher_name):
             os.mkdir(prj_dir2)
 
             # Create the project
-            exp_names, exp_descriptions, exp_playtimes = CreatePrj(request.FILES['file'], researcher_name, prj_name, prj_dir)
+            exp_names, exp_kor_names, exp_descriptions, exp_playtimes = CreatePrj(request.FILES['file'], researcher_name, prj_name, prj_dir)
 
             print("Project Created!")
 
@@ -281,6 +319,7 @@ def upload(request, researcher_name):
                 new_exp.researcher = new_prj.researcher
                 new_exp.prj = new_prj
                 new_exp.exp_name = exp_name
+                new_exp.kor_exp_name = exp_kor_names[i]
                 new_exp.description = exp_descriptions[i]
                 new_exp.playtime = exp_playtimes[i]
                 new_exp.save()

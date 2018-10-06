@@ -1,0 +1,19 @@
+
+{% extends 'game/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block styling %}
+<style>
+
+</style>
+{% endblock styling %}
+{% block content %}
+    <h3>
+        미성년자 사용자들은 암호를 입력해야 합니다.
+        부모님에게 여쭤보세요.
+    </h3>
+    {% crispy form %}
+
+{% endblock content %}
+

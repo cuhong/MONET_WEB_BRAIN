@@ -14,6 +14,7 @@ urlpatterns = [
     path('game/<slug:game_name>/game-result/', views.game_result, name='game_result'),
     path('logout/', views.logout, name='logout'),
     path('activate/<slug:uidb64>/<slug:token>/', views.activate, name='activate'),
+    path('teen_auth/<slug:user_name>/', views.teen_auth, name='teen_auth'),
 
 ]
 

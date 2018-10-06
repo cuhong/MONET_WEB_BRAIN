@@ -62,3 +62,14 @@ class SigninForm(forms.Form):
         self.helper.from_method = 'post'
         self.helper.form_action = reverse('game:sign_in')
         self.helper.add_input(Submit('submit', '시작', css_class='btn btn-primary btn-block', style='background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%); background-color: #28a745'))
+
+
+class AuthForm(forms.Form):
+    auth_code = forms.CharField(required=True, max_length=255, label='암호')
+
+    def __init__(self, *args, **kwargs):
+        super(AuthForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_id = 'id-auth-form'
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', '시작', css_class='btn btn-primary btn-block', style='background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%); background-color: #28a745'))

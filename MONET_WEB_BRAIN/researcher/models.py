@@ -24,6 +24,7 @@ class ResearcherPrj(models.Model):
 class ResearcherExp(models.Model):
     prj = models.ForeignKey(ResearcherPrj, on_delete=models.CASCADE)
     exp_name = models.CharField(max_length=20, null=False, blank=False)
+    kor_exp_name = models.CharField(max_length=40, default="기본 실험명", null=False, blank=False)
     description = models.CharField(max_length=200, default="New Experiment")
     playtime = models.PositiveIntegerField(default=0)
     def __str__(self):
