@@ -107,7 +107,7 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
                     window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/" + exp_name + "/result');\n\
                 }\n\
             };\n\
-            xhr.send(response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list);\n\
+            xhr.send('N' + '!' +response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list);\n\
             ")
         return line
 

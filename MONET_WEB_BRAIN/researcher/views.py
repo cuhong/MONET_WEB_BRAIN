@@ -159,7 +159,7 @@ def experiments(request, researcher_name, prj_name):
 
 def experiment(request, researcher_name, prj_name, exp_name):
     if request.method == 'POST':
-        print('######################')
+        print('######################EXPERIMENT_RESULT_POST')
         if 'res_name' not in request.session:
             request.session['prev'] = request.path
             return HttpResponseRedirect(reverse('researcher:sign_in'))
