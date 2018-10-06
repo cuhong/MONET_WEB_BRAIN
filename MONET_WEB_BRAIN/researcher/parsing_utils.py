@@ -67,8 +67,8 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
             gyro_y_avg /= gyro_x.length;\n\
             gyro_z_avg /= gyro_x.length;\n\
             var gyro_mag = Math.sqrt(Math.pow(gyro_x_avg, 2) + Math.pow(gyro_y_avg, 2) + Math.pow(gyro_z_avg, 2)).toString();\n\
-            */ \n\
             gyro_mag = gyro_x.toString();\n\
+            */ \n\
             var xhr = new XMLHttpRequest();\n\
             xhr.open('POST', '/researcher/" + researcher_name +  "/" + prj_name + "/" + exp_name + "/', true);\n\
             xhr.setRequestHeader('Content-type', 'application/json');\n\
@@ -77,7 +77,7 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
                     window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/" + exp_name + "/result');\n\
                 }\n\
             };\n\
-            xhr.send(accuracy + '!' + response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list + '!' + gyro_mag);\n\
+            xhr.send(accuracy + '!' + response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list);\n\
             ")
 
         line = line.replace("/* yumin no accuracy */", "\
@@ -97,8 +97,8 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
             gyro_y_avg /= gyro_x.length;\n\
             gyro_z_avg /= gyro_x.length;\n\
             gyro_mag = Math.sqrt(Math.pow(gyro_x_avg, 2) + Math.pow(gyro_y_avg, 2) + Math.pow(gyro_z_avg, 2)).toString();\n\
-            */ \n\
             gyro_mag = gyro_x.toString();\n\
+            */ \n\
             var xhr = new XMLHttpRequest();\n\
             xhr.open('POST', '/researcher/" + researcher_name +  "/" + prj_name + "/" + exp_name + "/', true);\n\
             xhr.setRequestHeader('Content-type', 'application/json');\n\
@@ -107,7 +107,7 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
                     window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/" + exp_name + "/result');\n\
                 }\n\
             };\n\
-            xhr.send(response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list + '!' + gyro_mag);\n\
+            xhr.send(response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list);\n\
             ")
         return line
 
