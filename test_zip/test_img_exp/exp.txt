@@ -1,6 +1,7 @@
 ﻿Task WM Test Experiment
 [Descriptions]
 text_file S test_inst.txt n n
+speed_limit 5
 text T1 "Which fruit do yon eat?" 20 red
 image I1 img/rr1.png
 image I2 img/yy1.png

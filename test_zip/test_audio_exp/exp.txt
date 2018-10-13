@@ -1,6 +1,7 @@
 Task WM Digitspan_Audio
 [Descriptions]
 text_file S digitspan_inst.txt n n
+speed_limit 5
 text T0 "?" 30 white
 text T1 "1" 30 black
 text T2 "2" 30 black

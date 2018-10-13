@@ -48,6 +48,10 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
         return line
 
     def send_result(line, researcher_name, prj_name, exp_name):
+        line = line.replace("/* yumin redirection */", "\
+            alert('비정상적인 움직임이 포착되었으므로 프로젝트 페이지로 돌아갑니다. 다시 시도해주세요.');\n\
+            window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/);\n\
+            ");
         line = line.replace("/* yumin accuracy */", "\
             accuracy = accuracy.toString();\n\
             start_time_list = start_time_list.toString();\n\

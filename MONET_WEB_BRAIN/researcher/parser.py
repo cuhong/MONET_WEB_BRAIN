@@ -107,6 +107,7 @@ class Video():
 
 
 stimulus_dict = {}
+speed_limit = None
 def parse_stimulus(line):
     global stimulus_dict
     line = line.split(' ')
@@ -124,6 +125,8 @@ def parse_stimulus(line):
         stimulus_obj = Audio(line[2])
     elif line[0] == "video":
         stimulus_obj = Video(line[2])
+    elif line[0] == "speed_limit":
+        speed_limit = int(line[1]) 
     else:
         print("wrong stimulus type")
     stimulus = Stimulus(identifier, stimulus_obj)
@@ -366,19 +369,38 @@ def get_header(exp_name):
 
 def get_body():
     global sequence_list
+    global speed_limit
     body_string = "<body>\n<script>\n"
-    body_string += "var gyro_x = [];\n"
-    body_string += "var gyro_y = [];\n"
-    body_string += "var gyro_z = [];\n"
-    body_string += "const sensorGyro = new Gyroscope();\n"
-    body_string += "$(document).ready(function(){\n\
-                    setInterval(save_gyro, 100);\n\
-                    });\n"
-    body_string += "function save_gyro(){\n\
-                    gyro_x.push(sensorGyro.x);\n\
-                    gyro_y.push(sensorGyro.y);\n\
-                    gyro_z.push(sensorGyro.z);\n\
-                    };\n"
+    if speed_limit:
+        body_string += "var gyro_x = [];\n"
+        body_string += "var gyro_y = [];\n"
+        body_string += "var gyro_z = [];\n"
+        body_string += "const sensorGyro = new Gyroscope();\n"
+        body_string += "sensorGyro.start();\n"
+        body_string += "$(document).ready(function(){\n\
+                        setInterval(check_gyro, 100);\n\
+                        });\n"
+        body_string += "function check_gyro(){\n\
+                        var avg_x = 0;\n\
+                        var avg_y = 0;\n\
+                        var avg_z = 0;\n\
+                        for(var i=0;i<gyro_x.length;i++){\n\
+                        avg_x += gyro_x[i];\n\
+                        }\n\
+                        for(var i=0;i<gyro_y.length;i++){\n\
+                        avg_y += gyro_y[i];\n\
+                        }\n\
+                        for(var i=0;i<gyro_z.length;i++){\n\
+                        avg_z += gyro_z[i];\n\
+                        }\n\
+                        avg_x /= gyro_x.length;\n\
+                        avg_y /= gyro_y.length;\n\
+                        avg_z /= gyro_z.length;\n\
+                        speed = Math.sqrt((avg_x * avg_x + avg_y * avg_y + avg_z * avg_z)/3);\n\
+                        if(speed>speed_limit){\n\
+                            /* yumin redirection */\n\
+                        }\n\
+                        };\n"
     body_string += "var timeline = [];\n"
     body_string += "var start_time_list = [];\n"
     body_string += "var end_time_list = [];\n"
@@ -401,7 +423,6 @@ def get_body():
                 //jsPsych.data.get().localSave('csv','data.csv');\n\
             }\n\
 		});\n"
-    body_string += "sensorGyro.start();\n"
     body_string += "</script>\n</body>\n"
     return body_string
 
