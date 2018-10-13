@@ -368,18 +368,6 @@ def get_header(exp_name):
 def get_body():
     global sequence_list
     body_string = "<body>\n<script>\n"
-    body_string += "var gyro_x = [];\n"
-    body_string += "var gyro_y = [];\n"
-    body_string += "var gyro_z = [];\n"
-    body_string += "const sensorGyro = new Gyroscope();\n"
-    body_string += "$(document).ready(function(){\n\
-                    setInterval(save_gyro, 100);\n\
-                    });\n"
-    body_string += "function save_gyro(){\n\
-                    gyro_x.push(sensorGyro.x);\n\
-                    gyro_y.push(sensorGyro.y);\n\
-                    gyro_z.push(sensorGyro.z);\n\
-                    };\n"
     body_string += "var timeline = [];\n"
     body_string += "var start_time_list = [];\n"
     body_string += "var end_time_list = [];\n"

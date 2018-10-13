@@ -54,6 +54,9 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
             end_time_list = end_time_list.toString();\n\
             response_time_list = rt.toString();\n\
             response_list = user_choices.toString();\n\
+            gyro_x = gyro_x.toString();\n\
+            gyro_y = gyro_y.toString();\n\
+            gyro_z = gyro_z.toString();\n\
             var xhr = new XMLHttpRequest();\n\
             xhr.open('POST', '/researcher/" + researcher_name +  "/" + prj_name + "/" + exp_name + "/', true);\n\
             xhr.setRequestHeader('Content-type', 'application/json');\n\
@@ -64,13 +67,17 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
                     window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/" + exp_name + "/result');\n\
                 }\n\
             };\n\
-            xhr.send(accuracy + '!' + response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list);\n\
+            xhr.send(accuracy + '!' + response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list + '!' + gyro_x + '!' + gyro_y + '!' + gyro_z);\n\
             ")
 
         line = line.replace("/* yumin no accuracy */", "\
             start_time_list = start_time_list.toString();\n\
             end_time_list = end_time_list.toString();\n\
             response_time_list = rt.toString();\n\
+            response_list = user_choices.toString();\n\
+            gyro_x = gyro_x.toString();\n\
+            gyro_y = gyro_y.toString();\n\
+            gyro_z = gyro_z.toString();\n\
             var xhr = new XMLHttpRequest();\n\
             xhr.open('POST', '/researcher/" + researcher_name +  "/" + prj_name + "/" + exp_name + "/', true);\n\
             xhr.setRequestHeader('Content-type', 'application/json');\n\
@@ -81,7 +88,7 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
                     window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/" + exp_name + "/result');\n\
                 }\n\
             };\n\
-            xhr.send('N' + '!' +response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list);\n\
+            xhr.send('N' + '!' +response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list + '!' + gyro_x + '!' + gyro_y + '!' + gyro_z);\n\
             ")
         return line
 

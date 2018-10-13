@@ -158,11 +158,11 @@ def experiments(request, researcher_name, prj_name):
     return render(request, 'researcher/experiments.html', {'done_percent': done_percent, 'done':done, 'project':this_prj, 'experiments':experiments, 'researcher_name':researcher_name, 'prj_name':prj_name})
 
 def experiment(request, researcher_name, prj_name, exp_name):
+    print("#### START #####")
     if request.method == 'POST':
-        print('######################EXPERIMENT_RESULT_POST')
-        if 'res_name' not in request.session:
+        if 'name' not in request.session:
             request.session['prev'] = request.path
-            return HttpResponseRedirect(reverse('researcher:sign_in'))
+            return HttpResponseRedirect(reverse('game:sign_in'))
 
         if exp_name.startswith('balloon'):
             # Ballon Experiment!
@@ -203,13 +203,18 @@ def experiment(request, researcher_name, prj_name, exp_name):
                 new_stimulus.end_time = dt.parse(end_time_list[i][:24])
                 new_stimulus.save()
 
+        print("#### START #####")
         # No response default value
         base_response_time = 3000.0
 
         # Read the data sent by User in HttpRequest and parse it
         data = request.body.decode('utf-8')
         data_list = data.split('!')
-
+        print("####")
+        print("####")
+        print(data_list)
+        print("####")
+        print("####")
         # Make a new data instance of this game's score
         new_score = ResearcherExpScore()
         this_researcher = get_object_or_404(Researcher, name=researcher_name)
@@ -233,6 +238,9 @@ def experiment(request, researcher_name, prj_name, exp_name):
         start_time_list = data_list[2].split(',')
         end_time_list = data_list[3].split(',')
         response_list = data_list[4].split(',')
+        print(data_list[5])
+        print(data_list[6])
+        print(data_list[7])
 
         # Create and add each stimulus to our database.
         for i in range(len(rt_list)):
