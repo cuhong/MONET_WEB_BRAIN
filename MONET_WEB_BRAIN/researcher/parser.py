@@ -420,6 +420,7 @@ def get_body():
 			show_preload_progress_bar: true,\n\
                         on_start: function(){\n\
                         setInterval(check_gyro, 100);\n\
+                        console.log(\"hello\");\n\
                         },\n\
                         on_finish: function() {\n\
                         //jsPsych.data.get().localSave('csv','data.csv');\n\
