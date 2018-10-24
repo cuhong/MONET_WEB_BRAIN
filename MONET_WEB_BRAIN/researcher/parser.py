@@ -110,6 +110,7 @@ stimulus_dict = {}
 speed_limit = None
 def parse_stimulus(line):
     global stimulus_dict
+    global speed_limit
     line = line.split(' ')
     identifier = line[1]
     if line[0] == "text":
@@ -127,6 +128,7 @@ def parse_stimulus(line):
         stimulus_obj = Video(line[2])
     elif line[0] == "speed_limit":
         speed_limit = int(line[1]) 
+        return
     else:
         print("wrong stimulus type")
     stimulus = Stimulus(identifier, stimulus_obj)
@@ -375,31 +377,31 @@ def get_body():
         body_string += "var gyro_x = [];\n"
         body_string += "var gyro_y = [];\n"
         body_string += "var gyro_z = [];\n"
+        body_string += "var speed_limit = {};\n".format(speed_limit)
+        body_string += "var speed_list = [];\n"
+        body_string += "var speed_limit_list = [];\n"
         body_string += "const sensorGyro = new Gyroscope();\n"
         body_string += "sensorGyro.start();\n"
         body_string += "$(document).ready(function(){\n\
                         setInterval(check_gyro, 100);\n\
                         });\n"
         body_string += "function check_gyro(){\n\
-                        var avg_x = 0;\n\
-                        var avg_y = 0;\n\
-                        var avg_z = 0;\n\
-                        for(var i=0;i<gyro_x.length;i++){\n\
-                        avg_x += gyro_x[i];\n\
-                        }\n\
-                        for(var i=0;i<gyro_y.length;i++){\n\
-                        avg_y += gyro_y[i];\n\
-                        }\n\
-                        for(var i=0;i<gyro_z.length;i++){\n\
-                        avg_z += gyro_z[i];\n\
-                        }\n\
-                        avg_x /= gyro_x.length;\n\
-                        avg_y /= gyro_y.length;\n\
-                        avg_z /= gyro_z.length;\n\
+                        var avg_x = sensorGyro.x;\n\
+                        var avg_y = sensorGyro.y;\n\
+                        var avg_z = sensorGyro.z;\n\
+                        if(avg_x>0 || avg_y>0 || avg_z>0){\n\
                         speed = Math.sqrt((avg_x * avg_x + avg_y * avg_y + avg_z * avg_z)/3);\n\
+                        }\n\
+                        else{\n\
+                        speed=-1;\n\
+                        }\n\
+                        speed_list.push(speed);\n\
                         if(speed>speed_limit){\n\
                             /* yumin redirection */\n\
                         }\n\
+                        gyro_x = [];\n\
+                        gyro_y = [];\n\
+                        gyro_z = [];\n\
                         };\n"
     body_string += "var timeline = [];\n"
     body_string += "var start_time_list = [];\n"

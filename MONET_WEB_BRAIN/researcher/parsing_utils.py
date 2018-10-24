@@ -50,7 +50,7 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
     def send_result(line, researcher_name, prj_name, exp_name):
         line = line.replace("/* yumin redirection */", "\
             alert('비정상적인 움직임이 포착되었으므로 프로젝트 페이지로 돌아갑니다. 다시 시도해주세요.');\n\
-            window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/);\n\
+            window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/');\n\
             ");
         line = line.replace("/* yumin accuracy */", "\
             accuracy = accuracy.toString();\n\
@@ -58,9 +58,8 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
             end_time_list = end_time_list.toString();\n\
             response_time_list = rt.toString();\n\
             response_list = user_choices.toString();\n\
-            gyro_x = gyro_x.toString();\n\
-            gyro_y = gyro_y.toString();\n\
-            gyro_z = gyro_z.toString();\n\
+            speed_list = speed_list.toString();\n\
+            speed_limit = speed_limit.toString();\n\
             var xhr = new XMLHttpRequest();\n\
             xhr.open('POST', '/researcher/" + researcher_name +  "/" + prj_name + "/" + exp_name + "/', true);\n\
             xhr.setRequestHeader('Content-type', 'application/json');\n\
@@ -71,7 +70,7 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
                     window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/" + exp_name + "/result');\n\
                 }\n\
             };\n\
-            xhr.send(accuracy + '!' + response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list + '!' + gyro_x + '!' + gyro_y + '!' + gyro_z);\n\
+            xhr.send(accuracy + '!' + response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list + '!' + speed_limit + '!' + speed_list);\n\
             ")
 
         line = line.replace("/* yumin no accuracy */", "\
@@ -79,9 +78,8 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
             end_time_list = end_time_list.toString();\n\
             response_time_list = rt.toString();\n\
             response_list = user_choices.toString();\n\
-            gyro_x = gyro_x.toString();\n\
-            gyro_y = gyro_y.toString();\n\
-            gyro_z = gyro_z.toString();\n\
+            speed_list = speed_list.toString();\n\
+            speed_limit = speed_limit.toString();\n\
             var xhr = new XMLHttpRequest();\n\
             xhr.open('POST', '/researcher/" + researcher_name +  "/" + prj_name + "/" + exp_name + "/', true);\n\
             xhr.setRequestHeader('Content-type', 'application/json');\n\
@@ -92,7 +90,7 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
                     window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/" + exp_name + "/result');\n\
                 }\n\
             };\n\
-            xhr.send('N' + '!' +response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list + '!' + gyro_x + '!' + gyro_y + '!' + gyro_z);\n\
+            xhr.send('N' + '!' +response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list + '!' + speed_limit + '!' + speed_list);\n\
             ")
         return line
 

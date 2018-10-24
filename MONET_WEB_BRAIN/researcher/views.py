@@ -158,7 +158,6 @@ def experiments(request, researcher_name, prj_name):
     return render(request, 'researcher/experiments.html', {'done_percent': done_percent, 'done':done, 'project':this_prj, 'experiments':experiments, 'researcher_name':researcher_name, 'prj_name':prj_name})
 
 def experiment(request, researcher_name, prj_name, exp_name):
-    print("#### START #####")
     if request.method == 'POST':
         if 'name' not in request.session:
             request.session['prev'] = request.path
@@ -238,9 +237,6 @@ def experiment(request, researcher_name, prj_name, exp_name):
         start_time_list = data_list[2].split(',')
         end_time_list = data_list[3].split(',')
         response_list = data_list[4].split(',')
-        print(data_list[5])
-        print(data_list[6])
-        print(data_list[7])
 
         # Create and add each stimulus to our database.
         for i in range(len(rt_list)):
