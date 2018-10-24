@@ -196,6 +196,7 @@ class SequenceVariable():
                                     },\n"%(','.join(['\''+choice_obj.get_choice_html()+'\'' for choice_obj in self.choices]))
                 block_string += "on_load: function(data){\n\
                                     var current_time = new Date();\n\
+                                    setInterval(check_gyro, 100);\n\
                                     start_time_list.push(current_time);\n\
                                     },\n"
             else:
@@ -210,6 +211,7 @@ class SequenceVariable():
                                 },\n"%(','.join(['\''+choice_obj.get_choice_html()+'\'' for choice_obj in self.choices]))
             block_string += "on_load: function(data){\n\
                                 var current_time = new Date();\n\
+                                setInterval(check_gyro, 100);\n\
                                 start_time_list.push(current_time);\n\
                                 },\n"
         block_string += "});\n"
@@ -418,10 +420,6 @@ def get_body():
     body_string += 	"jsPsych.init({\n\
 			timeline: timeline,\n\
 			show_preload_progress_bar: true,\n\
-                        on_start: function(){\n\
-                        setInterval(check_gyro, 100);\n\
-                        console.log(\"hello\");\n\
-                        },\n\
                         on_finish: function() {\n\
                         //jsPsych.data.get().localSave('csv','data.csv');\n\
                         }\n\
