@@ -235,6 +235,7 @@ def experiment(request, researcher_name, prj_name, exp_name):
         new_score.gyro_x_avg = float(data_list[7])
         new_score.gyro_y_avg = float(data_list[8])
         new_score.gyro_z_avg = float(data_list[9])
+        print(data_list[7], data_list[8], data_list[9])
         new_score.save()
 
         # Parse start & end time list & responses
