@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.db import IntegrityError 
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404 
 from django.conf import settings 
 from django.urls import reverse
 from django.utils import timezone
@@ -231,12 +231,17 @@ def experiment(request, researcher_name, prj_name, exp_name):
                 sum += base_response_time
         if len(rt_list) != 0:
             new_score.avg_rt = sum/len(rt_list)
+        speed_list_avg = float(data_list[6])
+        new_score.gyro_x_avg = float(data_list[7])
+        new_score.gyro_y_avg = float(data_list[8])
+        new_score.gyro_z_avg = float(data_list[9])
         new_score.save()
 
         # Parse start & end time list & responses
         start_time_list = data_list[2].split(',')
         end_time_list = data_list[3].split(',')
         response_list = data_list[4].split(',')
+
 
         # Create and add each stimulus to our database.
         for i in range(len(rt_list)):

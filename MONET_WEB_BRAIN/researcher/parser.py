@@ -382,9 +382,6 @@ def get_body():
         body_string += "var speed_limit_list = [];\n"
         body_string += "const sensorGyro = new Gyroscope();\n"
         body_string += "sensorGyro.start();\n"
-        body_string += "$(document).ready(function(){\n\
-                        setInterval(check_gyro, 100);\n\
-                        });\n"
         body_string += "function check_gyro(){\n\
                         var avg_x = sensorGyro.x;\n\
                         var avg_y = sensorGyro.y;\n\
@@ -396,12 +393,12 @@ def get_body():
                         speed=-1;\n\
                         }\n\
                         speed_list.push(speed);\n\
+                        gyro_x.push(avg_x);\n\
+                        gyro_y.push(avg_y);\n\
+                        gyro_z.push(avg_z);\n\
                         if(speed>speed_limit){\n\
                             /* yumin redirection */\n\
                         }\n\
-                        gyro_x = [];\n\
-                        gyro_y = [];\n\
-                        gyro_z = [];\n\
                         };\n"
     body_string += "var timeline = [];\n"
     body_string += "var start_time_list = [];\n"
@@ -421,10 +418,13 @@ def get_body():
     body_string += 	"jsPsych.init({\n\
 			timeline: timeline,\n\
 			show_preload_progress_bar: true,\n\
-            on_finish: function() {\n\
-                //jsPsych.data.get().localSave('csv','data.csv');\n\
-            }\n\
-		});\n"
+                        on_start: function(){\n\
+                        setInterval(check_gyro, 100);\n\
+                        },\n\
+                        on_finish: function() {\n\
+                        //jsPsych.data.get().localSave('csv','data.csv');\n\
+                        }\n\
+                        });\n"
     body_string += "</script>\n</body>\n"
     return body_string
 

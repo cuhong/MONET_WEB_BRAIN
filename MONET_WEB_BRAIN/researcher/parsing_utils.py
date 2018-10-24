@@ -58,8 +58,11 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
             end_time_list = end_time_list.toString();\n\
             response_time_list = rt.toString();\n\
             response_list = user_choices.toString();\n\
-            speed_list = speed_list.toString();\n\
+            speed_list_avg = average(speed_list);\n\
             speed_limit = speed_limit.toString();\n\
+            gyro_x_avg = average(gyro_x);\n\
+            gyro_y_avg = average(gyro_y);\n\
+            gyro_z_avg = average(gyro_z);\n\
             var xhr = new XMLHttpRequest();\n\
             xhr.open('POST', '/researcher/" + researcher_name +  "/" + prj_name + "/" + exp_name + "/', true);\n\
             xhr.setRequestHeader('Content-type', 'application/json');\n\
@@ -70,7 +73,7 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
                     window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/" + exp_name + "/result');\n\
                 }\n\
             };\n\
-            xhr.send(accuracy + '!' + response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list + '!' + speed_limit + '!' + speed_list);\n\
+            xhr.send(accuracy + '!' + response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list + '!' + speed_limit + '!' + speed_list_avg + '!' + gyro_x_avg + '!' +  gyro_y_avg + '!' + gyro_z_avg);\n\
             ")
 
         line = line.replace("/* yumin no accuracy */", "\
@@ -78,8 +81,11 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
             end_time_list = end_time_list.toString();\n\
             response_time_list = rt.toString();\n\
             response_list = user_choices.toString();\n\
-            speed_list = speed_list.toString();\n\
+            speed_list_avg = average(speed_list);\n\
             speed_limit = speed_limit.toString();\n\
+            gyro_x_avg = average(gyro_x);\n\
+            gyro_y_avg = average(gyro_y);\n\
+            gyro_z_avg = average(gyro_z);\n\
             var xhr = new XMLHttpRequest();\n\
             xhr.open('POST', '/researcher/" + researcher_name +  "/" + prj_name + "/" + exp_name + "/', true);\n\
             xhr.setRequestHeader('Content-type', 'application/json');\n\
@@ -90,7 +96,7 @@ def html_postprocessing(html_file, researcher_name, prj_name, exp_name):
                     window.location.replace('/researcher/" + researcher_name + "/" + prj_name + "/" + exp_name + "/result');\n\
                 }\n\
             };\n\
-            xhr.send('N' + '!' +response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list + '!' + speed_limit + '!' + speed_list);\n\
+            xhr.send('N' + '!' +response_time_list + '!' + start_time_list + '!' + end_time_list + '!' + response_list + '!' + speed_limit + '!' + speed_list_avg + '!' + gyro_x_avg + '!' +  gyro_y_avg + '!' + gyro_z_avg);\n\
             ")
         return line
 
