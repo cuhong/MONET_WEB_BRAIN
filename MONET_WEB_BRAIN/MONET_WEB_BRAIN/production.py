@@ -7,6 +7,7 @@ SECRET_KEY = '1x7w9-)9+tb)ns@az%sng+vl8n132p^w5=qauz#7x@@nvs9(n8'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -15,6 +16,18 @@ DATABASES = {
         'PASSWORD': 'wkdrhahspdnpq1234',
         'HOST': 'localhost',
         'PORT': '',
+    }
+}
+"""
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'MONET_WEB_BRAIN',
+        'USER': 'root',
+        'PASSWORD': 'monet1234',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
