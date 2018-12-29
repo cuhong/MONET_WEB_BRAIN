@@ -82,8 +82,11 @@ def sign_up(request):
     """
     if request.method == 'GET':
         if 'name' in request.session:
-            # User already logged-in
-            return HttpResponseRedirect(reverse('game:which_game'))
+
+            # Redirect the user to game-selection webpage
+            if 'prev' in request.session:
+                return redirect(request.session['prev'])
+
         else:
             # Show the user the sign-up webpage
             form = SignupForm()
@@ -199,8 +202,11 @@ def sign_in(request):
     """
     if request.method == 'GET':
         if 'name' in request.session:
-            # User already logged-in
-            return HttpResponseRedirect(reverse('game:which_game'))
+
+            # Redirect the user to game-selection webpage
+            if 'prev' in request.session:
+                return redirect(request.session['prev'])
+
         else:
             # Show the user the login webpage
             form = SigninForm()
