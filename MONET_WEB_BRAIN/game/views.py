@@ -105,7 +105,7 @@ def sign_up(request):
             request.session['name'] = user.username
 
             # Redirect the user to game-selection webpage
-            return redirect(reverse('user_agreement'))
+            return redirect(reverse('game:user_agreement'))
 
         else:
             # If the given form is invalid, raise 404 error
