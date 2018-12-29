@@ -16,6 +16,8 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('activate/<slug:uidb64>/<slug:token>/', views.activate, name='activate'),
     path('teen_auth/<slug:user_name>/', views.teen_auth, name='teen_auth'),
+    path('agreement/', views.user_agreement, name='user_agreement'),
+    path('i_agree/', views.i_agree, name='i_agree'),
 ]
 
 

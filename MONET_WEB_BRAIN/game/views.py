@@ -73,6 +73,13 @@ def activate(request, uidb64, token):
     else:
         return HttpResponse('Activation link is not valid')
 
+def user_agreement(request):
+    return render(request, "game/agreement.html")
+
+def i_agree(request):
+    return redirect(request.session['prev'])
+
+
 @csrf_exempt
 def sign_up(request):
     """
@@ -94,32 +101,12 @@ def sign_up(request):
         # If the given form is valid & there's no error while querying, accept it.
         form = SignupForm(request.POST)
         if form.is_valid():
-            if form.cleaned_data['parent_email']:
-                user = form.save(commit=False)
-                user.is_active = False
-                user.save()
-
-                current_site = get_current_site(request)
-                mail_subject = "[MONET WeBRAIN] 계정 인증"
-                message = render_to_string('game/acc_active_email.html', {
-                    'user': user,
-                    'domain': current_site.domain,
-                    'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),  # django 2.0 -> decode()
-                    'token': account_activation_token.make_token(user),
-                })
-                to_email = form.cleaned_data.get('parent_email')
-                email = EmailMessage(mail_subject, message, to=[to_email])
-                email.send()
-                return HttpResponse('{}님의 부모님께 계정 인증 메일을 보냈습니다. 부모님이 해당 메일을 보시고 링크를 누르시면 회원가입이 완료됩니다.'.format(user.username))
-
             user = form.save()
             request.session['name'] = user.username
 
             # Redirect the user to game-selection webpage
-            if 'prev' in request.session:
-                return redirect(request.session['prev'])
+            return redirect(reverse('user_agreement'))
 
-            return HttpResponseRedirect(reverse('game:which_game'))
         else:
             # If the given form is invalid, raise 404 error
             messages.error(request, '올바르지 않은 제출 양식입니다.')
