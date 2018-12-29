@@ -54,7 +54,7 @@ class BalloonExpScore(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.user.username + self.date
+        return self.user.username  + ' / ' + str(self.date)
 
 class BalloonExpStimulus(models.Model):
     bes = models.ForeignKey(BalloonExpScore, on_delete=models.CASCADE)
