@@ -3,6 +3,7 @@ from . import views
 from django.conf.urls.static import static
 from django.conf import settings
 
+
 app_name = 'game'
 urlpatterns = [
     #path('.well-known/pki-validation/1C7ACCC95D8133480DCF4A4EA241DD59.txt/', views.ssl, name='ssl'),
@@ -15,8 +16,8 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('activate/<slug:uidb64>/<slug:token>/', views.activate, name='activate'),
     path('teen_auth/<slug:user_name>/', views.teen_auth, name='teen_auth'),
-
 ]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

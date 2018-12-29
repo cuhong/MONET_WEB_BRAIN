@@ -233,10 +233,8 @@ def sign_in(request):
         return Http404('Invalid Request Method!\nOnly GET and POST are supported.')
 
 
+
 def which_game(request):
-    """
-    Do: Let the user select which game he will play, after that redirect him to the game
-    """
     # If the user is not logged in, redirect it to index webpage.
     if request.method == 'GET':
         if 'name' not in request.session:

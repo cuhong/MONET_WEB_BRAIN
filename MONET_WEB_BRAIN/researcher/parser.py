@@ -296,15 +296,15 @@ def get_result_page():
                                     console.log(end_time_list);\n\
                                     console.log(rt);\n\
                                     /* yumin accuracy */\n\
-                                    return \"<p>You responded correctly on \" + accuracy + \"% of the trials.</p>\" +\n\
-                                        \"<p>Your average response time was \" + average(rt) / 1000 + \"s.</p>\";\n}\n\
+                                    return \"<p>당신의 정확도는 \" + accuracy + \"% 입니다.</p>\" +\n\
+                                        \"<p>당신의 평균 응답시간 \" + average(rt) / 1000 + \"초 입니다.</p>\";\n}\n\
                                 else {\n\
                                     var rt = trials.select('rt').values;\n\
                                     console.log(start_time_list);\n\
                                     console.log(end_time_list);\n\
                                     console.log(rt);\n\
                                     /* yumin no accuracy */\n\
-                                    return \"<p>Your average response time was \" + average(rt) / 1000 + \"s.</p>\";\n}\n\
+                                    return \"<p>당신의 평균 응답시간은 \" + average(rt) / 1000 + \"초 입니다.</p>\";\n}\n\
                             },\n\
                 trial_duration: 10000,\n\
                 });\n"
