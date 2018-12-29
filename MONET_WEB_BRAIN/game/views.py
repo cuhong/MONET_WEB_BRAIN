@@ -44,6 +44,13 @@ def index(request):
     Do: Redirect the user to the sign-up webpage.
         If the user already signed-in, redirect him to the which-game webpage.
     """
+
+    if 'res_name' not in request.session:
+        return HttpResponseRedirect(reverse('researcher:sign_in'))
+    else:
+        return HttpResponseRedirect(reverse('researcher:projects', kwargs={'researcher_name':request.session['res_name']}))
+
+    """
     if 'name' not in request.session:
         # User need to sign up or sign in
         ##return redirect('/sign-up/') --> Hard-coded version
@@ -51,6 +58,7 @@ def index(request):
     else:
         # Redirect the user to game selection webpage.
         return HttpResponseRedirect(reverse('game:which_game'))
+    """
 
 def activate(request, uidb64, token):
     try:
