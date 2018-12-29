@@ -23,7 +23,7 @@ class SignupForm(UserCreationForm):
         self.helper.add_input(Submit('submit', '시작', css_class='btn btn-primary btn-block', style='background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%); background-color: #28a745'))
         self.helper.layout = Layout(
             Fieldset('필수 입력 사항', 'username', 'email', 'password1', 'password2'),
-            Fieldset('미성년자 추가 입력사항', 'parent_email')
+            #Fieldset('미성년자 추가 입력사항', 'parent_email')
         )
 
     class Meta:
