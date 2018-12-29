@@ -34,9 +34,9 @@
 {% endblock script %}
 
 {% block content %}
-  <p>Your rank is {{ user_rank }} of {{ user_num }}. Top {{ user_per }}%!</p>
-  <p>[This Time!] Date: {{ this_turn_score.date }}  Score: {{ this_turn_score.score }}</p>
-  <a href="{% url 'game:index' %}">Play another experiment</a>
+  <p>당신은 {{ user_num }} 중에 {{ user_rank }} 등 했습니다. 상위 {{ user_per }}% 입니다!</p>
+  <p>[이번 시도] 날짜: {{ this_turn_score.date }}  점수: {{ this_turn_score.score }}</p>
+  <a href="{% url 'game:index' %}">다른 실험 해보러 가기!</a>
   <div id="result_histogram" style="position:absolute; margin-top:100px; margin-bottom:100px;width:50%; text-align:center; left:25% "></div>
   <script>
     var data = [
