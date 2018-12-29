@@ -104,13 +104,13 @@
                 ({{ exp.per }}) %
             </div>
 
-            
+            {% if isResearcher %}
             <div class="element">
                 <a href="/researcher/{{exp.experiment.prj.researcher.name}}/{{exp.experiment.prj.prj_name}}/{{exp.experiment.exp_name}}/csv/">
                     csv
                 </a>
             </div>
-
+            {% endif %}
             
         </div>
         {% endfor %}

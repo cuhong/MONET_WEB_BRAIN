@@ -155,7 +155,11 @@ def experiments(request, researcher_name, prj_name):
     except:
         done_percent = 0
         
-    return render(request, 'researcher/experiments.html', {'done_percent': done_percent, 'done':done, 'project':this_prj, 'experiments':experiments, 'researcher_name':researcher_name, 'prj_name':prj_name})
+    if 'res_name' in request.session:
+        isResearcher = True
+    else:
+        isResearcher = False
+    return render(request, 'researcher/experiments.html', {'done_percent': done_percent, 'done':done, 'project':this_prj, 'experiments':experiments, 'researcher_name':researcher_name, 'prj_name':prj_name, 'isResearcher':isResearcher})
 
 def experiment(request, researcher_name, prj_name, exp_name):
     if request.method == 'POST':
