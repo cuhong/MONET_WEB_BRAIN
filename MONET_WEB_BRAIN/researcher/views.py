@@ -266,8 +266,12 @@ def csv_download(request, researcher_name, prj_name, exp_name):
 
     scores = ResearcherExpScore.objects.filter(exp=this_exp).order_by('-date')
 
+    writer.writerow(['Experiment date', 'User name', 'Score', 'Stimulus response time', 'Stimulus response', 'Stimulus start time', 'Stimulus end time', ])
     for score in scores:
-        writer.writerow([score.date, score.user.username, score.accuracy])
+        stimulus = ResearcherExpStimulus.objects.filter(res=score)
+        for st in stimulus:
+            
+            writer.writerow([score.date, score.user.username, score.accuracy, st.rt, st.response, st.start_time, st.end_time])
 
     return response
 
