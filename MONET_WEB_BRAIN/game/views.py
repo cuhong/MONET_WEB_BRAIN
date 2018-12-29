@@ -84,8 +84,7 @@ def sign_up(request):
         if 'name' in request.session:
 
             # Redirect the user to game-selection webpage
-            if 'prev' in request.session:
-                return redirect(request.session['prev'])
+            return redirect(request.session['prev'])
 
         else:
             # Show the user the sign-up webpage
@@ -204,8 +203,7 @@ def sign_in(request):
         if 'name' in request.session:
 
             # Redirect the user to game-selection webpage
-            if 'prev' in request.session:
-                return redirect(request.session['prev'])
+            return redirect(request.session['prev'])
 
         else:
             # Show the user the login webpage

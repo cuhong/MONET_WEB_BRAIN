@@ -108,7 +108,7 @@ def projects(request, researcher_name):
 def experiments(request, researcher_name, prj_name):
     if 'name' not in request.session:
         request.session['prev'] = request.path
-        return redirect('/game/sign_up/')
+        return redirect(reverse('game:sign_up'))
 
     this_user = get_object_or_404(User, username=request.session['name'])
     this_researcher = get_object_or_404(Researcher, name=researcher_name)
